@@ -1,7 +1,7 @@
 {
-  "name": "shivanetra-v9",
+  "name": "shivanetra-v9-backend",
   "version": "9.0.0",
-  "description": "Shivanetra V9 - Numerology + Marduk Shield + AI Accumulation",
+  "description": "Real Shivanetra V9 - NASA API + Calculators + Database",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -9,8 +9,11 @@
   },
   "dependencies": {
     "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "axios": "^1.6.0",
     "sqlite3": "^5.1.6",
-    "cors": "^2.8.5"
+    "sqlite": "^5.1.1",
+    "dotenv": "^16.3.1"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
