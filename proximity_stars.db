@@ -1,0 +1,17 @@
+CREATE TABLE stars (
+    id INTEGER PRIMARY KEY,
+    name TEXT,               -- "Sirius", "Alpha Centauri"
+    distance_ly REAL,        -- light years (0-50)
+    magnitude REAL,          -- brightness
+    constellation TEXT,
+    zodiac_longitude REAL,   -- position in degrees
+    influence TEXT           -- "strong", "direct"
+);
+
+CREATE TABLE star_positions (
+    star_id INTEGER,
+    date TEXT,
+    longitude REAL,
+    declination REAL,
+    rising_time TEXT
+);
