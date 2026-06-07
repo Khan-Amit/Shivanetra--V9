@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shivanetra V6 - Numerology Calculator</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        h1 { text-align: center; color: #ffd700; }
+        .form-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+        input, select, button {
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: none;
+            font-size: 16px;
+        }
+        input, select { background: #2c2c4e; color: white; width: 100%; }
+        button {
+            background: #ffd700;
+            color: #1a1a2e;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover { background: #ffed4a; }
+        .grid-3x3 {
+            display: grid;
+            grid-template-columns: repeat(3, 80px);
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .cell {
+            width: 80px;
+            height: 80px;
+            background: rgba(255,215,0,0.2);
+            border: 2px solid #ffd700;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .result-section {
+            background: rgba(0,0,0,0.5);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .flex-2cols { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        @media (max-width: 768px) { .flex-2cols { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔮 Shivanetra V6 🔮</h1>
+        <div class="form-card">
+            <input type="text" id="name" placeholder="Full Name" autocomplete="off">
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
+                <input type="number" id="day" placeholder="Day (1-31)">
+                <input type="number" id="month" placeholder="Month (1-12)">
+                <input type="number" id="year" placeholder="Year">
+            </div>
+            <select id="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+            <button onclick="calculate()">✨ Calculate Your Numbers ✨</button>
+        </div>
+        <div id="results" style="display: none;"></div>
+    </div>
+
+    <script>
+        async function calculate() {
+            const name = document.getElementById('name').value;
+            const day = document.getElementById('day').value;
+            const month = document.getElementById('month').value;
+            const year = document.getElementById('year').value;
+            const gender = document.getElementById('gender').value;
+
+            if (!name || !day || !month || !year) {
+                alert('Please fill all fields');
+                return;
+            }
+
+            const response = await fetch('http://localhost:3000/api/calculate', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, day: parseInt(day), month: parseInt(month), year: parseInt(year), gender })
+            });
+
+            const result = await response.json();
+            
+            if (result.success) {
+                const d = result.data;
+                displayResults(d);
+            } else {
+                alert('Error: ' + result.error);
+            }
+        }
+
+        function displayResults(data) {
+            const grid = data.loShu.grid;
+            const html = `
+                <div class="result-section">
+                    <h2>📊 Lo Shu Grid</h2>
+                    <div class="grid-3x3">
+                        ${grid.map(row => row.map(cell => `<div class="cell">${cell}</div>`).join('')).join('')}
+                    </div>
+                    <p><strong>Ruling Number:</strong> ${data.loShu.rulingNumber}</p>
+                    <p><strong>Missing Numbers:</strong> ${data.loShu.missingNumbers.join(', ') || 'None'}</p>
+                    
+                    <div class="flex-2cols">
+                        <div>
+                            <h3>🏮 Kua Number (Feng Shui)</h3>
+                            <p><strong>Kua:</strong> ${data.kua.kua}</p>
+                            <p><strong>Group:</strong> ${data.kua.group} Group</p>
+                            <p><strong>Success:</strong> ${data.kua.directions.success}</p>
+                            <p><strong>Health:</strong> ${data.kua.directions.health}</p>
+                        </div>
+                        <div>
+                            <h3>✡️ Kabbalah</h3>
+                            <p><strong>Number:</strong> ${data.kabbalah.kabbalahNumber}</p>
+                            <p><strong>Meaning:</strong> ${data.kabbalah.interpretation}</p>
+                        </div>
+                    </div>
+                    
+                    <h3>🕉️ Kundalini Five Numbers</h3>
+                    <div class="flex-2cols">
+                        <div>
+                            <p><strong>Soul:</strong> ${data.kundalini.soul.number} (${data.kundalini.soul.body})</p>
+                            <p><strong>Karma:</strong> ${data.kundalini.karma.number} (${data.kundalini.karma.body})</p>
+                            <p><strong>Gift:</strong> ${data.kundalini.gift.number} (${data.kundalini.gift.body})</p>
+                        </div>
+                        <div>
+                            <p><strong>Destiny:</strong> ${data.kundalini.destiny.number} (${data.kundalini.destiny.body})</p>
+                            <p><strong>Path:</strong> ${data.kundalini.path.number} (${data.kundalini.path.body})</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('results').innerHTML = html;
+            document.getElementById('results').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
