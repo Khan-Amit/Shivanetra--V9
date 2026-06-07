@@ -1,96 +1,97 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-
-const { mardukShield } = require('./backend/marduk/shield');
-const { calculateLoShuGrid } = require('./backend/calculators/lo_shu_grid');
-const { calculateKuaNumber } = require('./backend/calculators/kua_number');
-const { calculateKabbalahNumber } = require('./backend/calculators/kabbalah');
-const { calculateKundaliniNumbers } = require('./backend/calculators/kundalini_five');
-const { saveQuery, updateAIPattern, getAIInsights } = require('./backend/database/db');
+const fs = require('fs');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Middleware
 app.use(cors());
 app.use(express.json());
-app.use(mardukShield);
+app.use(express.static('public'));
+
+// Ensure data directory exists
+const dataDir = path.join(__dirname, 'data');
+if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir);
+
+// Import database
+const { initDB, saveCalculation, getHistory } = require('./database');
+
+// Import calculators
+const { calculateLoShuGrid } = require('./calculators/loshu');
+const { calculateKuaNumber } = require('./calculators/kua');
+const { calculateKabbalah } = require('./calculators/kabbalah');
+const { calculateKundalini } = require('./calculators/kundalini');
+const { calculateNakshatra } = require('./calculators/nakshatra');
+
+// Initialize database
+initDB();
+
+// API Endpoint: Calculate everything
+app.post('/api/calculate', async (req, res) => {
+    const { name, day, month, year, gender, location } = req.body;
+    
+    if (!name || !day || !month || !year || !gender) {
+        return res.status(400).json({ error: 'Missing required fields' });
+    }
+    
+    const d = parseInt(day);
+    const m = parseInt(month);
+    const y = parseInt(year);
+    
+    // Run all calculations
+    const loShu = calculateLoShuGrid(d, m, y);
+    const kua = calculateKuaNumber(y, gender);
+    const kabbalah = calculateKabbalah(name);
+    const kundalini = calculateKundalini(d, m, y);
+    const nakshatra = calculateNakshatra(d, m, y);
+    
+    // Save to database
+    saveCalculation({
+        name, day: d, month: m, year: y, gender, location,
+        rulingNumber: loShu.rulingNumber,
+        kuaNumber: kua.kua,
+        kabbalahNumber: kabbalah.number,
+        nakshatra: nakshatra.name,
+        missingNumbers: JSON.stringify(loShu.missingNumbers)
+    });
+    
+    res.json({
+        success: true,
+        data: {
+            loShu,
+            kua,
+            kabbalah,
+            kundalini,
+            nakshatra,
+            user: { name, day: d, month: m, year: y, gender, location }
+        }
+    });
+});
+
+// API Endpoint: Get history
+app.get('/api/history', (req, res) => {
+    getHistory((err, rows) => {
+        if (err) return res.status(500).json({ error: err.message });
+        res.json({ history: rows });
+    });
+});
 
 // Serve frontend
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'frontend', 'index.html'));
-});
-
-// Complete calculation endpoint
-app.post('/api/calculate', (req, res) => {
-  const { name, day, month, year, gender } = req.body;
-  
-  if (!name || !day || !month || !year || !gender) {
-    return res.status(400).json({ error: 'Missing required fields' });
-  }
-  
-  const d = parseInt(day), m = parseInt(month), y = parseInt(year);
-  
-  const loShu = calculateLoShuGrid(d, m, y);
-  const kua = calculateKuaNumber(y, gender);
-  const kabbalah = calculateKabbalahNumber(name);
-  const kundalini = calculateKundaliniNumbers(d, m, y);
-  
-  // Save to database
-  saveQuery(name, d, m, y, gender, loShu, kua, kabbalah);
-  
-  // Update AI patterns
-  updateAIPattern(`ruling_${loShu.rulingNumber}`, loShu.rulingNumber.toString());
-  updateAIPattern(`kua_${kua.kua}`, kua.kua.toString());
-  updateAIPattern(`kabbalah_${kabbalah.kabbalahNumber}`, kabbalah.kabbalahNumber.toString());
-  loShu.missingNumbers.forEach(n => {
-    updateAIPattern(`missing_${n}`, n.toString());
-  });
-  
-  res.json({
-    success: true,
-    loShu,
-    kua,
-    kabbalah,
-    kundalini
-  });
-});
-
-// AI Insights endpoint
-app.get('/api/insights', (req, res) => {
-  getAIInsights((err, rows) => {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json({ insights: rows });
-  });
-});
-
-// Health check
-app.get('/api/health', (req, res) => {
-  res.json({ 
-    status: 'active', 
-    version: '9.0.0',
-    marduk: 'Tier-1 active',
-    uptime: process.uptime()
-  });
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.listen(PORT, () => {
-  console.log(`
-╔══════════════════════════════════════════════════════════╗
-║                                                          ║
-║   🔮 SHIVANETRA–V9 🔮                                    ║
-║   https://github.com/Khan-Ar/shivanetra-v9              ║
-║                                                          ║
-║   ✅ Lo Shu Grid + Ruling Number                        ║
-║   ✅ Kua Number + Directions                            ║
-║   ✅ Kabbalah Name Number                               ║
-║   ✅ Kundalini Five Numbers                             ║
-║   🛡️ Marduk™ Tier-1 Shield                             ║
-║   📀 SQLite Database (accumulating)                     ║
-║   🧠 AI Pattern Learning                                ║
-║                                                          ║
-║   🌐 http://localhost:${PORT}                           ║
-║                                                          ║
-╚══════════════════════════════════════════════════════════╝
-  `);
+    console.log(`
+╔════════════════════════════════════════════╗
+║   SHIVANETRA V9 - REAL BACKEND            ║
+║   ✅ Server running on port ${PORT}         ║
+║   ✅ Database ready                        ║
+║   ✅ Calculators loaded                    ║
+║                                            ║
+║   🌐 http://localhost:${PORT}               ║
+╚════════════════════════════════════════════╝
+    `);
 });
