@@ -1,0 +1,20 @@
+CREATE TABLE planets (
+    id INTEGER PRIMARY KEY,
+    name TEXT,               -- "Mars", "Jupiter"
+    graha_name TEXT,         -- "Mangal", "Guru"
+    speed REAL,              -- degrees per day
+    exaltation_sign TEXT,
+    debilitation_sign TEXT,
+    mooltrikona_sign TEXT
+);
+
+CREATE TABLE planet_positions (
+    planet_id INTEGER,
+    date TEXT,
+    longitude REAL,
+    latitude REAL,
+    speed_current REAL,
+    retrograde BOOLEAN,
+    nakshatra TEXT,
+    pada INTEGER
+);
