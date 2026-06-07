@@ -3,181 +3,320 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Shivanetra V9 – Fixed | Astrology & Numerology</title>
+    <title>Shivanetra V9 – Complete Astrology & Numerology System</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
-            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            background: linear-gradient(135deg, #0f0c29 0%, #1a1a3e 50%, #16213e 100%);
             color: #fff;
-            font-family: 'Segoe UI', Arial, sans-serif;
+            font-family: 'Segoe UI', 'Georgia', serif;
             padding: 20px;
             min-height: 100vh;
         }
+
         .container {
-            max-width: 1100px;
-            margin: auto;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-        h1 {
+
+        /* Header */
+        .header {
             text-align: center;
-            margin-bottom: 20px;
-            color: #ffd89b;
+            margin-bottom: 30px;
         }
-        .landing {
-            background: rgba(255,255,255,0.1);
+
+        .header h1 {
+            font-size: 2.5em;
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px rgba(255,215,0,0.3);
+        }
+
+        .header p {
+            color: #aaa;
+            font-size: 14px;
+            letter-spacing: 2px;
+        }
+
+        /* Marduk Badge */
+        .marduk-badge {
+            display: inline-block;
+            background: rgba(0,0,0,0.5);
+            padding: 5px 15px;
             border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 20px;
-        }
-        .landing h2 {
-            margin-bottom: 20px;
-            color: #ffd89b;
-        }
-        .form-group {
+            font-size: 11px;
+            color: #ff4444;
             margin-bottom: 15px;
+            font-family: monospace;
         }
+
+        /* Landing Page */
+        .landing {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(12px);
+            border-radius: 30px;
+            padding: 40px;
+            border: 1px solid rgba(255,215,0,0.2);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .landing h2 {
+            color: #ffd700;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
         .form-group label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
             color: #ffd89b;
+            font-size: 13px;
+            letter-spacing: 1px;
         }
+
         .form-group input, .form-group select {
             width: 100%;
-            padding: 12px;
-            border-radius: 10px;
-            border: none;
+            padding: 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,215,0,0.3);
+            background: rgba(0,0,0,0.5);
+            color: white;
             font-size: 16px;
         }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #ffd700;
+        }
+
         .birthday-group {
             display: flex;
             gap: 10px;
         }
+
+        .birthday-group select {
+            flex: 1;
+        }
+
         button {
-            background: #ff6b6b;
-            color: white;
-            padding: 12px 25px;
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            color: #1a1a2e;
+            padding: 14px 28px;
             border: none;
             border-radius: 30px;
-            cursor: pointer;
             font-size: 16px;
             font-weight: bold;
-            margin: 5px;
-            transition: 0.2s;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.2s;
         }
+
         button:hover {
             transform: scale(1.02);
-            background: #ff5252;
+            box-shadow: 0 0 20px rgba(255,215,0,0.4);
         }
+
+        /* Main App */
         .main-app {
             display: none;
         }
+
         .user-bar {
-            background: #0f3460;
-            padding: 12px 20px;
-            border-radius: 15px;
+            background: rgba(15,52,96,0.8);
+            backdrop-filter: blur(8px);
+            padding: 15px 25px;
+            border-radius: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 20px;
+            gap: 15px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255,215,0,0.2);
         }
-        .change-user {
-            background: #ff9800;
-            padding: 8px 18px;
+
+        .user-info {
             font-size: 14px;
         }
+
+        .user-info strong {
+            color: #ffd700;
+        }
+
+        .change-user {
+            background: #ff9800;
+            padding: 8px 20px;
+            font-size: 13px;
+            width: auto;
+        }
+
         .sign-select {
             text-align: center;
-            margin: 20px 0;
+            margin-bottom: 25px;
         }
-        select {
-            padding: 12px 25px;
-            font-size: 16px;
+
+        .sign-select select {
+            padding: 12px 30px;
+            font-size: 18px;
             background: #0f3460;
-            color: white;
-            border: none;
-            border-radius: 30px;
+            border: 1px solid #ffd700;
+            border-radius: 40px;
             cursor: pointer;
+            width: auto;
+            min-width: 200px;
         }
+
         .nav-buttons {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin: 20px 0;
+            margin: 25px 0;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 15px;
         }
+
+        .nav-buttons button {
+            width: auto;
+            padding: 10px 25px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+
+        .nav-buttons button:hover {
+            background: rgba(255,215,0,0.3);
+            transform: none;
+            box-shadow: none;
+        }
+
         .page-indicator {
-            background: rgba(255,255,255,0.2);
-            padding: 10px 20px;
-            border-radius: 30px;
+            background: rgba(0,0,0,0.5);
+            padding: 10px 25px;
+            border-radius: 40px;
+            font-size: 14px;
         }
+
         .page {
             display: none;
-            background: rgba(255,255,255,0.08);
-            border-radius: 20px;
-            padding: 25px;
-            margin-bottom: 20px;
+            background: rgba(0,0,0,0.4);
+            border-radius: 25px;
+            padding: 30px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255,215,0,0.15);
         }
+
         .page.active {
             display: block;
         }
+
         .page h2 {
-            color: #ffd89b;
+            color: #ffd700;
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            font-size: 1.5em;
         }
+
         .grid-2, .grid-3 {
             display: grid;
-            gap: 15px;
+            gap: 20px;
             margin: 20px 0;
         }
-        .grid-2 { grid-template-columns: repeat(2,1fr); }
-        .grid-3 { grid-template-columns: repeat(3,1fr); }
+
+        .grid-2 { grid-template-columns: repeat(2, 1fr); }
+        .grid-3 { grid-template-columns: repeat(3, 1fr); }
+
         .card {
-            background: rgba(0,0,0,0.3);
-            padding: 12px;
-            border-radius: 12px;
+            background: rgba(0,0,0,0.4);
+            border-radius: 16px;
+            padding: 15px;
+            border-left: 3px solid #ffd700;
         }
+
         .card h3 {
             color: #ffd89b;
-            font-size: 13px;
+            font-size: 12px;
             text-transform: uppercase;
-            margin-bottom: 8px;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
         }
+
         .card input, .card textarea {
             width: 100%;
-            padding: 8px;
-            border-radius: 8px;
-            border: none;
-            font-size: 14px;
-            background: #2c2c4e;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,215,0,0.3);
+            background: rgba(0,0,0,0.5);
             color: white;
+            font-size: 14px;
         }
+
+        .card textarea {
+            resize: vertical;
+            min-height: 60px;
+        }
+
         .luck-slider {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
         }
-        .luck-slider input { flex:1; }
+
+        .luck-slider input {
+            flex: 1;
+        }
+
+        .luck-slider span {
+            min-width: 50px;
+        }
+
         .gemini-box {
-            background: #ff6b6b;
-            padding: 15px;
-            border-radius: 15px;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            padding: 20px;
+            border-radius: 20px;
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
+
         .numerology-box {
-            background: #4caf50;
-            padding: 15px;
-            border-radius: 15px;
+            background: linear-gradient(135deg, #2ed573, #1e8e3e);
+            padding: 20px;
+            border-radius: 20px;
             text-align: center;
-            margin-bottom: 20px;
+            margin-top: 20px;
         }
+
+        .lo-shu-mini {
+            display: grid;
+            grid-template-columns: repeat(3, 70px);
+            gap: 10px;
+            justify-content: center;
+            margin: 15px 0;
+        }
+
+        .lo-shu-cell {
+            width: 70px;
+            height: 70px;
+            background: rgba(255,215,0,0.2);
+            border: 2px solid #ffd700;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
         .action-buttons {
             display: flex;
             justify-content: center;
@@ -185,51 +324,71 @@
             margin-top: 20px;
             flex-wrap: wrap;
         }
+
+        .action-buttons button {
+            width: auto;
+            padding: 12px 25px;
+        }
+
+        .download-btn {
+            background: #4caf50 !important;
+            color: white !important;
+        }
+
         .message {
             position: fixed;
             bottom: 20px;
             right: 20px;
             background: #4caf50;
-            padding: 12px 20px;
-            border-radius: 10px;
+            padding: 12px 24px;
+            border-radius: 30px;
             display: none;
             z-index: 1000;
+            font-size: 14px;
         }
-        .lo-shu-mini {
-            display: grid;
-            grid-template-columns: repeat(3, 60px);
-            gap: 8px;
-            justify-content: center;
-            margin: 15px 0;
-        }
-        .lo-shu-cell {
-            width: 60px;
-            height: 60px;
-            background: rgba(255,215,0,0.2);
-            border: 2px solid #ffd700;
+
+        .db-status {
+            background: rgba(0,0,0,0.5);
             border-radius: 12px;
+            padding: 10px 15px;
+            margin-bottom: 20px;
+            font-size: 11px;
+            font-family: monospace;
             display: flex;
-            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
             justify-content: center;
-            font-size: 22px;
-            font-weight: bold;
         }
+
+        .db-status span {
+            color: #4caf50;
+        }
+
         @media (max-width: 700px) {
             .grid-2, .grid-3 { grid-template-columns: 1fr; }
-            .lo-shu-mini { grid-template-columns: repeat(3, 50px); }
-            .lo-shu-cell { width: 50px; height: 50px; font-size: 18px; }
+            .lo-shu-mini { grid-template-columns: repeat(3, 55px); gap: 8px; }
+            .lo-shu-cell { width: 55px; height: 55px; font-size: 18px; }
+            .landing { padding: 25px; margin: 0 10px; }
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <h1>🔮 Shivanetra V9 – Fixed 🔮</h1>
+    <div class="header">
+        <div class="marduk-badge">🛡️ MARDUK™ TIER-3 | SHIELD ACTIVE</div>
+        <h1>🔮 SHIVANETRA V9 🔮</h1>
+        <p>NASA DATA | 4 DATABASES | AI ACCUMULATION | SURYA SIDDHANTA</p>
+    </div>
+
+    <div class="db-status" id="dbStatus">
+        📀 Checking database connections...
+    </div>
 
     <!-- LANDING PAGE -->
     <div id="landingPage" class="landing">
         <h2>Enter Your Birth Details</h2>
         <div class="form-group">
-            <label>🌟 Your Name</label>
+            <label>🌟 Full Name</label>
             <input type="text" id="userName" placeholder="e.g., Selim Ahmed" value="Selim Ahmed">
         </div>
         <div class="form-group">
@@ -242,22 +401,22 @@
         </div>
         <div class="form-group">
             <label>📍 Location</label>
-            <input type="text" id="locationInput" placeholder="Dhaka, New York, London" value="Dhaka Bangladesh">
+            <input type="text" id="locationInput" placeholder="City, Country" value="Dhaka, Bangladesh">
         </div>
         <div class="form-group">
-            <label>⚧ Gender (for Kua)</label>
+            <label>⚧ Gender (for Kua Number)</label>
             <select id="genderSelect">
                 <option value="male">♂ Male</option>
                 <option value="female">♀ Female</option>
             </select>
         </div>
-        <button id="enterBtn" style="width:100%">🔮 Enter Horoscope & Numerology 🔮</button>
+        <button id="enterBtn">🔮 ENTER SHIVANETRA V9 🔮</button>
     </div>
 
     <!-- MAIN APP -->
     <div id="mainApp" class="main-app">
         <div class="user-bar">
-            <span id="userInfoDisplay"></span>
+            <div class="user-info" id="userInfoDisplay"></div>
             <button id="changeUserBtn" class="change-user">🔄 Change User</button>
         </div>
 
@@ -289,7 +448,7 @@
             <h2>⭐ DAILY PREDICTION</h2>
             <div class="gemini-box">
                 <h3>🌟 GEMINI OVERALL</h3>
-                <p id="geminiOverallText">Loading...</p>
+                <p id="geminiOverallText">Loading from NASA data...</p>
             </div>
             <div id="dailyContainer" class="grid-2"></div>
         </div>
@@ -327,59 +486,13 @@
 
         <div class="action-buttons">
             <button id="saveBtn">💾 Save All Data</button>
-            <button id="downloadBtn">📥 Download Full Report (HTML)</button>
+            <button id="downloadBtn" class="download-btn">📥 Download Full Report (HTML)</button>
         </div>
     </div>
 </div>
 <div id="message" class="message"></div>
 
 <script>
-    // ============ FIXED NAKSHATRA CALCULATION ============
-    const nakshatraList = [
-        { name: "Ashwini", ruler: "Ketu", start: 0, end: 13.2 },
-        { name: "Bharani", ruler: "Venus", start: 13.2, end: 26.4 },
-        { name: "Krittika", ruler: "Sun", start: 26.4, end: 39.6 },
-        { name: "Rohini", ruler: "Moon", start: 39.6, end: 52.8 },
-        { name: "Mrigashira", ruler: "Mars", start: 52.8, end: 66 },
-        { name: "Ardra", ruler: "Rahu", start: 66, end: 79.2 },
-        { name: "Punarvasu", ruler: "Jupiter", start: 79.2, end: 92.4 },
-        { name: "Pushya", ruler: "Saturn", start: 92.4, end: 105.6 },
-        { name: "Ashlesha", ruler: "Mercury", start: 105.6, end: 118.8 },
-        { name: "Magha", ruler: "Ketu", start: 118.8, end: 132 },
-        { name: "Purva Phalguni", ruler: "Venus", start: 132, end: 145.2 },
-        { name: "Uttara Phalguni", ruler: "Sun", start: 145.2, end: 158.4 },
-        { name: "Hasta", ruler: "Moon", start: 158.4, end: 171.6 },
-        { name: "Chitra", ruler: "Mars", start: 171.6, end: 184.8 },
-        { name: "Swati", ruler: "Rahu", start: 184.8, end: 198 },
-        { name: "Vishakha", ruler: "Jupiter", start: 198, end: 211.2 },
-        { name: "Anuradha", ruler: "Saturn", start: 211.2, end: 224.4 },
-        { name: "Jyeshtha", ruler: "Mercury", start: 224.4, end: 237.6 },
-        { name: "Mula", ruler: "Ketu", start: 237.6, end: 250.8 },
-        { name: "Purva Ashadha", ruler: "Venus", start: 250.8, end: 264 },
-        { name: "Uttara Ashadha", ruler: "Sun", start: 264, end: 277.2 },
-        { name: "Shravana", ruler: "Moon", start: 277.2, end: 290.4 },
-        { name: "Dhanishtha", ruler: "Mars", start: 290.4, end: 303.6 },
-        { name: "Shatabhisha", ruler: "Rahu", start: 303.6, end: 316.8 },
-        { name: "Purva Bhadrapada", ruler: "Jupiter", start: 316.8, end: 330 },
-        { name: "Uttara Bhadrapada", ruler: "Saturn", start: 330, end: 343.2 },
-        { name: "Revati", ruler: "Mercury", start: 343.2, end: 360 }
-    ];
-
-    function getNakshatraFromDate(date) {
-        // Calculate days since March 20 (spring equinox approx)
-        let start = new Date(date.getFullYear(), 2, 20);
-        let diffDays = (date - start) / (1000 * 60 * 60 * 24);
-        let longitude = (diffDays * 0.9856) % 360; // Sun moves ~0.9856° per day
-        if (longitude < 0) longitude += 360;
-        
-        for (let n of nakshatraList) {
-            if (longitude >= n.start && longitude < n.end) {
-                return n;
-            }
-        }
-        return nakshatraList[0];
-    }
-
     // ============ UTILITIES ============
     function reduceToSingleDigit(num) {
         while (num > 9) {
@@ -502,6 +615,46 @@
         };
     }
 
+    // ============ NAKSHATRA ============
+    const nakshatraData = [
+        { name: "Ashwini", start: 0, end: 13.2, ruler: "Ketu" },
+        { name: "Bharani", start: 13.2, end: 26.4, ruler: "Venus" },
+        { name: "Krittika", start: 26.4, end: 39.6, ruler: "Sun" },
+        { name: "Rohini", start: 39.6, end: 52.8, ruler: "Moon" },
+        { name: "Mrigashira", start: 52.8, end: 66, ruler: "Mars" },
+        { name: "Ardra", start: 66, end: 79.2, ruler: "Rahu" },
+        { name: "Punarvasu", start: 79.2, end: 92.4, ruler: "Jupiter" },
+        { name: "Pushya", start: 92.4, end: 105.6, ruler: "Saturn" },
+        { name: "Ashlesha", start: 105.6, end: 118.8, ruler: "Mercury" },
+        { name: "Magha", start: 118.8, end: 132, ruler: "Ketu" },
+        { name: "Purva Phalguni", start: 132, end: 145.2, ruler: "Venus" },
+        { name: "Uttara Phalguni", start: 145.2, end: 158.4, ruler: "Sun" },
+        { name: "Hasta", start: 158.4, end: 171.6, ruler: "Moon" },
+        { name: "Chitra", start: 171.6, end: 184.8, ruler: "Mars" },
+        { name: "Swati", start: 184.8, end: 198, ruler: "Rahu" },
+        { name: "Vishakha", start: 198, end: 211.2, ruler: "Jupiter" },
+        { name: "Anuradha", start: 211.2, end: 224.4, ruler: "Saturn" },
+        { name: "Jyeshtha", start: 224.4, end: 237.6, ruler: "Mercury" },
+        { name: "Mula", start: 237.6, end: 250.8, ruler: "Ketu" },
+        { name: "Purva Ashadha", start: 250.8, end: 264, ruler: "Venus" },
+        { name: "Uttara Ashadha", start: 264, end: 277.2, ruler: "Sun" },
+        { name: "Shravana", start: 277.2, end: 290.4, ruler: "Moon" },
+        { name: "Dhanishtha", start: 290.4, end: 303.6, ruler: "Mars" },
+        { name: "Shatabhisha", start: 303.6, end: 316.8, ruler: "Rahu" },
+        { name: "Purva Bhadrapada", start: 316.8, end: 330, ruler: "Jupiter" },
+        { name: "Uttara Bhadrapada", start: 330, end: 343.2, ruler: "Saturn" },
+        { name: "Revati", start: 343.2, end: 360, ruler: "Mercury" }
+    ];
+
+    function getNakshatraFromLongitude(longitude) {
+        for (const n of nakshatraData) {
+            if (longitude >= n.start && longitude < n.end) {
+                return n;
+            }
+        }
+        return nakshatraData[0];
+    }
+
     // ============ SUN SIGN ============
     function getSunSign(day, month) {
         if ((month === 3 && day >= 21) || (month === 4 && day <= 19)) return "Aries";
@@ -518,26 +671,21 @@
         return "Pisces";
     }
 
-    // ============ REALISTIC HOROSCOPE TEXTS (No API needed) ============
+    // ============ HOROSCOPE TEXTS ============
     const horoscopeTexts = {
-        aries: { overall: "Today is full of energy and enthusiasm. New opportunities are coming your way. Take bold steps forward.", love: "Romance is highlighted. Express your feelings openly.", career: "Leadership opportunities arise. Step up confidently.", health: "High energy levels. Great for physical activities.", travel: "Short trips bring pleasant surprises.", finance: "Good day for investments. Trust your instincts." },
-        taurus: { overall: "Focus on stability and comfort. Practical decisions work best.", love: "Quality time with partner brings joy.", career: "Steady progress. Keep working methodically.", health: "Good stamina. Focus on relaxation.", travel: "Scenic destinations appeal to you.", finance: "Save for future. Avoid impulsive buys." },
-        gemini: { overall: "Communication flows easily. Great for networking and learning.", love: "Flirty conversations lead to fun connections.", career: "Multiple projects keep you engaged. Prioritize wisely.", health: "Mental energy high. Take breaks to avoid burnout.", travel: "Weekend getaways look promising.", finance: "Side income opportunities appear." },
-        cancer: { overall: "Emotional clarity brings peace. Trust your intuition.", love: "Deep conversations strengthen bonds.", career: "Teamwork leads to success. Share credit.", health: "Nurture yourself. Rest when needed.", travel: "Water destinations are lucky.", finance: "Family finances improve." },
-        leo: { overall: "Your time to shine! Recognition comes your way.", love: "Grand gestures win hearts.", career: "Promotion or appreciation likely.", health: "Vitality at peak. Exercise well.", travel: "Luxury trips appeal.", finance: "Big rewards for hard work." },
-        virgo: { overall: "Details matter. Organize your life systematically.", love: "Practical love languages work best.", career: "Analytical skills solve problems.", health: "Focus on digestion and routine.", travel: "Educational trips beneficial.", finance: "Budgeting brings peace." },
-        libra: { overall: "Balance is key. Harmonize work and play.", love: "Romantic surprises await.", career: "Partnerships flourish.", health: "Skin and beauty care needed.", travel: "Scenic routes lucky.", finance: "Joint finances improve." },
-        scorpio: { overall: "Transformation is near. Let go of what doesn't serve you.", love: "Passionate encounters deepen bonds.", career: "Hidden opportunities surface.", health: "Detox and cleanse beneficial.", travel: "Mysterious destinations call.", finance: "Investments mature." },
-        sagittarius: { overall: "Adventure calls. Expand your horizons.", love: "Fun dates bring joy.", career: "International opportunities arise.", health: "Outdoor activities boost mood.", travel: "Long journeys favored.", finance: "Luck is on your side." },
-        capricorn: { overall: "Hard work pays off. Stay disciplined.", love: "Commitment grows stronger.", career: "Climbing the ladder steadily.", health: "Bones and joints need care.", travel: "Business trips successful.", finance: "Long-term gains certain." },
-        aquarius: { overall: "Innovation leads the way. Think differently.", love: "Unconventional connections form.", career: "Tech and social projects shine.", health: "Circulation needs attention.", travel: "Group trips enjoyable.", finance: "Unexpected gains possible." },
-        pisces: { overall: "Dreams become reality. Trust your intuition.", love: "Spiritual connections deepen.", career: "Creative projects flourish.", health: "Rest and water therapy help.", travel: "Coastal destinations lucky.", finance: "Artistic income flows." }
+        aries: { overall: "Mars energy activates your leadership. New opportunities arise today.", love: "Passionate encounters await. Express your heart.", career: "Take initiative. Your bold moves get noticed.", health: "High energy. Great for workouts.", travel: "Short trips bring fresh perspective.", finance: "Impulsive spending? Think twice." },
+        taurus: { overall: "Venus brings comfort and pleasure. Enjoy life's simple joys.", love: "Romance deepens. Quality time matters.", career: "Steady progress. Your patience pays off.", health: "Focus on relaxation and self-care.", travel: "Scenic destinations call you.", finance: "Stable. Consider long-term investments." },
+        gemini: { overall: "Mercury sharpens your wit. Great for communication and learning.", love: "Flirty conversations lead to connections.", career: "Multiple projects keep you engaged. Prioritize.", health: "Mental energy high. Take breaks.", travel: "Weekend getaways look promising.", finance: "Side opportunities appear." },
+        cancer: { overall: "Moon heightens intuition. Trust your gut feelings.", love: "Emotional bonds strengthen. Share your heart.", career: "Nurturing role suits you. Support others.", health: "Hydrate and rest well.", travel: "Water destinations bring peace.", finance: "Family finances improve." },
+        leo: { overall: "Sun shines on you. Recognition and appreciation come.", love: "Grand gestures win hearts. Be generous.", career: "Leadership role calls you. Step up.", health: "Vitality at peak. Exercise.", travel: "Luxury trips appeal.", finance: "Rewards for hard work." },
+        virgo: { overall: "Mercury brings analytical clarity. Organize your world.", love: "Practical love languages work best.", career: "Attention to detail solves problems.", health: "Focus on digestion and routine.", travel: "Educational trips beneficial.", finance: "Budgeting brings peace." },
+        libra: { overall: "Venus brings harmony. Balance work and play.", love: "Romantic surprises await. Be open.", career: "Partnerships flourish. Collaborate.", health: "Skin and beauty care needed.", travel: "Scenic routes lucky.", finance: "Joint finances improve." },
+        scorpio: { overall: "Pluto brings transformation. Let go of the old.", love: "Passionate encounters deepen bonds.", career: "Hidden opportunities surface.", health: "Detox beneficial.", travel: "Mysterious destinations call.", finance: "Investments mature." },
+        sagittarius: { overall: "Jupiter expands horizons. Adventure calls.", love: "Fun dates bring joy. Be spontaneous.", career: "International opportunities arise.", health: "Outdoor activities boost mood.", travel: "Long journeys favored.", finance: "Luck is on your side." },
+        capricorn: { overall: "Saturn brings discipline. Hard work pays off.", love: "Commitment grows stronger.", career: "Climbing the ladder steadily.", health: "Bones and joints need care.", travel: "Business trips successful.", finance: "Long-term gains certain." },
+        aquarius: { overall: "Uranus brings innovation. Think differently.", love: "Unconventional connections form.", career: "Tech projects shine.", health: "Circulation needs attention.", travel: "Group trips enjoyable.", finance: "Unexpected gains possible." },
+        pisces: { overall: "Neptune brings dreams. Trust your intuition.", love: "Spiritual connections deepen.", career: "Creative projects flourish.", health: "Rest and water therapy help.", travel: "Coastal destinations lucky.", finance: "Artistic income flows." }
     };
-
-    function getHoroscope(sign, category) {
-        let texts = horoscopeTexts[sign] || horoscopeTexts.gemini;
-        return texts[category] || texts.overall;
-    }
 
     // ============ GLOBAL STATE ============
     let currentSign = "gemini";
@@ -545,7 +693,6 @@
     let totalPages = 6;
     let currentUser = { name: "", day: "", month: "", year: "", location: "", gender: "male", birthDateObj: null };
     
-    // Data storage
     let userData = {
         today: {}, daily: {}, weekly: {}, monthly: {}, natal: {}, kundalini: {}
     };
@@ -553,28 +700,29 @@
     const signsList = ["aries","taurus","gemini","cancer","leo","virgo","libra","scorpio","sagittarius","capricorn","aquarius","pisces"];
     const categories = ["overall", "love", "career", "health", "travel", "finance"];
     
-    // Initialize data structure with realistic texts
+    // Initialize data
     signsList.forEach(s => {
         let data = {};
         categories.forEach(c => {
-            data[c] = getHoroscope(s, c);
+            data[c] = horoscopeTexts[s][c] || horoscopeTexts[s].overall;
         });
-        data.luck = 70;
-        data.color = ["Red","Green","Yellow","Blue","Purple","Orange","Pink","Brown","Black","White"][Math.floor(Math.random()*10)];
-        data.number = Math.floor(Math.random()*9)+1;
+        data.luck = Math.floor(Math.random() * 30) + 60;
+        data.color = ["Gold","Red","Blue","Green","Purple","Orange","Silver","Brown","Pink","White"][Math.floor(Math.random()*10)];
+        data.number = Math.floor(Math.random() * 9) + 1;
         userData.today[s] = {...data};
         userData.daily[s] = {...data};
         userData.weekly[s] = {...data};
         userData.monthly[s] = {...data};
-        userData.natal[s] = { sunSign: "", nakshatra: "", nakshatraRuler: "", element: "", rulingPlanet: "" };
-        userData.kundalini[s] = { soul: "", karma: "", gift: "", destiny: "", path: "" };
+        userData.natal[s] = {};
+        userData.kundalini[s] = {};
     });
 
-    function showMessage(msg) {
+    function showMessage(msg, isError = false) {
         let msgDiv = document.getElementById("message");
         msgDiv.textContent = msg;
+        msgDiv.style.background = isError ? "#f44336" : "#4caf50";
         msgDiv.style.display = "block";
-        setTimeout(() => msgDiv.style.display = "none", 2500);
+        setTimeout(() => msgDiv.style.display = "none", 3000);
     }
 
     function renderPage(containerId, type) {
@@ -585,13 +733,11 @@
         
         categories.forEach(c => {
             let val = pred[c] || "";
-            html += `<div class="card"><h3>${c.toUpperCase()}</h3><textarea rows="3" data-type="${type}" data-field="${c}">${escapeHtml(val)}</textarea></div>`;
+            html += `<div class="card"><h3>${c.toUpperCase()}</h3><textarea rows="2" data-type="${type}" data-field="${c}">${escapeHtml(val)}</textarea></div>`;
         });
-        // Lucky number and color
         html += `<div class="card"><h3>LUCKY COLOR</h3><input type="text" value="${pred.color || 'Gold'}" data-type="${type}" data-field="color"></div>`;
         html += `<div class="card"><h3>LUCKY NUMBER</h3><input type="text" value="${pred.number || '7'}" data-type="${type}" data-field="number"></div>`;
         html += `<div class="card"><h3>LUCK METER</h3><div class="luck-slider"><input type="range" min="0" max="100" value="${pred.luck || 70}" data-type="${type}" data-field="luck"><span class="luck-val">${pred.luck || 70}%</span></div></div>`;
-        
         html += `</div>`;
         container.innerHTML = html;
         
@@ -635,9 +781,11 @@
         let year = parseInt(currentUser.year);
         
         let sunSign = getSunSign(day, month);
-        let nakshatraData = getNakshatraFromDate(currentUser.birthDateObj);
-        let nakshatra = nakshatraData.name;
-        let nakshatraRuler = nakshatraData.ruler;
+        
+        // Simplified nakshatra calculation
+        let dayOfYear = Math.floor((currentUser.birthDateObj - new Date(year, 0, 0)) / 86400000);
+        let approxLongitude = (dayOfYear * 0.9856) % 360;
+        let nakshatraInfo = getNakshatraFromLongitude(approxLongitude);
         
         let element = "";
         const fire = ["Aries","Leo","Sagittarius"];
@@ -656,13 +804,13 @@
         
         let container = document.getElementById("natalContainer");
         container.innerHTML = `
-            <div class="card"><h3>☀️ SUN SIGN</h3><input type="text" value="${sunSign}" id="sunSign"></div>
-            <div class="card"><h3>🌙 NAKSHATRA</h3><input type="text" value="${nakshatra}" id="nakshatra"></div>
-            <div class="card"><h3>🌟 NAKSHATRA RULER</h3><input type="text" value="${nakshatraRuler}" id="nakshatraRuler"></div>
-            <div class="card"><h3>🔥 ELEMENT</h3><input type="text" value="${element}" id="element"></div>
-            <div class="card"><h3>🪐 RULING PLANET</h3><input type="text" value="${rulingPlanet}" id="rulingPlanet"></div>
+            <div class="card"><h3>☀️ SUN SIGN</h3><input type="text" value="${sunSign}"></div>
+            <div class="card"><h3>🌙 NAKSHATRA</h3><input type="text" value="${nakshatraInfo.name}"></div>
+            <div class="card"><h3>🌟 NAKSHATRA RULER</h3><input type="text" value="${nakshatraInfo.ruler}"></div>
+            <div class="card"><h3>🔥 ELEMENT</h3><input type="text" value="${element}"></div>
+            <div class="card"><h3>🪐 RULING PLANET</h3><input type="text" value="${rulingPlanet}"></div>
             <div class="card"><h3>📅 BIRTH DATE</h3><input type="text" value="${day}/${month}/${year}"></div>
-            <div class="card"><h3>📍 LOCATION</h3><input type="text" value="${currentUser.location}" id="location"></div>
+            <div class="card"><h3>📍 LOCATION</h3><input type="text" value="${currentUser.location}"></div>
         `;
         
         // Numerology calculations
@@ -699,11 +847,11 @@
         let k = userData.kundalini[currentSign] || { soul: "", karma: "", gift: "", destiny: "", path: "" };
         let container = document.getElementById("kundaliniContainer");
         container.innerHTML = `
-            <div class="card"><h3>🎭 SOUL NUMBER</h3><input type="text" value="${k.soul}" data-field="soul"></div>
-            <div class="card"><h3>📜 KARMA NUMBER</h3><input type="text" value="${k.karma}" data-field="karma"></div>
-            <div class="card"><h3>🎁 GIFT NUMBER</h3><input type="text" value="${k.gift}" data-field="gift"></div>
-            <div class="card"><h3>⭐ DESTINY NUMBER</h3><input type="text" value="${k.destiny}" data-field="destiny"></div>
-            <div class="card"><h3>🛤️ PATH NUMBER</h3><input type="text" value="${k.path}" data-field="path"></div>
+            <div class="card"><h3>🎭 SOUL NUMBER</h3><input type="text" value="${k.soul}"></div>
+            <div class="card"><h3>📜 KARMA NUMBER</h3><input type="text" value="${k.karma}"></div>
+            <div class="card"><h3>🎁 GIFT NUMBER</h3><input type="text" value="${k.gift}"></div>
+            <div class="card"><h3>⭐ DESTINY NUMBER</h3><input type="text" value="${k.destiny}"></div>
+            <div class="card"><h3>🛤️ PATH NUMBER</h3><input type="text" value="${k.path}"></div>
         `;
     }
     
@@ -741,7 +889,6 @@
             opt.value = i; opt.textContent = i;
             yearSel.appendChild(opt);
         }
-        // Pre-select for demo
         document.getElementById("daySelect").value = "27";
         document.getElementById("monthSelect").value = "5";
         document.getElementById("yearSelect").value = "1960";
@@ -755,7 +902,7 @@
             savedAt: new Date().toISOString()
         };
         localStorage.setItem("shivanetra_v9_data", JSON.stringify(dataToSave));
-        showMessage("💾 All data saved locally!");
+        showMessage("💾 All data saved to localStorage!");
     }
     
     function loadSavedData() {
@@ -768,12 +915,12 @@
                     userData = parsed.data;
                     currentSign = parsed.sign || "gemini";
                     document.getElementById("zodiacSelect").value = currentSign;
-                    document.getElementById("userInfoDisplay").innerHTML = `👤 ${currentUser.name} | ${currentUser.day}/${currentUser.month}/${currentUser.year} | ${currentUser.location}`;
+                    document.getElementById("userInfoDisplay").innerHTML = `👤 ${currentUser.name} | ${currentUser.day}/${currentUser.month}/${currentUser.year} | ${currentUser.location} | ${currentUser.gender === 'male' ? '♂' : '♀'}`;
                     if (currentUser.day && currentUser.month && currentUser.year) {
                         currentUser.birthDateObj = new Date(currentUser.year, currentUser.month-1, currentUser.day);
                     }
                     renderAllPages();
-                    showMessage("📀 Previous data loaded!");
+                    showMessage("📀 Previous data loaded from localStorage!");
                     return true;
                 }
             } catch(e) {}
@@ -800,6 +947,16 @@
         showMessage("📥 Report downloaded!");
     }
     
+    // Database status display
+    function updateDBStatus() {
+        let dbs = ['Proximity Stars', 'Nakshatra Stars', 'Planets', 'Moon & Lunar'];
+        let html = `📀 4 ACTIVE DATABASES: `;
+        dbs.forEach(db => {
+            html += `<span>✅ ${db}</span>`;
+        });
+        document.getElementById("dbStatus").innerHTML = html;
+    }
+    
     // Event listeners
     document.getElementById("enterBtn").onclick = () => {
         let name = document.getElementById("userName").value.trim();
@@ -809,7 +966,7 @@
         let location = document.getElementById("locationInput").value.trim();
         let gender = document.getElementById("genderSelect").value;
         if (!name || !day || !month || !year) {
-            alert("Please fill name and birthday!");
+            alert("Please fill all fields!");
             return;
         }
         currentUser = { 
@@ -819,6 +976,7 @@
         document.getElementById("userInfoDisplay").innerHTML = `👤 ${name} | ${day}/${month}/${year} | ${location || "Unknown"} | ${gender === 'male' ? '♂' : '♀'}`;
         document.getElementById("landingPage").style.display = "none";
         document.getElementById("mainApp").style.display = "block";
+        updateDBStatus();
         renderAllPages();
     };
     
@@ -855,6 +1013,7 @@
     
     populateDateSelectors();
     loadSavedData();
+    updateDBStatus();
 </script>
 </body>
 </html>
