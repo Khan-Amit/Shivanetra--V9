@@ -266,4 +266,27 @@ button { background: #ffd700; color: #1a1a2e; border: none; padding: 12px; borde
         <div class="dir-card"><h4>💰 Success</h4><p>${result.kua.directions.success}</p></div>
         <div class="dir-card"><h4>💪 Health</h4><p>${result.kua.directions.health}</p></div>
         <div class="dir-card"><h4>💖 Romance</h4><p>${result.kua.directions.romance}</p></div>
-        <div class="dir-card"><h4>🧘 Personal</h4><p>
+        <div class="dir-card"><h4>🧘 Personal</h4><p>${result.kua.directions.personal}</p></div>
+    </div></div>
+    
+    <h2 style="text-align:center;">✡️ Kabbalah</h2>
+    <div class="info-card"><p><strong>Number:</strong> ${result.kabbalah.kabbalahNumber}</p><p>${result.kabbalah.interpretation}</p></div>
+    
+    <h2 style="text-align:center;">🕉️ Kundalini Five</h2>
+    <div class="info-card">
+        <p><strong>Soul:</strong> ${result.kundalini.soul.number} (${result.kundalini.soul.body})</p>
+        <p><strong>Karma:</strong> ${result.kundalini.karma.number} (${result.kundalini.karma.body})</p>
+        <p><strong>Gift:</strong> ${result.kundalini.gift.number} (${result.kundalini.gift.body})</p>
+        <p><strong>Destiny:</strong> ${result.kundalini.destiny.number} (${result.kundalini.destiny.body})</p>
+        <p><strong>Path:</strong> ${result.kundalini.path.number} (${result.kundalini.path.body})</p>
+    </div>
+    
+    <button onclick="window.print()">🖨️ Print / Save as PDF</button>
+    <div class="footer">Shivanetra–V9 | Marduk™ Shield | AI-Enhanced | ${new Date().toLocaleString()}</div>
+</div>
+</body>
+</html>`;
+        }
+    </script>
+</body>
+</html>
