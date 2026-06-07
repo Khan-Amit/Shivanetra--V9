@@ -3,162 +3,267 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shivanetra V6 - Numerology Calculator</title>
+    <title>Shivanetra–V9 | Complete Numerology System</title>
     <style>
-        * { box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
             color: white;
             min-height: 100vh;
             padding: 20px;
         }
-        .container { max-width: 1200px; margin: 0 auto; }
-        h1 { text-align: center; color: #ffd700; }
-        .form-card {
+        .container { max-width: 700px; margin: 0 auto; }
+        h1 { text-align: center; color: #ffd700; margin-bottom: 10px; }
+        .subtitle { text-align: center; color: #aaa; margin-bottom: 30px; font-size: 14px; }
+        .card {
             background: rgba(255,255,255,0.1);
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 30px;
             backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 30px;
+            margin-bottom: 20px;
         }
         input, select, button {
-            padding: 12px;
+            width: 100%;
+            padding: 14px;
             margin: 10px 0;
-            border-radius: 8px;
+            border-radius: 12px;
             border: none;
             font-size: 16px;
         }
-        input, select { background: #2c2c4e; color: white; width: 100%; }
+        input, select {
+            background: rgba(255,255,255,0.15);
+            color: white;
+            border: 1px solid rgba(255,215,0,0.3);
+        }
+        input:focus, select:focus { outline: none; border-color: #ffd700; }
         button {
             background: #ffd700;
             color: #1a1a2e;
             font-weight: bold;
             cursor: pointer;
-            width: 100%;
+            transition: all 0.2s;
         }
-        button:hover { background: #ffed4a; }
-        .grid-3x3 {
+        button:hover { background: #ffed4a; transform: scale(1.02); }
+        .row { display: flex; gap: 12px; }
+        .row input { flex: 1; }
+        .result { margin-top: 20px; display: none; }
+        .preview-grid {
             display: grid;
-            grid-template-columns: repeat(3, 80px);
+            grid-template-columns: repeat(3, 70px);
             gap: 10px;
             justify-content: center;
             margin: 20px 0;
         }
-        .cell {
-            width: 80px;
-            height: 80px;
-            background: rgba(255,215,0,0.2);
+        .preview-cell {
+            width: 70px;
+            height: 70px;
+            background: rgba(255,215,0,0.15);
             border: 2px solid #ffd700;
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 28px;
+            font-size: 24px;
             font-weight: bold;
         }
-        .result-section {
-            background: rgba(0,0,0,0.5);
-            border-radius: 15px;
-            padding: 20px;
-            margin-top: 20px;
+        .download-btn {
+            background: #4caf50;
+            color: white;
+            margin-top: 10px;
         }
-        .flex-2cols { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        @media (max-width: 768px) { .flex-2cols { grid-template-columns: 1fr; } }
+        .download-btn:hover { background: #45a049; }
+        .badge {
+            text-align: center;
+            font-size: 11px;
+            color: #ffd700;
+            margin-top: 20px;
+            opacity: 0.7;
+        }
+        .stats {
+            background: rgba(0,0,0,0.5);
+            border-radius: 16px;
+            padding: 15px;
+            margin-top: 15px;
+            font-size: 13px;
+        }
+        hr { border-color: rgba(255,215,0,0.2); margin: 15px 0; }
+        @media (max-width: 550px) {
+            .row { flex-direction: column; gap: 0; }
+            .preview-grid { grid-template-columns: repeat(3, 55px); gap: 8px; }
+            .preview-cell { width: 55px; height: 55px; font-size: 18px; }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🔮 Shivanetra V6 🔮</h1>
-        <div class="form-card">
+        <h1>🔮 Shivanetra–V9 🔮</h1>
+        <div class="subtitle">Lo Shu Grid | Kua | Kabbalah | Kundalini | Marduk Shield</div>
+        
+        <div class="card">
             <input type="text" id="name" placeholder="Full Name" autocomplete="off">
-            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
+            <div class="row">
                 <input type="number" id="day" placeholder="Day (1-31)">
                 <input type="number" id="month" placeholder="Month (1-12)">
                 <input type="number" id="year" placeholder="Year">
             </div>
             <select id="gender">
-                <option value="male">Male</option>
-                <option value="female">Female</option>
+                <option value="male">♂ Male</option>
+                <option value="female">♀ Female</option>
             </select>
-            <button onclick="calculate()">✨ Calculate Your Numbers ✨</button>
+            <button onclick="calculate()">✨ Generate Complete Report ✨</button>
+            
+            <div id="result" class="result"></div>
+            
+            <div class="badge">
+                🛡️ Marduk™ Tier-1 Active | 📀 Data Accumulating | 🧠 AI Learning
+            </div>
         </div>
-        <div id="results" style="display: none;"></div>
     </div>
 
     <script>
+        let lastResult = null;
+        
         async function calculate() {
             const name = document.getElementById('name').value;
             const day = document.getElementById('day').value;
             const month = document.getElementById('month').value;
             const year = document.getElementById('year').value;
             const gender = document.getElementById('gender').value;
-
+            
             if (!name || !day || !month || !year) {
                 alert('Please fill all fields');
                 return;
             }
-
-            const response = await fetch('http://localhost:3000/api/calculate', {
+            
+            const response = await fetch('/api/calculate', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name, day: parseInt(day), month: parseInt(month), year: parseInt(year), gender })
+                body: JSON.stringify({
+                    name, day: parseInt(day), month: parseInt(month), 
+                    year: parseInt(year), gender
+                })
             });
-
+            
             const result = await response.json();
             
             if (result.success) {
-                const d = result.data;
-                displayResults(d);
+                lastResult = result;
+                displayResult(result);
             } else {
-                alert('Error: ' + result.error);
+                alert('Error: ' + (result.error || 'Unknown error'));
             }
         }
-
-        function displayResults(data) {
-            const grid = data.loShu.grid;
+        
+        function displayResult(result) {
+            const grid = result.loShu.grid;
+            const missing = result.loShu.missingNumbers;
+            
             const html = `
-                <div class="result-section">
-                    <h2>📊 Lo Shu Grid</h2>
-                    <div class="grid-3x3">
-                        ${grid.map(row => row.map(cell => `<div class="cell">${cell}</div>`).join('')).join('')}
+                <div style="background: rgba(0,0,0,0.6); border-radius: 20px; padding: 20px; margin-top: 20px;">
+                    <h3 style="text-align:center; color:#ffd700;">📊 Lo Shu Grid</h3>
+                    <div class="preview-grid">
+                        ${grid.map(row => row.map(cell => `<div class="preview-cell">${cell}</div>`).join('')).join('')}
                     </div>
-                    <p><strong>Ruling Number:</strong> ${data.loShu.rulingNumber}</p>
-                    <p><strong>Missing Numbers:</strong> ${data.loShu.missingNumbers.join(', ') || 'None'}</p>
+                    <p><strong>Ruling Number:</strong> ${result.loShu.rulingNumber}</p>
+                    ${missing.length ? `<p><strong>Missing Numbers:</strong> ${missing.join(', ')}</p>` : ''}
                     
-                    <div class="flex-2cols">
-                        <div>
-                            <h3>🏮 Kua Number (Feng Shui)</h3>
-                            <p><strong>Kua:</strong> ${data.kua.kua}</p>
-                            <p><strong>Group:</strong> ${data.kua.group} Group</p>
-                            <p><strong>Success:</strong> ${data.kua.directions.success}</p>
-                            <p><strong>Health:</strong> ${data.kua.directions.health}</p>
-                        </div>
-                        <div>
-                            <h3>✡️ Kabbalah</h3>
-                            <p><strong>Number:</strong> ${data.kabbalah.kabbalahNumber}</p>
-                            <p><strong>Meaning:</strong> ${data.kabbalah.interpretation}</p>
-                        </div>
-                    </div>
+                    <hr>
                     
-                    <h3>🕉️ Kundalini Five Numbers</h3>
-                    <div class="flex-2cols">
-                        <div>
-                            <p><strong>Soul:</strong> ${data.kundalini.soul.number} (${data.kundalini.soul.body})</p>
-                            <p><strong>Karma:</strong> ${data.kundalini.karma.number} (${data.kundalini.karma.body})</p>
-                            <p><strong>Gift:</strong> ${data.kundalini.gift.number} (${data.kundalini.gift.body})</p>
-                        </div>
-                        <div>
-                            <p><strong>Destiny:</strong> ${data.kundalini.destiny.number} (${data.kundalini.destiny.body})</p>
-                            <p><strong>Path:</strong> ${data.kundalini.path.number} (${data.kundalini.path.body})</p>
-                        </div>
-                    </div>
+                    <h3 style="text-align:center; color:#ffd700;">🏮 Kua Number</h3>
+                    <p><strong>Kua:</strong> ${result.kua.kua} (${result.kua.group} Group)</p>
+                    <p><strong>Success:</strong> ${result.kua.directions.success} | <strong>Health:</strong> ${result.kua.directions.health}</p>
+                    <p><strong>Romance:</strong> ${result.kua.directions.romance} | <strong>Personal:</strong> ${result.kua.directions.personal}</p>
+                    
+                    <hr>
+                    
+                    <h3 style="text-align:center; color:#ffd700;">✡️ Kabbalah</h3>
+                    <p><strong>Number:</strong> ${result.kabbalah.kabbalahNumber}</p>
+                    <p><strong>Meaning:</strong> ${result.kabbalah.interpretation}</p>
+                    
+                    <hr>
+                    
+                    <h3 style="text-align:center; color:#ffd700;">🕉️ Kundalini Five</h3>
+                    <p><strong>Soul:</strong> ${result.kundalini.soul.number} (${result.kundalini.soul.body})</p>
+                    <p><strong>Karma:</strong> ${result.kundalini.karma.number} (${result.kundalini.karma.body})</p>
+                    <p><strong>Gift:</strong> ${result.kundalini.gift.number} (${result.kundalini.gift.body})</p>
+                    <p><strong>Destiny:</strong> ${result.kundalini.destiny.number} (${result.kundalini.destiny.body})</p>
+                    <p><strong>Path:</strong> ${result.kundalini.path.number} (${result.kundalini.path.body})</p>
+                    
+                    <button class="download-btn" onclick="downloadReport()">📥 Download Full Report (HTML)</button>
                 </div>
             `;
             
-            document.getElementById('results').innerHTML = html;
-            document.getElementById('results').style.display = 'block';
+            document.getElementById('result').innerHTML = html;
+            document.getElementById('result').style.display = 'block';
         }
-    </script>
-</body>
-</html>
+        
+        function downloadReport() {
+            if (!lastResult) return;
+            
+            const name = document.getElementById('name').value;
+            const day = document.getElementById('day').value;
+            const month = document.getElementById('month').value;
+            const year = document.getElementById('year').value;
+            const gender = document.getElementById('gender').value;
+            
+            const reportHTML = generateFullReport(lastResult, name, {day, month, year}, gender);
+            const blob = new Blob([reportHTML], { type: 'text/html' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `shivanetra_report_${name.replace(/\s/g, '_')}.html`;
+            link.click();
+            URL.revokeObjectURL(link.href);
+        }
+        
+        function generateFullReport(result, name, dob, gender) {
+            const grid = result.loShu.grid;
+            return `<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shivanetra Report - ${name}</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Georgia', serif;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    min-height: 100vh;
+    padding: 40px 20px;
+    color: #fff;
+}
+.container { max-width: 900px; margin: 0 auto; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius: 30px; padding: 40px; }
+h1 { text-align: center; color: #ffd700; margin-bottom: 10px; }
+.subtitle { text-align: center; color: #ccc; margin-bottom: 30px; border-bottom: 1px solid rgba(255,215,0,0.3); padding-bottom: 20px; }
+.grid-3x3 { display: grid; grid-template-columns: repeat(3, 100px); gap: 15px; justify-content: center; margin: 30px auto; }
+.cell { width: 100px; height: 100px; background: rgba(255,215,0,0.15); border: 2px solid #ffd700; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 32px; font-weight: bold; }
+.info-card { background: rgba(0,0,0,0.5); border-radius: 20px; padding: 20px; margin: 20px 0; }
+.ruling { font-size: 48px; text-align: center; color: #ffd700; font-weight: bold; }
+.kua-badge { font-size: 36px; text-align: center; color: #ff6b6b; font-weight: bold; }
+.directions { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-top: 15px; }
+.dir-card { background: rgba(255,255,255,0.1); padding: 15px; border-radius: 12px; text-align: center; }
+.dir-card h4 { color: #ffd700; }
+button { background: #ffd700; color: #1a1a2e; border: none; padding: 12px; border-radius: 30px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 20px; }
+.footer { text-align: center; margin-top: 30px; font-size: 12px; color: #888; }
+@media (max-width: 700px) {
+    .grid-3x3 { grid-template-columns: repeat(3, 70px); gap: 10px; }
+    .cell { width: 70px; height: 70px; font-size: 24px; }
+    .directions { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>🔮 Shivanetra–V9 Report 🔮</h1>
+    <div class="subtitle"><strong>${name}</strong> | DOB: ${dob.day}/${dob.month}/${dob.year} | ${gender === 'male' ? '♂ Male' : '♀ Female'}</div>
+    
+    <h2 style="text-align:center;">📊 Lo Shu Grid</h2>
+    <div class="grid-3x3">${grid.map(row => row.map(cell => `<div class="cell">${cell}</div>`).join('')).join('')}</div>
+    <div class="info-card"><div style="text-align:center;">🌟 Ruling Number 🌟</div><div class="ruling">${result.loShu.rulingNumber}</div></div>
+    
+    <h2 style="text-align:center;">🏮 Kua Number</h2>
+    <div class="info-card"><div class="kua-badge">Kua ${result.kua.kua}</div><p style="text-align:center;">${result.kua.group} Group</p>
+    <div class="directions">
+        <div class="dir-card"><h4>💰 Success</h4><p>${result.kua.directions.success}</p></div>
+        <div class="dir-card"><h4>💪 Health</h4><p>${result.kua.directions.health}</p></div>
+        <div class="dir-card"><h4>💖 Romance</h4><p>${result.kua.directions.romance}</p></div>
+        <div class="dir-card"><h4>🧘 Personal</h4><p>
