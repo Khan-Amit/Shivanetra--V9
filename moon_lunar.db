@@ -1,0 +1,12 @@
+CREATE TABLE lunar_phases (
+    id INTEGER PRIMARY KEY,
+    date TEXT,
+    phase TEXT,              -- "New Moon", "Full Moon", "Waxing"
+    tithi TEXT,              -- "Pratipada", "Dwitiya", etc.
+    tithi_number INTEGER,    -- 1-30
+    karana TEXT,
+    nakshatra TEXT,          -- Moon's current Nakshatra
+    nakshatra_pada INTEGER,
+    sunrise_time TEXT,
+    moonrise_time TEXT
+);
