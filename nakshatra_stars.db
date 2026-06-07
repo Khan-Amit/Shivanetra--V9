@@ -1,0 +1,17 @@
+CREATE TABLE nakshatra (
+    id INTEGER PRIMARY KEY,
+    name TEXT,               -- "Purva Ashadha", "Uttara Ashadha"
+    start_longitude REAL,    -- 0-360 degrees
+    end_longitude REAL,
+    ruling_planet TEXT,      -- Venus, Sun, Moon, etc.
+    deity TEXT,
+    symbol TEXT,
+    influence TEXT           -- "spiritual", "karmic"
+);
+
+CREATE TABLE nakshatra_stars (
+    nakshatra_id INTEGER,
+    star_name TEXT,          -- associated fixed stars
+    magnitude REAL,
+    distance_ly REAL
+);
