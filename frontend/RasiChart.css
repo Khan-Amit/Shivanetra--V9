@@ -1,0 +1,464 @@
+/* RasiChart.css - Complete styling for Natal Chart */
+
+.rasi-chart-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+}
+
+.rasi-chart-container h1 {
+  text-align: center;
+  color: white;
+  margin-bottom: 30px;
+  font-size: 2.5em;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Form Styles */
+.birth-form {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  margin-bottom: 30px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #333;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.date-row, .time-row, .location-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.date-row input, .location-row input {
+  flex: 1;
+  padding: 12px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s;
+}
+
+.time-row input {
+  flex: 1;
+  padding: 12px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.time-row span {
+  font-size: 20px;
+  font-weight: bold;
+  color: #667eea;
+}
+
+input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+button {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Visual Chart Styles */
+.visual-chart {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  margin-bottom: 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.chart-title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #667eea;
+}
+
+.chart-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.chart-row {
+  display: flex;
+  justify-content: center;
+}
+
+.chart-cell {
+  width: 120px;
+  height: 120px;
+  border: 2px solid #667eea;
+  background: #f8f9ff;
+  position: relative;
+  padding: 10px;
+  transition: all 0.3s;
+}
+
+.chart-cell:hover {
+  background: #f0f2ff;
+  transform: scale(1.02);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.top-left, .top-center, .top-right {
+  border-top: none;
+}
+
+.top-left {
+  border-left: none;
+}
+
+.top-right {
+  border-right: none;
+}
+
+.asc-cell {
+  background: #fff9e6;
+  border-color: #ffd700;
+}
+
+.empty {
+  background: #f0f0f0;
+  border-color: #ddd;
+}
+
+.house-num {
+  position: absolute;
+  top: 5px;
+  left: 8px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #667eea;
+}
+
+.asc-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffd700;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+.planet-icon {
+  font-size: 24px;
+  margin: 3px;
+  display: inline-block;
+  cursor: help;
+  transition: transform 0.2s;
+}
+
+.planet-icon:hover {
+  transform: scale(1.2);
+}
+
+.house-lord {
+  position: absolute;
+  bottom: 5px;
+  right: 8px;
+  font-size: 11px;
+  color: #999;
+  font-style: italic;
+}
+
+.ascendant-info {
+  text-align: center;
+  margin-top: 20px;
+  padding: 15px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 10px;
+  font-size: 18px;
+}
+
+/* House Details Grid */
+.house-details {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  margin-bottom: 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.house-details h3 {
+  color: #667eea;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.house-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.house-card {
+  background: linear-gradient(135deg, #f5f7ff 0%, #ffffff 100%);
+  padding: 15px;
+  border-radius: 10px;
+  border-left: 4px solid #667eea;
+  transition: all 0.3s;
+}
+
+.house-card:hover {
+  transform: translateX(5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.house-card h4 {
+  margin: 0 0 10px 0;
+  color: #764ba2;
+  font-size: 18px;
+}
+
+.house-card p {
+  margin: 8px 0;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.house-card strong {
+  color: #667eea;
+}
+
+/* Planet Positions */
+.planet-positions {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  margin-bottom: 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.planet-positions h3 {
+  color: #667eea;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.planet-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.planet-card {
+  background: linear-gradient(135deg, #f5f7ff 0%, #ffffff 100%);
+  padding: 12px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s;
+}
+
+.planet-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.planet-symbol {
+  font-size: 28px;
+  width: 40px;
+  text-align: center;
+}
+
+.planet-name {
+  font-weight: bold;
+  color: #764ba2;
+  flex: 1;
+}
+
+.planet-position {
+  font-family: monospace;
+  font-size: 16px;
+  font-weight: bold;
+  color: #667eea;
+}
+
+/* JSON Output */
+.json-output {
+  background: #2d2d2d;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.json-output summary {
+  padding: 15px;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  user-select: none;
+}
+
+.json-output summary:hover {
+  background: #3d3d3d;
+  border-radius: 10px;
+}
+
+.json-output pre {
+  padding: 20px;
+  margin: 0;
+  overflow-x: auto;
+  color: #f8f8f2;
+  font-size: 12px;
+  font-family: 'Courier New', monospace;
+  border-top: 1px solid #444;
+}
+
+/* Error Message */
+.error-message {
+  background: #ffebee;
+  color: #c62828;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  border-left: 4px solid #c62828;
+  font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .rasi-chart-container {
+    padding: 10px;
+  }
+  
+  .rasi-chart-container h1 {
+    font-size: 1.8em;
+  }
+  
+  .chart-cell {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .planet-icon {
+    font-size: 16px;
+  }
+  
+  .house-lord {
+    font-size: 8px;
+  }
+  
+  .asc-label {
+    font-size: 12px;
+  }
+  
+  .house-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .planet-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .date-row, .time-row, .location-row {
+    flex-direction: column;
+  }
+  
+  .time-row span {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .chart-cell {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .planet-icon {
+    font-size: 12px;
+  }
+  
+  .house-num {
+    font-size: 8px;
+  }
+  
+  .house-lord {
+    font-size: 6px;
+  }
+}
+
+/* Loading Animation */
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+button:disabled {
+  animation: pulse 1.5s infinite;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #667eea;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #764ba2;
+}
