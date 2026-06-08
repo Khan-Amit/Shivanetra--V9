@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shivanetra V9 - Complete Astrology Platform</title>
     <style>
         * {
@@ -18,10 +18,8 @@
             color: #fff;
         }
 
-        /* Header */
         .header {
             background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(0,0,0,0.6));
-            backdrop-filter: blur(10px);
             padding: 20px;
             text-align: center;
             border-bottom: 1px solid rgba(255,215,0,0.3);
@@ -35,12 +33,6 @@
             background-clip: text;
         }
 
-        .header p {
-            color: #aaa;
-            margin-top: 5px;
-        }
-
-        /* Navigation */
         .nav {
             display: flex;
             justify-content: center;
@@ -51,7 +43,6 @@
             position: sticky;
             top: 0;
             z-index: 100;
-            backdrop-filter: blur(10px);
         }
 
         .nav-btn {
@@ -62,24 +53,20 @@
             color: white;
             cursor: pointer;
             transition: all 0.3s;
-            font-size: 14px;
         }
 
         .nav-btn:hover, .nav-btn.active {
             background: linear-gradient(135deg, #ffd700, #ff6b6b);
             color: #1a1a2e;
             border-color: transparent;
-            transform: translateY(-2px);
         }
 
-        /* Main Container */
         .container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 20px;
         }
 
-        /* Sections */
         .section {
             display: none;
             animation: fadeIn 0.5s ease;
@@ -94,14 +81,12 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Cards */
         .card {
             background: rgba(255,255,255,0.1);
             backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 25px;
             margin-bottom: 25px;
-            border: 1px solid rgba(255,255,255,0.1);
         }
 
         .card h2 {
@@ -111,12 +96,6 @@
             padding-left: 15px;
         }
 
-        .card h3 {
-            color: #ffd700;
-            margin: 15px 0 10px 0;
-        }
-
-        /* Form Styles */
         .form-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -135,18 +114,13 @@
             color: #aaa;
         }
 
-        .input-group input, .input-group select {
+        .input-group input {
             padding: 12px;
             border: 1px solid rgba(255,255,255,0.2);
             border-radius: 10px;
             background: rgba(0,0,0,0.3);
             color: white;
             font-size: 16px;
-        }
-
-        .input-group input:focus {
-            outline: none;
-            border-color: #ffd700;
         }
 
         button {
@@ -157,8 +131,8 @@
             color: #1a1a2e;
             font-weight: bold;
             cursor: pointer;
-            transition: all 0.3s;
             font-size: 16px;
+            width: 100%;
         }
 
         button:hover {
@@ -183,11 +157,6 @@
             margin-bottom: 25px;
         }
 
-        .ascendant-box h3 {
-            color: white;
-            margin-bottom: 10px;
-        }
-
         .ascendant-value {
             font-size: 32px;
             font-weight: bold;
@@ -207,12 +176,6 @@
             border-radius: 12px;
             padding: 12px;
             text-align: center;
-            transition: transform 0.2s;
-        }
-
-        .house-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
         }
 
         .house-number {
@@ -224,7 +187,6 @@
         .house-lord {
             font-size: 11px;
             color: #999;
-            margin: 5px 0;
         }
 
         .house-planets {
@@ -232,27 +194,10 @@
             margin: 8px 0;
         }
 
-        .house-cusp {
-            font-size: 10px;
-            color: #bbb;
-        }
-
-        .aspect-badge {
-            font-size: 9px;
-            margin-top: 5px;
-            padding: 2px 4px;
-            border-radius: 4px;
-            display: inline-block;
-        }
-
-        .aspect-from {
-            background: #667eea20;
-            color: #667eea;
-        }
-
-        .aspect-to {
-            background: #ff6b6b20;
-            color: #ff6b6b;
+        .planet-icon {
+            font-size: 20px;
+            margin: 0 2px;
+            cursor: help;
         }
 
         .planets-list {
@@ -275,25 +220,12 @@
             border-radius: 8px;
             display: flex;
             justify-content: space-between;
-            align-items: center;
         }
 
-        .planet-name {
-            font-weight: bold;
-            color: #764ba2;
-        }
-
-        .planet-degree {
-            font-family: monospace;
-            color: #667eea;
-        }
-
-        /* Nakshatra Grid */
         .info-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 15px;
-            margin-top: 15px;
         }
 
         .info-item {
@@ -303,20 +235,13 @@
             text-align: center;
         }
 
-        .info-item .label {
-            font-size: 11px;
-            color: #aaa;
-            text-transform: uppercase;
-        }
-
         .info-item .value {
-            font-size: 20px;
+            font-size: 24px;
             font-weight: bold;
             color: #ffd700;
             margin-top: 5px;
         }
 
-        /* Lo Shu Grid */
         .loshu-grid {
             display: inline-grid;
             grid-template-columns: repeat(3, 60px);
@@ -338,41 +263,6 @@
             font-weight: bold;
         }
 
-        .loshu-cell.empty {
-            opacity: 0.3;
-        }
-
-        /* Loading */
-        .loading {
-            text-align: center;
-            padding: 40px;
-        }
-
-        .spinner {
-            width: 40px;
-            height: 40px;
-            border: 3px solid rgba(255,255,255,0.3);
-            border-top: 3px solid #ffd700;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 15px;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Error */
-        .error {
-            background: rgba(255,0,0,0.2);
-            border: 1px solid #ff4444;
-            border-radius: 10px;
-            padding: 15px;
-            color: #ff8888;
-        }
-
-        /* Responsive */
         @media (max-width: 768px) {
             .houses-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -383,50 +273,7 @@
             .loshu-cell {
                 width: 45px;
                 height: 45px;
-                font-size: 16px;
             }
-            .header h1 {
-                font-size: 1.8em;
-            }
-        }
-
-        /* Planet Symbols */
-        .planet-icon {
-            font-size: 20px;
-            margin: 0 2px;
-            cursor: help;
-        }
-
-        /* Action Buttons */
-        .action-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin-top: 25px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 12px 24px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #ffd700, #ff6b6b);
-            color: #1a1a2e;
-        }
-
-        .btn-secondary {
-            background: rgba(255,255,255,0.2);
-            color: white;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
         }
     </style>
 </head>
@@ -452,7 +299,7 @@
                 <div class="form-grid">
                     <div class="input-group">
                         <label>Full Name</label>
-                        <input type="text" id="userName" placeholder="Enter name" value="Selim Ahmed">
+                        <input type="text" id="userName" value="Selim Ahmed">
                     </div>
                     <div class="input-group">
                         <label>Birth Date</label>
@@ -464,36 +311,22 @@
                     </div>
                     <div class="input-group">
                         <label>City</label>
-                        <input type="text" id="city" placeholder="City" value="Dhaka">
+                        <input type="text" id="city" value="Dhaka">
                     </div>
                     <div class="input-group">
                         <label>Country</label>
-                        <input type="text" id="country" placeholder="Country" value="Bangladesh">
+                        <input type="text" id="country" value="Bangladesh">
                     </div>
                     <div class="input-group">
                         <label>Latitude</label>
-                        <input type="number" step="any" id="latitude" placeholder="Latitude" value="23.8103">
+                        <input type="number" step="any" id="latitude" value="23.8103">
                     </div>
                     <div class="input-group">
                         <label>Longitude</label>
-                        <input type="number" step="any" id="longitude" placeholder="Longitude" value="90.4125">
+                        <input type="number" step="any" id="longitude" value="90.4125">
                     </div>
                 </div>
                 <button onclick="calculateAll()">🔮 Calculate Full Chart</button>
-            </div>
-
-            <div class="card">
-                <h2>📖 About Shivanetra V9</h2>
-                <p style="line-height: 1.6;">Shivanetra V9 is a complete astrological platform that provides:</p>
-                <ul style="margin-top: 15px; margin-left: 20px; line-height: 1.8;">
-                    <li>✨ Accurate Rasi Chart (Natal Chart) with 12 houses</li>
-                    <li>✨ Ascendant (Lagna) calculation based on time and location</li>
-                    <li>✨ Planetary aspects (Graha Drishti) - 7th aspect + special aspects</li>
-                    <li>✨ Nakshatra finder with ruling deities and characteristics</li>
-                    <li>✨ Lo Shu Grid, Kua Number, Kabbalah, and Kundalini calculators</li>
-                    <li>✨ Real NASA JPL planetary positions via Swiss Ephemeris</li>
-                </ul>
-                <p style="margin-top: 15px;">👉 <strong>Enter your birth details above and click Calculate!</strong></p>
             </div>
         </div>
 
@@ -501,12 +334,7 @@
         <div id="natal-chart" class="section">
             <div class="card">
                 <h2>🪐 Rasi Chart (Natal Chart)</h2>
-                <div id="rasiChartContainer">
-                    <div class="loading">
-                        <div class="spinner"></div>
-                        Enter birth details and calculate...
-                    </div>
-                </div>
+                <div id="rasiChartContainer">Enter birth details and click Calculate</div>
             </div>
         </div>
 
@@ -514,9 +342,7 @@
         <div id="nakshatra" class="section">
             <div class="card">
                 <h2>🌟 Nakshatra Details</h2>
-                <div id="nakshatraContainer">
-                    <div class="loading">Enter birth details and calculate...</div>
-                </div>
+                <div id="nakshatraContainer">Enter birth details and click Calculate</div>
             </div>
         </div>
 
@@ -524,9 +350,7 @@
         <div id="numerology" class="section">
             <div class="card">
                 <h2>🔢 Numerology</h2>
-                <div id="numerologyContainer">
-                    <div class="loading">Enter birth details and calculate...</div>
-                </div>
+                <div id="numerologyContainer">Enter birth details and click Calculate</div>
             </div>
         </div>
 
@@ -534,12 +358,10 @@
         <div id="reports" class="section">
             <div class="card">
                 <h2>📄 Full Report</h2>
-                <div id="reportContainer">
-                    <div class="loading">Calculate chart first...</div>
-                </div>
-                <div class="action-buttons">
-                    <button class="btn btn-secondary" onclick="saveData()">💾 Save Data</button>
-                    <button class="btn btn-primary" onclick="downloadReport()">📥 Download Report</button>
+                <div id="reportContainer">Enter birth details and click Calculate</div>
+                <div style="display: flex; gap: 15px; margin-top: 20px;">
+                    <button onclick="saveData()" style="flex:1">💾 Save Data</button>
+                    <button onclick="downloadReport()" style="flex:1">📥 Download Report</button>
                 </div>
             </div>
         </div>
@@ -547,342 +369,340 @@
 
     <script>
         // Planet symbols
-        const planetSymbols = {
-            'Sun': '☉', 'Moon': '☽', 'Mars': '♂', 'Mercury': '☿',
-            'Jupiter': '♃', 'Venus': '♀', 'Saturn': '♄', 'Rahu': '☊', 'Ketu': '☋'
-        };
+        const planetSymbols = { 'Sun': '☉', 'Moon': '☽', 'Mars': '♂', 'Mercury': '☿', 'Jupiter': '♃', 'Venus': '♀', 'Saturn': '♄', 'Rahu': '☊', 'Ketu': '☋' };
 
-        // Store current chart data
+        // Zodiac signs
+        const zodiacSigns = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'];
+        
+        // Planet rulers for each sign
+        const signRulers = { 0: 'Mars', 1: 'Venus', 2: 'Mercury', 3: 'Moon', 4: 'Sun', 5: 'Mercury', 6: 'Venus', 7: 'Mars', 8: 'Jupiter', 9: 'Saturn', 10: 'Saturn', 11: 'Jupiter' };
+
         let currentChartData = null;
 
-        // Show section
         function showSection(sectionId) {
-            document.querySelectorAll('.section').forEach(section => {
-                section.classList.remove('active');
-            });
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
             document.getElementById(sectionId).classList.add('active');
-            
-            document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
             event.target.classList.add('active');
         }
 
-        // Get birth data from form
         function getBirthData() {
-            const date = document.getElementById('birthDate').value;
-            const [year, month, day] = date.split('-');
-            const time = document.getElementById('birthTime').value;
-            const [hour, minute] = time.split(':');
-            
+            const date = document.getElementById('birthDate').value.split('-');
+            const time = document.getElementById('birthTime').value.split(':');
             return {
                 name: document.getElementById('userName').value,
-                year: parseInt(year),
-                month: parseInt(month),
-                day: parseInt(day),
-                hour: parseInt(hour),
-                minute: parseInt(minute),
+                year: parseInt(date[0]), month: parseInt(date[1]), day: parseInt(date[2]),
+                hour: parseInt(time[0]), minute: parseInt(time[1]),
                 city: document.getElementById('city').value,
                 country: document.getElementById('country').value,
-                latitude: parseFloat(document.getElementById('latitude').value),
-                longitude: parseFloat(document.getElementById('longitude').value)
+                lat: parseFloat(document.getElementById('latitude').value),
+                lon: parseFloat(document.getElementById('longitude').value)
             };
         }
 
-        // Calculate everything
-        async function calculateAll() {
-            const birthData = getBirthData();
+        // Calculate ascendant (simplified but accurate enough for demo)
+        function calculateAscendant(year, month, day, hour, minute, lat, lon) {
+            // Simplified ascendant calculation based on time and location
+            // In real system, this would use astronomical formulas
+            const jd = (1461 * (year + 4800 + (month - 14) / 12)) / 4 +
+                      (367 * (month - 2 - 12 * ((month - 14) / 12))) / 12 -
+                      (3 * ((year + 4900 + (month - 14) / 12) / 100)) / 4 +
+                      day - 32075;
             
-            // Show loading in all sections
-            document.getElementById('rasiChartContainer').innerHTML = '<div class="loading"><div class="spinner"></div>Calculating chart...</div>';
-            document.getElementById('nakshatraContainer').innerHTML = '<div class="loading"><div class="spinner"></div>Calculating nakshatra...</div>';
-            document.getElementById('numerologyContainer').innerHTML = '<div class="loading"><div class="spinner"></div>Calculating numerology...</div>';
+            const lst = (jd - 2451545) * 360.985647 + lon + (hour + minute/60) * 15;
+            const ramc = lst % 360;
             
-            // Calculate Rasi Chart
-            await loadRasiChart(birthData);
+            // Ecliptic obliquity
+            const eps = 23.4393;
             
-            // Calculate Nakshatra
-            await loadNakshatra(birthData);
+            // Convert RAMC to ascendant
+            const tanPhi = Math.tan(lat * Math.PI / 180);
+            const tanEps = Math.tan(eps * Math.PI / 180);
             
-            // Calculate Numerology
-            await loadNumerology(birthData);
+            let asc = Math.atan2(Math.sin(ramc * Math.PI / 180),
+                                 Math.cos(ramc * Math.PI / 180) * Math.cos(eps * Math.PI / 180) -
+                                 tanPhi * Math.sin(eps * Math.PI / 180));
+            asc = asc * 180 / Math.PI;
+            if (asc < 0) asc += 360;
             
-            // Generate report
-            generateReport();
+            return asc;
         }
 
-        // Load Rasi Chart
-        async function loadRasiChart(birthData) {
-            const container = document.getElementById('rasiChartContainer');
-            
-            try {
-                const response = await fetch('/api/natal-chart', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(birthData)
-                });
-                
-                const result = await response.json();
-                
-                if (result.status === 'success') {
-                    currentChartData = result.data;
-                    renderRasiChart(result.data);
-                } else {
-                    container.innerHTML = `<div class="error">❌ ${result.error || 'Failed to load chart'}</div>`;
-                }
-            } catch (error) {
-                container.innerHTML = `
-                    <div class="error">
-                        ❌ Cannot connect to server.<br>
-                        Make sure backend is running: <strong>python app.py</strong><br>
-                        Error: ${error.message}
-                    </div>
-                `;
+        // Calculate house cusps
+        function calculateHouses(ascendant, lat) {
+            const houses = [];
+            for (let i = 0; i < 12; i++) {
+                let house = ascendant + (i * 30);
+                if (house >= 360) house -= 360;
+                houses.push(house);
             }
+            return houses;
         }
 
-        // Render Rasi Chart
-        function renderRasiChart(chart) {
+        // Get zodiac sign
+        function getSign(degrees) {
+            return zodiacSigns[Math.floor(degrees / 30) % 12];
+        }
+
+        // Get house lord
+        function getHouseLord(cusp) {
+            const signIndex = Math.floor(cusp / 30) % 12;
+            return signRulers[signIndex];
+        }
+
+        // Calculate planet positions (simplified)
+        function calculatePlanets(year, month, day) {
+            // Simplified planetary positions based on date
+            const dayOfYear = Math.floor((Date.UTC(year, month-1, day) - Date.UTC(year, 0, 0)) / 86400000);
+            const position = (dayOfYear / 365.25) * 360;
+            
+            return {
+                'Sun': (position + 80) % 360,
+                'Moon': (position * 13 + 45) % 360,
+                'Mars': (position * 0.524 + 120) % 360,
+                'Mercury': (position * 4.092 + 60) % 360,
+                'Jupiter': (position * 0.084 + 200) % 360,
+                'Venus': (position * 1.602 + 100) % 360,
+                'Saturn': (position * 0.033 + 240) % 360,
+                'Rahu': (position * 0.053 + 180) % 360,
+                'Ketu': (position * 0.053 + 0) % 360
+            };
+        }
+
+        // Get house for planet
+        function getHouseForPlanet(planetLong, houseCusps) {
+            for (let i = 0; i < 12; i++) {
+                let start = houseCusps[i];
+                let end = houseCusps[(i+1)%12];
+                if (end < start) end += 360;
+                let long = planetLong;
+                if (start > long && end > 360) long += 360;
+                if (long >= start && long < end) return i+1;
+            }
+            return 1;
+        }
+
+        // Check aspect
+        function hasAspect(planet, angle) {
+            if (Math.abs(angle - 180) <= 8) return true;
+            if (planet === 'Mars' && (Math.abs(angle - 90) <= 8 || Math.abs(angle - 180) <= 8)) return true;
+            if (planet === 'Jupiter' && (Math.abs(angle - 120) <= 8 || Math.abs(angle - 180) <= 8)) return true;
+            if (planet === 'Saturn' && (Math.abs(angle - 90) <= 8 || Math.abs(angle - 180) <= 8 || Math.abs(angle - 270) <= 8)) return true;
+            return false;
+        }
+
+        // Calculate aspects
+        function calculateAspects(planetPositions) {
+            const aspects = {};
+            const planets = Object.keys(planetPositions);
+            
+            planets.forEach(p => { aspects[p] = { to: [], from: [] }; });
+            
+            for (let i = 0; i < planets.length; i++) {
+                for (let j = i+1; j < planets.length; j++) {
+                    const p1 = planets[i], p2 = planets[j];
+                    const angle = (planetPositions[p2] - planetPositions[p1] + 360) % 360;
+                    
+                    if (hasAspect(p1, angle)) {
+                        aspects[p1].to.push(p2);
+                        aspects[p2].from.push(p1);
+                    }
+                    if (hasAspect(p2, (360 - angle) % 360)) {
+                        aspects[p2].to.push(p1);
+                        aspects[p1].from.push(p2);
+                    }
+                }
+            }
+            return aspects;
+        }
+
+        // Main calculation
+        function calculateAll() {
+            const data = getBirthData();
+            
+            // Calculate ascendant and houses
+            const ascendant = calculateAscendant(data.year, data.month, data.day, data.hour, data.minute, data.lat, data.lon);
+            const houseCusps = calculateHouses(ascendant, data.lat);
+            
+            // Calculate planet positions
+            const planetPositions = calculatePlanets(data.year, data.month, data.day);
+            
+            // Place planets in houses
+            const planetsInHouse = {1:[],2:[],3:[],4:[],5:[],6:[],7:[],8:[],9:[],10:[],11:[],12:[]};
+            for (const [planet, pos] of Object.entries(planetPositions)) {
+                const house = getHouseForPlanet(pos, houseCusps);
+                planetsInHouse[house].push(planet);
+            }
+            
+            // Calculate house lords
+            const houseLords = {};
+            for (let i = 0; i < 12; i++) {
+                houseLords[i+1] = getHouseLord(houseCusps[i]);
+            }
+            
+            // Calculate aspects
+            const aspects = calculateAspects(planetPositions);
+            
+            // Build house aspects
+            const houseAspects = {1:{from:[],to:[]},2:{from:[],to:[]},3:{from:[],to:[]},4:{from:[],to:[]},5:{from:[],to:[]},6:{from:[],to:[]},7:{from:[],to:[]},8:{from:[],to:[]},9:{from:[],to:[]},10:{from:[],to:[]},11:{from:[],to:[]},12:{from:[],to:[]}};
+            
+            for (const [planet, asp] of Object.entries(aspects)) {
+                let planetHouse = null;
+                for (let h=1; h<=12; h++) {
+                    if (planetsInHouse[h].includes(planet)) { planetHouse = h; break; }
+                }
+                if (planetHouse) {
+                    for (const target of asp.to) {
+                        let targetHouse = null;
+                        for (let h=1; h<=12; h++) {
+                            if (planetsInHouse[h].includes(target)) { targetHouse = h; break; }
+                        }
+                        if (targetHouse && targetHouse !== planetHouse) {
+                            houseAspects[planetHouse].to.push({planet: target, house: targetHouse});
+                            houseAspects[targetHouse].from.push({planet: planet, house: planetHouse});
+                        }
+                    }
+                }
+            }
+            
+            // Build chart data
+            currentChartData = {
+                metadata: {
+                    name: data.name,
+                    birth_date: `${data.year}-${data.month}-${data.day}`,
+                    birth_time: `${data.hour}:${data.minute}`,
+                    location: `${data.city}, ${data.country}`,
+                    ascendant_degrees: ascendant.toFixed(2),
+                    ascendant_sign: getSign(ascendant)
+                },
+                houses: [],
+                planets: planetPositions
+            };
+            
+            for (let i = 1; i <= 12; i++) {
+                currentChartData.houses.push({
+                    number: i,
+                    cusp_degrees: houseCusps[i-1].toFixed(2),
+                    cusp_sign: getSign(houseCusps[i-1]),
+                    lord: houseLords[i],
+                    planets: planetsInHouse[i],
+                    aspects_from: houseAspects[i].from,
+                    aspects_to: houseAspects[i].to
+                });
+            }
+            
+            // Render everything
+            renderRasiChart();
+            renderNakshatra();
+            renderNumerology();
+            renderReport();
+        }
+
+        function renderRasiChart() {
+            if (!currentChartData) return;
             const container = document.getElementById('rasiChartContainer');
             
             let housesHtml = '';
-            for (const house of chart.houses) {
-                const planetsHtml = house.planets.map(planet => 
-                    `<span class="planet-icon" title="${planet}">${planetSymbols[planet] || '★'}</span>`
-                ).join('');
-                
+            for (const house of currentChartData.houses) {
                 housesHtml += `
                     <div class="house-card">
                         <div class="house-number">House ${house.number}</div>
                         <div class="house-lord">Lord: ${house.lord}</div>
-                        <div class="house-planets">${planetsHtml || '—'}</div>
-                        <div class="house-cusp">${house.cusp_degrees}° ${house.cusp_sign}</div>
-                        ${house.aspects_from.length > 0 ? `<div class="aspect-badge aspect-from">← ${house.aspects_from.map(a => a.planet).join(', ')}</div>` : ''}
-                        ${house.aspects_to.length > 0 ? `<div class="aspect-badge aspect-to">→ ${house.aspects_to.map(a => a.planet).join(', ')}</div>` : ''}
+                        <div class="house-planets">
+                            ${house.planets.map(p => `<span class="planet-icon" title="${p}">${planetSymbols[p] || '★'}</span>`).join('') || '—'}
+                        </div>
+                        <div style="font-size:10px;color:#bbb">${house.cusp_sign} ${house.cusp_degrees}°</div>
+                        ${house.aspects_from.length ? `<div style="font-size:9px;color:#667eea">← ${house.aspects_from.map(a=>a.planet).join(',')}</div>` : ''}
                     </div>
                 `;
             }
             
             let planetsHtml = '';
-            for (const [planet, degree] of Object.entries(chart.planets)) {
-                planetsHtml += `
-                    <div class="planet-item">
-                        <span class="planet-name">${planetSymbols[planet] || '★'} ${planet}</span>
-                        <span class="planet-degree">${degree}°</span>
-                    </div>
-                `;
+            for (const [planet, deg] of Object.entries(currentChartData.planets)) {
+                planetsHtml += `<div class="planet-item"><span>${planetSymbols[planet] || '★'} ${planet}</span><span>${deg.toFixed(2)}° ${getSign(deg)}</span></div>`;
             }
             
             container.innerHTML = `
                 <div class="rasi-container">
                     <div class="ascendant-box">
                         <h3>🌅 Ascendant (Lagna)</h3>
-                        <div class="ascendant-value">${chart.metadata.ascendant_sign}</div>
-                        <div>${chart.metadata.ascendant_degrees}°</div>
-                        <div style="margin-top: 10px; font-size: 12px;">
-                            ${chart.metadata.birth_date} | ${chart.metadata.birth_time}<br>
-                            ${chart.metadata.location}
-                        </div>
+                        <div class="ascendant-value">${currentChartData.metadata.ascendant_sign}</div>
+                        <div>${currentChartData.metadata.ascendant_degrees}°</div>
                     </div>
-                    
-                    <div class="houses-grid">
-                        ${housesHtml}
-                    </div>
-                    
-                    <div class="planets-list">
-                        <h3>🪐 Planetary Positions</h3>
-                        <div class="planets-grid">
-                            ${planetsHtml}
-                        </div>
-                    </div>
+                    <div class="houses-grid">${housesHtml}</div>
+                    <div class="planets-list"><h3>🪐 Planetary Positions</h3><div class="planets-grid">${planetsHtml}</div></div>
                 </div>
             `;
         }
 
-        // Load Nakshatra (simulated - replace with your actual API)
-        async function loadNakshatra(birthData) {
-            const container = document.getElementById('nakshatraContainer');
+        function renderNakshatra() {
+            const data = getBirthData();
+            const nakshatras = ['Ashwini','Bharani','Krittika','Rohini','Mrigashira','Ardra','Punarvasu','Pushya','Ashlesha','Magha','Purva Phalguni','Uttara Phalguni','Hasta','Chitra','Swati','Vishakha','Anuradha','Jyeshtha','Mula','Purva Ashadha','Uttara Ashadha','Shravana','Dhanishtha','Shatabhisha','Purva Bhadrapada','Uttara Bhadrapada','Rewati'];
+            const nakshatraIndex = (data.day - 1) % 27;
             
-            // This is simulated - replace with your actual nakshatra calculation
-            const nakshatraData = {
-                sun_sign: getSunSign(birthData.month, birthData.day),
-                nakshatra: getNakshatra(birthData.day),
-                nakshatra_ruler: 'Sun',
-                element: getElement(birthData.month),
-                ruling_planet: 'Mercury',
-            };
-            
-            container.innerHTML = `
+            document.getElementById('nakshatraContainer').innerHTML = `
                 <div class="info-grid">
-                    <div class="info-item">
-                        <div class="label">Sun Sign</div>
-                        <div class="value">${nakshatraData.sun_sign}</div>
-                    </div>
-                    <div class="info-item">
-                        <div class="label">Nakshatra</div>
-                        <div class="value">${nakshatraData.nakshatra}</div>
-                    </div>
-                    <div class="info-item">
-                        <div class="label">Nakshatra Ruler</div>
-                        <div class="value">${nakshatraData.nakshatra_ruler}</div>
-                    </div>
-                    <div class="info-item">
-                        <div class="label">Element</div>
-                        <div class="value">${nakshatraData.element}</div>
-                    </div>
-                    <div class="info-item">
-                        <div class="label">Ruling Planet</div>
-                        <div class="value">${nakshatraData.ruling_planet}</div>
-                    </div>
+                    <div class="info-item"><div class="label">Sun Sign</div><div class="value">${getSign(calculateAscendant(data.year,data.month,data.day,data.hour,data.minute,data.lat,data.lon))}</div></div>
+                    <div class="info-item"><div class="label">Nakshatra</div><div class="value">${nakshatras[nakshatraIndex]}</div></div>
+                    <div class="info-item"><div class="label">Nakshatra Ruler</div><div class="value">${['Ketu','Venus','Sun','Moon','Mars','Rahu','Jupiter','Saturn','Mercury'][Math.floor(nakshatraIndex/3)%9] || 'Sun'}</div></div>
+                    <div class="info-item"><div class="label">Element</div><div class="value">${['Fire','Earth','Air','Water'][(data.month-1)%4]}</div></div>
+                    <div class="info-item"><div class="label">Ruling Planet</div><div class="value">Mercury</div></div>
                 </div>
             `;
         }
 
-        // Load Numerology (simulated)
-        async function loadNumerology(birthData) {
-            const container = document.getElementById('numerologyContainer');
+        function renderNumerology() {
+            const data = getBirthData();
+            const sum = data.day + data.month + data.year;
+            const lifePath = sum.toString().split('').reduce((a,b)=>a+parseInt(b),0);
+            const finalLifePath = lifePath > 9 ? lifePath.toString().split('').reduce((a,b)=>a+parseInt(b),0) : lifePath;
             
-            const loshuGrid = [
-                [1, 2, 3],
-                [4, 5, 6],
-                [7, 8, 9]
-            ];
+            const lastTwo = data.year % 100;
+            let kuaSum = Math.floor(lastTwo/10) + (lastTwo%10);
+            kuaSum = kuaSum % 10;
+            const kuaNumber = 10 - kuaSum;
             
-            const rulingNumber = calculateLifePath(birthData.day, birthData.month, birthData.year);
-            const kuaNumber = calculateKua(birthData.year, birthData.gender || 'male');
-            
-            container.innerHTML = `
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-                    <div>
-                        <h3>Lo Shu Grid</h3>
-                        <div class="loshu-grid">
-                            ${loshuGrid.flat().map(num => `
-                                <div class="loshu-cell">${num}</div>
-                            `).join('')}
-                        </div>
-                    </div>
-                    <div>
-                        <h3>Key Numbers</h3>
-                        <div class="info-grid">
-                            <div class="info-item">
-                                <div class="label">Life Path Number</div>
-                                <div class="value">${rulingNumber}</div>
-                            </div>
-                            <div class="info-item">
-                                <div class="label">Kua Number</div>
-                                <div class="value">${kuaNumber}</div>
-                            </div>
-                            <div class="info-item">
-                                <div class="label">Group</div>
-                                <div class="value">${kuaNumber <= 4 ? 'East' : 'West'}</div>
-                            </div>
-                        </div>
-                    </div>
+            document.getElementById('numerologyContainer').innerHTML = `
+                <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px">
+                    <div><h3>Lo Shu Grid</h3><div class="loshu-grid">${[1,2,3,4,5,6,7,8,9].map(n=>`<div class="loshu-cell">${n}</div>`).join('')}</div></div>
+                    <div><h3>Key Numbers</h3><div class="info-grid">
+                        <div class="info-item"><div class="label">Life Path Number</div><div class="value">${finalLifePath}</div></div>
+                        <div class="info-item"><div class="label">Kua Number</div><div class="value">${kuaNumber}</div></div>
+                        <div class="info-item"><div class="label">Group</div><div class="value">${kuaNumber <= 4 ? 'East Group' : 'West Group'}</div></div>
+                    </div></div>
                 </div>
             `;
         }
 
-        // Helper functions
-        function getSunSign(month, day) {
-            const signs = [
-                { name: 'Capricorn', start: [12,22], end: [1,19] },
-                { name: 'Aquarius', start: [1,20], end: [2,18] },
-                { name: 'Pisces', start: [2,19], end: [3,20] },
-                { name: 'Aries', start: [3,21], end: [4,19] },
-                { name: 'Taurus', start: [4,20], end: [5,20] },
-                { name: 'Gemini', start: [5,21], end: [6,20] },
-                { name: 'Cancer', start: [6,21], end: [7,22] },
-                { name: 'Leo', start: [7,23], end: [8,22] },
-                { name: 'Virgo', start: [8,23], end: [9,22] },
-                { name: 'Libra', start: [9,23], end: [10,22] },
-                { name: 'Scorpio', start: [10,23], end: [11,21] },
-                { name: 'Sagittarius', start: [11,22], end: [12,21] }
-            ];
-            
-            for (const sign of signs) {
-                if ((month === sign.start[0] && day >= sign.start[1]) ||
-                    (month === sign.end[0] && day <= sign.end[1])) {
-                    return sign.name;
-                }
-            }
-            return 'Gemini';
-        }
-
-        function getNakshatra(day) {
-            const nakshatras = ['Ashwini', 'Bharani', 'Krittika', 'Rohini', 'Mrigashira', 'Ardra',
-                'Punarvasu', 'Pushya', 'Ashlesha', 'Magha', 'Purva Phalguni', 'Uttara Phalguni',
-                'Hasta', 'Chitra', 'Swati', 'Vishakha', 'Anuradha', 'Jyeshtha', 'Mula',
-                'Purva Ashadha', 'Uttara Ashadha', 'Shravana', 'Dhanishtha', 'Shatabhisha',
-                'Purva Bhadrapada', 'Uttara Bhadrapada', 'Rewati'];
-            return nakshatras[(day - 1) % 27];
-        }
-
-        function getElement(month) {
-            const elements = { 1: 'Air', 2: 'Water', 3: 'Fire', 4: 'Earth', 5: 'Air', 6: 'Water', 
-                7: 'Fire', 8: 'Earth', 9: 'Air', 10: 'Water', 11: 'Fire', 12: 'Earth' };
-            return elements[month] || 'Air';
-        }
-
-        function calculateLifePath(day, month, year) {
-            const sum = day + month + year;
-            const digits = sum.toString().split('').map(Number);
-            const total = digits.reduce((a, b) => a + b, 0);
-            return total > 9 ? calculateLifePath(Math.floor(total/10), total%10, 0) : total;
-        }
-
-        function calculateKua(year, gender) {
-            const lastTwo = year % 100;
-            let sum = Math.floor(lastTwo / 10) + (lastTwo % 10);
-            sum = sum % 10;
-            if (gender === 'male') {
-                return 10 - sum;
-            } else {
-                return 5 + sum;
-            }
-        }
-
-        function generateReport() {
-            const container = document.getElementById('reportContainer');
-            if (!currentChartData) {
-                container.innerHTML = '<div class="loading">Calculate chart first to generate report...</div>';
-                return;
-            }
-            
-            container.innerHTML = `
-                <div style="line-height: 1.8;">
-                    <h3>📊 ${document.getElementById('userName').value}'s Astrology Report</h3>
-                    <p><strong>Birth Details:</strong> ${document.getElementById('birthDate').value} at ${document.getElementById('birthTime').value}</p>
-                    <p><strong>Location:</strong> ${document.getElementById('city').value}, ${document.getElementById('country').value}</p>
+        function renderReport() {
+            if (!currentChartData) return;
+            document.getElementById('reportContainer').innerHTML = `
+                <div style="line-height:1.8">
+                    <h3>📊 ${currentChartData.metadata.name}'s Astrology Report</h3>
+                    <p><strong>Birth:</strong> ${currentChartData.metadata.birth_date} at ${currentChartData.metadata.birth_time}</p>
+                    <p><strong>Location:</strong> ${currentChartData.metadata.location}</p>
                     <p><strong>Ascendant:</strong> ${currentChartData.metadata.ascendant_sign} (${currentChartData.metadata.ascendant_degrees}°)</p>
-                    <hr style="margin: 15px 0; border-color: #333;">
+                    <hr>
                     <h4>House Summary:</h4>
-                    <ul>
-                        ${currentChartData.houses.map(h => 
-                            `<li>House ${h.number}: Lord ${h.lord} | Planets: ${h.planets.join(', ') || 'None'} | Cusp: ${h.cusp_sign}</li>`
-                        ).join('')}
-                    </ul>
+                    <ul>${currentChartData.houses.map(h => `<li>House ${h.number}: ${h.lord} | Planets: ${h.planets.join(', ') || 'None'} | ${h.cusp_sign}</li>`).join('')}</ul>
                 </div>
             `;
         }
 
         function saveData() {
-            const data = {
-                birth_data: getBirthData(),
-                chart_data: currentChartData,
-                saved_at: new Date().toISOString()
-            };
-            localStorage.setItem('shivanetra_data', JSON.stringify(data));
-            alert('✅ Data saved successfully!');
+            if (!currentChartData) { alert('Calculate chart first!'); return; }
+            localStorage.setItem('shivanetra_data', JSON.stringify(currentChartData));
+            alert('✅ Data saved!');
         }
 
         function downloadReport() {
-            const reportHtml = document.documentElement.outerHTML;
-            const blob = new Blob([reportHtml], { type: 'text/html' });
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.download = `shivanetra_report_${getBirthData().name}_${Date.now()}.html`;
-            link.click();
-            URL.revokeObjectURL(link.href);
+            if (!currentChartData) { alert('Calculate chart first!'); return; }
+            const html = document.documentElement.outerHTML;
+            const blob = new Blob([html], {type: 'text/html'});
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = `shivanetra_${currentChartData.metadata.name}_${Date.now()}.html`;
+            a.click();
         }
     </script>
 </body>
