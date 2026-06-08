@@ -18,27 +18,34 @@
             color: #fff;
         }
 
+        /* Header */
         .header {
-            background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(0,0,0,0.6));
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
             padding: 20px;
             text-align: center;
-            border-bottom: 1px solid rgba(255,215,0,0.3);
+            border-bottom: 1px solid #ffd70033;
         }
 
         .header h1 {
-            font-size: 2.5em;
+            font-size: 2em;
             background: linear-gradient(135deg, #ffd700, #ff6b6b);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
+        .header p {
+            color: #aaa;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        /* Navigation - YOUR EXACT 6 PAGES */
         .nav {
             display: flex;
             justify-content: center;
-            gap: 10px;
+            gap: 5px;
             padding: 15px;
-            background: rgba(0,0,0,0.5);
+            background: #0f0f1a;
             flex-wrap: wrap;
             position: sticky;
             top: 0;
@@ -48,91 +55,114 @@
         .nav-btn {
             padding: 10px 20px;
             background: transparent;
-            border: 1px solid rgba(255,215,0,0.3);
-            border-radius: 25px;
+            border: none;
             color: white;
             cursor: pointer;
+            font-size: 14px;
+            border-radius: 5px;
             transition: all 0.3s;
         }
 
-        .nav-btn:hover, .nav-btn.active {
-            background: linear-gradient(135deg, #ffd700, #ff6b6b);
-            color: #1a1a2e;
-            border-color: transparent;
+        .nav-btn:hover {
+            background: #ffd70022;
         }
 
+        .nav-btn.active {
+            background: linear-gradient(135deg, #ffd700, #ff6b6b);
+            color: #1a1a2e;
+            font-weight: bold;
+        }
+
+        /* Container */
         .container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 20px;
         }
 
-        .section {
+        /* Pages */
+        .page {
             display: none;
-            animation: fadeIn 0.5s ease;
+            animation: fadeIn 0.3s ease;
         }
 
-        .section.active {
+        .page.active {
             display: block;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* Cards */
         .card {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 15px;
             padding: 25px;
             margin-bottom: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.05);
         }
 
         .card h2 {
             color: #ffd700;
             margin-bottom: 20px;
-            border-left: 4px solid #ffd700;
+            font-size: 1.5em;
+            border-left: 3px solid #ffd700;
             padding-left: 15px;
         }
 
-        .form-grid {
+        .card h3 {
+            color: #ffd700;
+            margin: 15px 0 10px 0;
+            font-size: 1.2em;
+        }
+
+        /* Form */
+        .form-row {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
             margin-bottom: 20px;
         }
 
-        .input-group {
+        .input-field {
             display: flex;
             flex-direction: column;
         }
 
-        .input-group label {
+        .input-field label {
             font-size: 12px;
-            margin-bottom: 5px;
             color: #aaa;
+            margin-bottom: 5px;
         }
 
-        .input-group input {
+        .input-field input {
             padding: 12px;
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 10px;
-            background: rgba(0,0,0,0.3);
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
             color: white;
-            font-size: 16px;
+            font-size: 14px;
+        }
+
+        .input-field input:focus {
+            outline: none;
+            border-color: #ffd700;
         }
 
         button {
             background: linear-gradient(135deg, #ffd700, #ff6b6b);
             border: none;
             padding: 12px 24px;
-            border-radius: 10px;
+            border-radius: 8px;
             color: #1a1a2e;
             font-weight: bold;
             cursor: pointer;
             font-size: 16px;
             width: 100%;
+            transition: all 0.3s;
         }
 
         button:hover {
@@ -140,48 +170,65 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
-        /* Rasi Chart Styles */
-        .rasi-container {
+        /* Page Navigation Buttons */
+        .page-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            gap: 15px;
+        }
+
+        .page-nav button {
+            width: auto;
+            padding: 10px 20px;
+        }
+
+        /* Rasi Chart - MATCHES YOUR SCREENSHOT STYLE */
+        .rasi-chart {
             background: #fff8e7;
-            border-radius: 20px;
-            padding: 25px;
+            border-radius: 15px;
+            padding: 20px;
             color: #333;
         }
 
-        .ascendant-box {
+        .ascendant {
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
-            padding: 20px;
-            border-radius: 15px;
+            padding: 15px;
+            border-radius: 10px;
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
-        .ascendant-value {
-            font-size: 32px;
+        .ascendant h3 {
+            color: white;
+            margin: 0 0 5px 0;
+        }
+
+        .ascendant .value {
+            font-size: 28px;
             font-weight: bold;
-            margin: 10px 0;
         }
 
-        .houses-grid {
+        .houses {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
-            margin-bottom: 25px;
+            gap: 10px;
+            margin-bottom: 20px;
         }
 
-        .house-card {
+        .house {
             background: white;
-            border: 2px solid #667eea;
-            border-radius: 12px;
-            padding: 12px;
+            border: 1px solid #667eea;
+            border-radius: 10px;
+            padding: 10px;
             text-align: center;
         }
 
-        .house-number {
-            font-size: 16px;
+        .house-num {
             font-weight: bold;
             color: #667eea;
+            font-size: 14px;
         }
 
         .house-lord {
@@ -190,65 +237,72 @@
         }
 
         .house-planets {
-            font-size: 20px;
-            margin: 8px 0;
+            font-size: 18px;
+            margin: 5px 0;
         }
 
-        .planet-icon {
-            font-size: 20px;
-            margin: 0 2px;
-            cursor: help;
-        }
-
-        .planets-list {
+        .planets {
             background: #f5f5f5;
-            border-radius: 15px;
-            padding: 20px;
-            margin-top: 20px;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
         }
 
-        .planets-grid {
+        .planets h4 {
+            margin-bottom: 10px;
+            color: #764ba2;
+        }
+
+        .planet-list {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 10px;
-            margin-top: 15px;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 8px;
         }
 
         .planet-item {
             background: white;
-            padding: 10px;
-            border-radius: 8px;
+            padding: 8px;
+            border-radius: 5px;
             display: flex;
             justify-content: space-between;
+            font-size: 13px;
         }
 
+        /* Nakshatra Grid */
         .info-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
             gap: 15px;
         }
 
-        .info-item {
+        .info-box {
             background: rgba(0,0,0,0.3);
             padding: 15px;
             border-radius: 10px;
             text-align: center;
         }
 
-        .info-item .value {
-            font-size: 24px;
+        .info-box .label {
+            font-size: 11px;
+            color: #aaa;
+            text-transform: uppercase;
+        }
+
+        .info-box .value {
+            font-size: 22px;
             font-weight: bold;
             color: #ffd700;
             margin-top: 5px;
         }
 
-        .loshu-grid {
+        /* Lo Shu Grid */
+        .loshu {
             display: inline-grid;
             grid-template-columns: repeat(3, 60px);
             gap: 8px;
             background: rgba(0,0,0,0.3);
             padding: 15px;
-            border-radius: 15px;
+            border-radius: 10px;
         }
 
         .loshu-cell {
@@ -258,21 +312,35 @@
             align-items: center;
             justify-content: center;
             background: rgba(255,255,255,0.1);
-            border-radius: 10px;
+            border-radius: 8px;
             font-size: 20px;
             font-weight: bold;
         }
 
+        .report-content {
+            background: rgba(0,0,0,0.2);
+            padding: 20px;
+            border-radius: 10px;
+            line-height: 1.8;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
         @media (max-width: 768px) {
-            .houses-grid {
+            .houses {
                 grid-template-columns: repeat(2, 1fr);
             }
-            .loshu-grid {
+            .loshu {
                 grid-template-columns: repeat(3, 45px);
             }
             .loshu-cell {
                 width: 45px;
                 height: 45px;
+                font-size: 16px;
             }
         }
     </style>
@@ -283,86 +351,115 @@
         <p>Complete Astrology Platform | Natal Chart | Nakshatra | Numerology</p>
     </div>
 
+    <!-- Navigation - EXACT 6 PAGES -->
     <div class="nav">
-        <button class="nav-btn active" onclick="showSection('home')">🏠 Home</button>
-        <button class="nav-btn" onclick="showSection('natal-chart')">🪐 Natal Chart</button>
-        <button class="nav-btn" onclick="showSection('nakshatra')">🌟 Nakshatra</button>
-        <button class="nav-btn" onclick="showSection('numerology')">🔢 Numerology</button>
-        <button class="nav-btn" onclick="showSection('reports')">📄 Reports</button>
+        <button class="nav-btn active" onclick="showPage(1)">📝 Page 1</button>
+        <button class="nav-btn" onclick="showPage(2)">🪐 Page 2</button>
+        <button class="nav-btn" onclick="showPage(3)">🌟 Page 3</button>
+        <button class="nav-btn" onclick="showPage(4)">🔢 Page 4</button>
+        <button class="nav-btn" onclick="showPage(5)">📜 Page 5</button>
+        <button class="nav-btn" onclick="showPage(6)">💾 Page 6</button>
     </div>
 
     <div class="container">
-        <!-- Home Section -->
-        <div id="home" class="section active">
+        <!-- PAGE 1: Home / Birth Data -->
+        <div id="page1" class="page active">
             <div class="card">
                 <h2>📝 Enter Birth Details</h2>
-                <div class="form-grid">
-                    <div class="input-group">
+                <div class="form-row">
+                    <div class="input-field">
                         <label>Full Name</label>
-                        <input type="text" id="userName" value="Selim Ahmed">
+                        <input type="text" id="name" value="Selim Ahmed">
                     </div>
-                    <div class="input-group">
+                    <div class="input-field">
                         <label>Birth Date</label>
-                        <input type="date" id="birthDate" value="1960-05-27">
+                        <input type="date" id="date" value="1960-05-27">
                     </div>
-                    <div class="input-group">
+                    <div class="input-field">
                         <label>Birth Time</label>
-                        <input type="time" id="birthTime" value="12:00">
+                        <input type="time" id="time" value="12:00">
                     </div>
-                    <div class="input-group">
+                    <div class="input-field">
                         <label>City</label>
                         <input type="text" id="city" value="Dhaka">
                     </div>
-                    <div class="input-group">
+                    <div class="input-field">
                         <label>Country</label>
                         <input type="text" id="country" value="Bangladesh">
                     </div>
-                    <div class="input-group">
+                    <div class="input-field">
                         <label>Latitude</label>
-                        <input type="number" step="any" id="latitude" value="23.8103">
+                        <input type="number" step="any" id="lat" value="23.8103">
                     </div>
-                    <div class="input-group">
+                    <div class="input-field">
                         <label>Longitude</label>
-                        <input type="number" step="any" id="longitude" value="90.4125">
+                        <input type="number" step="any" id="lon" value="90.4125">
                     </div>
                 </div>
                 <button onclick="calculateAll()">🔮 Calculate Full Chart</button>
             </div>
         </div>
 
-        <!-- Natal Chart Section -->
-        <div id="natal-chart" class="section">
+        <!-- PAGE 2: Natal Chart (Rasi) -->
+        <div id="page2" class="page">
             <div class="card">
                 <h2>🪐 Rasi Chart (Natal Chart)</h2>
-                <div id="rasiChartContainer">Enter birth details and click Calculate</div>
+                <div id="rasiContainer">Enter birth details on Page 1 and click Calculate</div>
+            </div>
+            <div class="page-nav">
+                <button onclick="showPage(1)">◀ Previous</button>
+                <button onclick="showPage(3)">Next ▶</button>
             </div>
         </div>
 
-        <!-- Nakshatra Section -->
-        <div id="nakshatra" class="section">
+        <!-- PAGE 3: Nakshatra -->
+        <div id="page3" class="page">
             <div class="card">
                 <h2>🌟 Nakshatra Details</h2>
-                <div id="nakshatraContainer">Enter birth details and click Calculate</div>
+                <div id="nakshatraContainer">Enter birth details on Page 1 and click Calculate</div>
+            </div>
+            <div class="page-nav">
+                <button onclick="showPage(2)">◀ Previous</button>
+                <button onclick="showPage(4)">Next ▶</button>
             </div>
         </div>
 
-        <!-- Numerology Section -->
-        <div id="numerology" class="section">
+        <!-- PAGE 4: Numerology -->
+        <div id="page4" class="page">
             <div class="card">
                 <h2>🔢 Numerology</h2>
-                <div id="numerologyContainer">Enter birth details and click Calculate</div>
+                <div id="numerologyContainer">Enter birth details on Page 1 and click Calculate</div>
+            </div>
+            <div class="page-nav">
+                <button onclick="showPage(3)">◀ Previous</button>
+                <button onclick="showPage(5)">Next ▶</button>
             </div>
         </div>
 
-        <!-- Reports Section -->
-        <div id="reports" class="section">
+        <!-- PAGE 5: Predictions / Kundalini -->
+        <div id="page5" class="page">
             <div class="card">
-                <h2>📄 Full Report</h2>
-                <div id="reportContainer">Enter birth details and click Calculate</div>
-                <div style="display: flex; gap: 15px; margin-top: 20px;">
-                    <button onclick="saveData()" style="flex:1">💾 Save Data</button>
-                    <button onclick="downloadReport()" style="flex:1">📥 Download Report</button>
+                <h2>📜 Predictions & Kundalini</h2>
+                <div id="predictionsContainer">Enter birth details on Page 1 and click Calculate</div>
+            </div>
+            <div class="page-nav">
+                <button onclick="showPage(4)">◀ Previous</button>
+                <button onclick="showPage(6)">Next ▶</button>
+            </div>
+        </div>
+
+        <!-- PAGE 6: Reports -->
+        <div id="page6" class="page">
+            <div class="card">
+                <h2>💾 Full Report</h2>
+                <div id="reportContainer">Enter birth details on Page 1 and click Calculate</div>
+                <div class="action-buttons">
+                    <button onclick="saveData()" style="width:50%">💾 Save Data</button>
+                    <button onclick="downloadThisPage()" style="width:50%">📥 Download This Page</button>
                 </div>
+            </div>
+            <div class="page-nav">
+                <button onclick="showPage(5)">◀ Previous</button>
             </div>
         </div>
     </div>
@@ -370,338 +467,243 @@
     <script>
         // Planet symbols
         const planetSymbols = { 'Sun': '☉', 'Moon': '☽', 'Mars': '♂', 'Mercury': '☿', 'Jupiter': '♃', 'Venus': '♀', 'Saturn': '♄', 'Rahu': '☊', 'Ketu': '☋' };
-
-        // Zodiac signs
         const zodiacSigns = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'];
-        
-        // Planet rulers for each sign
         const signRulers = { 0: 'Mars', 1: 'Venus', 2: 'Mercury', 3: 'Moon', 4: 'Sun', 5: 'Mercury', 6: 'Venus', 7: 'Mars', 8: 'Jupiter', 9: 'Saturn', 10: 'Saturn', 11: 'Jupiter' };
 
-        let currentChartData = null;
+        let chartData = null;
 
-        function showSection(sectionId) {
-            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-            document.getElementById(sectionId).classList.add('active');
-            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-            event.target.classList.add('active');
+        function showPage(pageNum) {
+            for(let i=1; i<=6; i++) {
+                document.getElementById(`page${i}`).classList.remove('active');
+            }
+            document.getElementById(`page${pageNum}`).classList.add('active');
+            
+            document.querySelectorAll('.nav-btn').forEach((btn, idx) => {
+                if(idx === pageNum-1) btn.classList.add('active');
+                else btn.classList.remove('active');
+            });
         }
 
         function getBirthData() {
-            const date = document.getElementById('birthDate').value.split('-');
-            const time = document.getElementById('birthTime').value.split(':');
+            const date = document.getElementById('date').value.split('-');
+            const time = document.getElementById('time').value.split(':');
             return {
-                name: document.getElementById('userName').value,
+                name: document.getElementById('name').value,
                 year: parseInt(date[0]), month: parseInt(date[1]), day: parseInt(date[2]),
                 hour: parseInt(time[0]), minute: parseInt(time[1]),
                 city: document.getElementById('city').value,
                 country: document.getElementById('country').value,
-                lat: parseFloat(document.getElementById('latitude').value),
-                lon: parseFloat(document.getElementById('longitude').value)
+                lat: parseFloat(document.getElementById('lat').value),
+                lon: parseFloat(document.getElementById('lon').value)
             };
         }
 
-        // Calculate ascendant (simplified but accurate enough for demo)
+        function getSign(deg) {
+            return zodiacSigns[Math.floor(deg / 30) % 12];
+        }
+
         function calculateAscendant(year, month, day, hour, minute, lat, lon) {
-            // Simplified ascendant calculation based on time and location
-            // In real system, this would use astronomical formulas
-            const jd = (1461 * (year + 4800 + (month - 14) / 12)) / 4 +
-                      (367 * (month - 2 - 12 * ((month - 14) / 12))) / 12 -
-                      (3 * ((year + 4900 + (month - 14) / 12) / 100)) / 4 +
-                      day - 32075;
-            
-            const lst = (jd - 2451545) * 360.985647 + lon + (hour + minute/60) * 15;
-            const ramc = lst % 360;
-            
-            // Ecliptic obliquity
-            const eps = 23.4393;
-            
-            // Convert RAMC to ascendant
-            const tanPhi = Math.tan(lat * Math.PI / 180);
-            const tanEps = Math.tan(eps * Math.PI / 180);
-            
-            let asc = Math.atan2(Math.sin(ramc * Math.PI / 180),
-                                 Math.cos(ramc * Math.PI / 180) * Math.cos(eps * Math.PI / 180) -
-                                 tanPhi * Math.sin(eps * Math.PI / 180));
-            asc = asc * 180 / Math.PI;
-            if (asc < 0) asc += 360;
-            
-            return asc;
-        }
-
-        // Calculate house cusps
-        function calculateHouses(ascendant, lat) {
-            const houses = [];
-            for (let i = 0; i < 12; i++) {
-                let house = ascendant + (i * 30);
-                if (house >= 360) house -= 360;
-                houses.push(house);
-            }
-            return houses;
-        }
-
-        // Get zodiac sign
-        function getSign(degrees) {
-            return zodiacSigns[Math.floor(degrees / 30) % 12];
-        }
-
-        // Get house lord
-        function getHouseLord(cusp) {
-            const signIndex = Math.floor(cusp / 30) % 12;
-            return signRulers[signIndex];
-        }
-
-        // Calculate planet positions (simplified)
-        function calculatePlanets(year, month, day) {
-            // Simplified planetary positions based on date
+            // Simple but functional ascendant calculation
             const dayOfYear = Math.floor((Date.UTC(year, month-1, day) - Date.UTC(year, 0, 0)) / 86400000);
-            const position = (dayOfYear / 365.25) * 360;
-            
+            const gmt = hour + minute/60;
+            const sidereal = (dayOfYear + gmt) * 0.985647 + lon;
+            const asc = Math.atan2(Math.sin(sidereal * Math.PI/180), Math.cos(sidereal * Math.PI/180) * Math.cos(23.44 * Math.PI/180) - Math.tan(lat * Math.PI/180) * Math.sin(23.44 * Math.PI/180)) * 180/Math.PI;
+            return (asc + 360) % 360;
+        }
+
+        function calculatePlanets(dayOfYear) {
+            const pos = (dayOfYear / 365.25) * 360;
             return {
-                'Sun': (position + 80) % 360,
-                'Moon': (position * 13 + 45) % 360,
-                'Mars': (position * 0.524 + 120) % 360,
-                'Mercury': (position * 4.092 + 60) % 360,
-                'Jupiter': (position * 0.084 + 200) % 360,
-                'Venus': (position * 1.602 + 100) % 360,
-                'Saturn': (position * 0.033 + 240) % 360,
-                'Rahu': (position * 0.053 + 180) % 360,
-                'Ketu': (position * 0.053 + 0) % 360
+                'Sun': (pos + 80) % 360,
+                'Moon': (pos * 13.368 + 45) % 360,
+                'Mars': (pos * 0.524 + 120) % 360,
+                'Mercury': (pos * 4.092 + 60) % 360,
+                'Jupiter': (pos * 0.084 + 200) % 360,
+                'Venus': (pos * 1.602 + 100) % 360,
+                'Saturn': (pos * 0.033 + 240) % 360,
+                'Rahu': (pos * 0.053 + 180) % 360,
+                'Ketu': (pos * 0.053 + 0) % 360
             };
         }
 
-        // Get house for planet
-        function getHouseForPlanet(planetLong, houseCusps) {
-            for (let i = 0; i < 12; i++) {
-                let start = houseCusps[i];
-                let end = houseCusps[(i+1)%12];
-                if (end < start) end += 360;
-                let long = planetLong;
-                if (start > long && end > 360) long += 360;
-                if (long >= start && long < end) return i+1;
-            }
-            return 1;
-        }
-
-        // Check aspect
-        function hasAspect(planet, angle) {
-            if (Math.abs(angle - 180) <= 8) return true;
-            if (planet === 'Mars' && (Math.abs(angle - 90) <= 8 || Math.abs(angle - 180) <= 8)) return true;
-            if (planet === 'Jupiter' && (Math.abs(angle - 120) <= 8 || Math.abs(angle - 180) <= 8)) return true;
-            if (planet === 'Saturn' && (Math.abs(angle - 90) <= 8 || Math.abs(angle - 180) <= 8 || Math.abs(angle - 270) <= 8)) return true;
-            return false;
-        }
-
-        // Calculate aspects
-        function calculateAspects(planetPositions) {
-            const aspects = {};
-            const planets = Object.keys(planetPositions);
-            
-            planets.forEach(p => { aspects[p] = { to: [], from: [] }; });
-            
-            for (let i = 0; i < planets.length; i++) {
-                for (let j = i+1; j < planets.length; j++) {
-                    const p1 = planets[i], p2 = planets[j];
-                    const angle = (planetPositions[p2] - planetPositions[p1] + 360) % 360;
-                    
-                    if (hasAspect(p1, angle)) {
-                        aspects[p1].to.push(p2);
-                        aspects[p2].from.push(p1);
-                    }
-                    if (hasAspect(p2, (360 - angle) % 360)) {
-                        aspects[p2].to.push(p1);
-                        aspects[p1].from.push(p2);
-                    }
-                }
-            }
-            return aspects;
-        }
-
-        // Main calculation
         function calculateAll() {
             const data = getBirthData();
+            const dayOfYear = Math.floor((Date.UTC(data.year, data.month-1, data.day) - Date.UTC(data.year, 0, 0)) / 86400000);
             
-            // Calculate ascendant and houses
             const ascendant = calculateAscendant(data.year, data.month, data.day, data.hour, data.minute, data.lat, data.lon);
-            const houseCusps = calculateHouses(ascendant, data.lat);
+            const planets = calculatePlanets(dayOfYear);
             
-            // Calculate planet positions
-            const planetPositions = calculatePlanets(data.year, data.month, data.day);
+            // Calculate houses (equal house system)
+            const houses = [];
+            for(let i=0; i<12; i++) {
+                let house = (ascendant + i*30) % 360;
+                houses.push(house);
+            }
             
             // Place planets in houses
             const planetsInHouse = {1:[],2:[],3:[],4:[],5:[],6:[],7:[],8:[],9:[],10:[],11:[],12:[]};
-            for (const [planet, pos] of Object.entries(planetPositions)) {
-                const house = getHouseForPlanet(pos, houseCusps);
-                planetsInHouse[house].push(planet);
-            }
-            
-            // Calculate house lords
-            const houseLords = {};
-            for (let i = 0; i < 12; i++) {
-                houseLords[i+1] = getHouseLord(houseCusps[i]);
-            }
-            
-            // Calculate aspects
-            const aspects = calculateAspects(planetPositions);
-            
-            // Build house aspects
-            const houseAspects = {1:{from:[],to:[]},2:{from:[],to:[]},3:{from:[],to:[]},4:{from:[],to:[]},5:{from:[],to:[]},6:{from:[],to:[]},7:{from:[],to:[]},8:{from:[],to:[]},9:{from:[],to:[]},10:{from:[],to:[]},11:{from:[],to:[]},12:{from:[],to:[]}};
-            
-            for (const [planet, asp] of Object.entries(aspects)) {
-                let planetHouse = null;
-                for (let h=1; h<=12; h++) {
-                    if (planetsInHouse[h].includes(planet)) { planetHouse = h; break; }
-                }
-                if (planetHouse) {
-                    for (const target of asp.to) {
-                        let targetHouse = null;
-                        for (let h=1; h<=12; h++) {
-                            if (planetsInHouse[h].includes(target)) { targetHouse = h; break; }
-                        }
-                        if (targetHouse && targetHouse !== planetHouse) {
-                            houseAspects[planetHouse].to.push({planet: target, house: targetHouse});
-                            houseAspects[targetHouse].from.push({planet: planet, house: planetHouse});
-                        }
+            for(const [planet, pos] of Object.entries(planets)) {
+                for(let i=0; i<12; i++) {
+                    let start = houses[i];
+                    let end = houses[(i+1)%12];
+                    if(end < start) end += 360;
+                    let p = pos;
+                    if(start > p && end > 360) p += 360;
+                    if(p >= start && p < end) {
+                        planetsInHouse[i+1].push(planet);
+                        break;
                     }
                 }
             }
             
-            // Build chart data
-            currentChartData = {
+            // House lords
+            const houseLords = {};
+            for(let i=0; i<12; i++) {
+                const signIdx = Math.floor(houses[i]/30) % 12;
+                houseLords[i+1] = signRulers[signIdx];
+            }
+            
+            chartData = {
                 metadata: {
                     name: data.name,
-                    birth_date: `${data.year}-${data.month}-${data.day}`,
-                    birth_time: `${data.hour}:${data.minute}`,
+                    date: `${data.year}-${data.month}-${data.day}`,
+                    time: `${data.hour}:${data.minute}`,
                     location: `${data.city}, ${data.country}`,
-                    ascendant_degrees: ascendant.toFixed(2),
+                    ascendant: ascendant.toFixed(2),
                     ascendant_sign: getSign(ascendant)
                 },
                 houses: [],
-                planets: planetPositions
+                planets: planets
             };
             
-            for (let i = 1; i <= 12; i++) {
-                currentChartData.houses.push({
+            for(let i=1; i<=12; i++) {
+                chartData.houses.push({
                     number: i,
-                    cusp_degrees: houseCusps[i-1].toFixed(2),
-                    cusp_sign: getSign(houseCusps[i-1]),
+                    cusp: houses[i-1].toFixed(2),
+                    sign: getSign(houses[i-1]),
                     lord: houseLords[i],
-                    planets: planetsInHouse[i],
-                    aspects_from: houseAspects[i].from,
-                    aspects_to: houseAspects[i].to
+                    planets: planetsInHouse[i]
                 });
             }
             
-            // Render everything
-            renderRasiChart();
-            renderNakshatra();
-            renderNumerology();
-            renderReport();
+            renderAll();
         }
 
-        function renderRasiChart() {
-            if (!currentChartData) return;
-            const container = document.getElementById('rasiChartContainer');
+        function renderAll() {
+            if(!chartData) return;
             
+            // Page 2: Rasi Chart
             let housesHtml = '';
-            for (const house of currentChartData.houses) {
+            for(const h of chartData.houses) {
                 housesHtml += `
-                    <div class="house-card">
-                        <div class="house-number">House ${house.number}</div>
-                        <div class="house-lord">Lord: ${house.lord}</div>
-                        <div class="house-planets">
-                            ${house.planets.map(p => `<span class="planet-icon" title="${p}">${planetSymbols[p] || '★'}</span>`).join('') || '—'}
-                        </div>
-                        <div style="font-size:10px;color:#bbb">${house.cusp_sign} ${house.cusp_degrees}°</div>
-                        ${house.aspects_from.length ? `<div style="font-size:9px;color:#667eea">← ${house.aspects_from.map(a=>a.planet).join(',')}</div>` : ''}
+                    <div class="house">
+                        <div class="house-num">House ${h.number}</div>
+                        <div class="house-lord">Lord: ${h.lord}</div>
+                        <div class="house-planets">${h.planets.map(p => planetSymbols[p] || '★').join(' ') || '—'}</div>
+                        <div style="font-size:10px;color:#bbb">${h.sign} ${h.cusp}°</div>
                     </div>
                 `;
             }
             
             let planetsHtml = '';
-            for (const [planet, deg] of Object.entries(currentChartData.planets)) {
-                planetsHtml += `<div class="planet-item"><span>${planetSymbols[planet] || '★'} ${planet}</span><span>${deg.toFixed(2)}° ${getSign(deg)}</span></div>`;
+            for(const [p, deg] of Object.entries(chartData.planets)) {
+                planetsHtml += `<div class="planet-item"><span>${planetSymbols[p] || '★'} ${p}</span><span>${deg.toFixed(2)}° ${getSign(deg)}</span></div>`;
             }
             
-            container.innerHTML = `
-                <div class="rasi-container">
-                    <div class="ascendant-box">
+            document.getElementById('rasiContainer').innerHTML = `
+                <div class="rasi-chart">
+                    <div class="ascendant">
                         <h3>🌅 Ascendant (Lagna)</h3>
-                        <div class="ascendant-value">${currentChartData.metadata.ascendant_sign}</div>
-                        <div>${currentChartData.metadata.ascendant_degrees}°</div>
+                        <div class="value">${chartData.metadata.ascendant_sign}</div>
+                        <div>${chartData.metadata.ascendant}°</div>
+                        <div style="font-size:12px;margin-top:5px">${chartData.metadata.date} | ${chartData.metadata.time}</div>
                     </div>
-                    <div class="houses-grid">${housesHtml}</div>
-                    <div class="planets-list"><h3>🪐 Planetary Positions</h3><div class="planets-grid">${planetsHtml}</div></div>
+                    <div class="houses">${housesHtml}</div>
+                    <div class="planets">
+                        <h4>🪐 Planetary Positions</h4>
+                        <div class="planet-list">${planetsHtml}</div>
+                    </div>
                 </div>
             `;
-        }
-
-        function renderNakshatra() {
-            const data = getBirthData();
+            
+            // Page 3: Nakshatra
             const nakshatras = ['Ashwini','Bharani','Krittika','Rohini','Mrigashira','Ardra','Punarvasu','Pushya','Ashlesha','Magha','Purva Phalguni','Uttara Phalguni','Hasta','Chitra','Swati','Vishakha','Anuradha','Jyeshtha','Mula','Purva Ashadha','Uttara Ashadha','Shravana','Dhanishtha','Shatabhisha','Purva Bhadrapada','Uttara Bhadrapada','Rewati'];
-            const nakshatraIndex = (data.day - 1) % 27;
+            const nIdx = (getBirthData().day - 1) % 27;
+            const rulers = ['Ketu','Venus','Sun','Moon','Mars','Rahu','Jupiter','Saturn','Mercury'];
             
             document.getElementById('nakshatraContainer').innerHTML = `
                 <div class="info-grid">
-                    <div class="info-item"><div class="label">Sun Sign</div><div class="value">${getSign(calculateAscendant(data.year,data.month,data.day,data.hour,data.minute,data.lat,data.lon))}</div></div>
-                    <div class="info-item"><div class="label">Nakshatra</div><div class="value">${nakshatras[nakshatraIndex]}</div></div>
-                    <div class="info-item"><div class="label">Nakshatra Ruler</div><div class="value">${['Ketu','Venus','Sun','Moon','Mars','Rahu','Jupiter','Saturn','Mercury'][Math.floor(nakshatraIndex/3)%9] || 'Sun'}</div></div>
-                    <div class="info-item"><div class="label">Element</div><div class="value">${['Fire','Earth','Air','Water'][(data.month-1)%4]}</div></div>
-                    <div class="info-item"><div class="label">Ruling Planet</div><div class="value">Mercury</div></div>
+                    <div class="info-box"><div class="label">Sun Sign</div><div class="value">${chartData.metadata.ascendant_sign}</div></div>
+                    <div class="info-box"><div class="label">Nakshatra</div><div class="value">${nakshatras[nIdx]}</div></div>
+                    <div class="info-box"><div class="label">Nakshatra Ruler</div><div class="value">${rulers[Math.floor(nIdx/3)%9]}</div></div>
+                    <div class="info-box"><div class="label">Element</div><div class="value">${['Fire','Earth','Air','Water'][(getBirthData().month-1)%4]}</div></div>
+                    <div class="info-box"><div class="label">Ruling Planet</div><div class="value">Mercury</div></div>
                 </div>
             `;
-        }
-
-        function renderNumerology() {
+            
+            // Page 4: Numerology
             const data = getBirthData();
             const sum = data.day + data.month + data.year;
             const lifePath = sum.toString().split('').reduce((a,b)=>a+parseInt(b),0);
             const finalLifePath = lifePath > 9 ? lifePath.toString().split('').reduce((a,b)=>a+parseInt(b),0) : lifePath;
-            
             const lastTwo = data.year % 100;
             let kuaSum = Math.floor(lastTwo/10) + (lastTwo%10);
             kuaSum = kuaSum % 10;
-            const kuaNumber = 10 - kuaSum;
+            const kua = 10 - kuaSum;
             
             document.getElementById('numerologyContainer').innerHTML = `
                 <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px">
-                    <div><h3>Lo Shu Grid</h3><div class="loshu-grid">${[1,2,3,4,5,6,7,8,9].map(n=>`<div class="loshu-cell">${n}</div>`).join('')}</div></div>
+                    <div><h3>Lo Shu Grid</h3><div class="loshu">${[1,2,3,4,5,6,7,8,9].map(n=>`<div class="loshu-cell">${n}</div>`).join('')}</div></div>
                     <div><h3>Key Numbers</h3><div class="info-grid">
-                        <div class="info-item"><div class="label">Life Path Number</div><div class="value">${finalLifePath}</div></div>
-                        <div class="info-item"><div class="label">Kua Number</div><div class="value">${kuaNumber}</div></div>
-                        <div class="info-item"><div class="label">Group</div><div class="value">${kuaNumber <= 4 ? 'East Group' : 'West Group'}</div></div>
+                        <div class="info-box"><div class="label">Life Path Number</div><div class="value">${finalLifePath}</div></div>
+                        <div class="info-box"><div class="label">Kua Number</div><div class="value">${kua}</div></div>
+                        <div class="info-box"><div class="label">Group</div><div class="value">${kua <= 4 ? 'East Group' : 'West Group'}</div></div>
                     </div></div>
                 </div>
             `;
-        }
-
-        function renderReport() {
-            if (!currentChartData) return;
+            
+            // Page 5: Kundalini/Predictions
+            document.getElementById('predictionsContainer').innerHTML = `
+                <div class="info-grid">
+                    <div class="info-box"><div class="label">Root Chakra</div><div class="value">${chartData.planets.Sun < 30 ? 'Active' : 'Balanced'}</div></div>
+                    <div class="info-box"><div class="label">Sacral Chakra</div><div class="value">${chartData.planets.Moon < 30 ? 'Active' : 'Balanced'}</div></div>
+                    <div class="info-box"><div class="label">Solar Plexus</div><div class="value">${chartData.planets.Mars < 30 ? 'Active' : 'Balanced'}</div></div>
+                    <div class="info-box"><div class="label">Heart Chakra</div><div class="value">${chartData.planets.Venus < 30 ? 'Active' : 'Balanced'}</div></div>
+                    <div class="info-box"><div class="label">Throat Chakra</div><div class="value">${chartData.planets.Mercury < 30 ? 'Active' : 'Balanced'}</div></div>
+                    <div class="info-box"><div class="label">Third Eye</div><div class="value">${chartData.planets.Jupiter < 30 ? 'Active' : 'Balanced'}</div></div>
+                </div>
+            `;
+            
+            // Page 6: Report
             document.getElementById('reportContainer').innerHTML = `
-                <div style="line-height:1.8">
-                    <h3>📊 ${currentChartData.metadata.name}'s Astrology Report</h3>
-                    <p><strong>Birth:</strong> ${currentChartData.metadata.birth_date} at ${currentChartData.metadata.birth_time}</p>
-                    <p><strong>Location:</strong> ${currentChartData.metadata.location}</p>
-                    <p><strong>Ascendant:</strong> ${currentChartData.metadata.ascendant_sign} (${currentChartData.metadata.ascendant_degrees}°)</p>
-                    <hr>
+                <div class="report-content">
+                    <h3>📊 ${chartData.metadata.name}'s Astrology Report</h3>
+                    <p><strong>Birth:</strong> ${chartData.metadata.date} at ${chartData.metadata.time}</p>
+                    <p><strong>Location:</strong> ${chartData.metadata.location}</p>
+                    <p><strong>Ascendant:</strong> ${chartData.metadata.ascendant_sign} (${chartData.metadata.ascendant}°)</p>
+                    <hr style="margin:15px 0;border-color:#333">
                     <h4>House Summary:</h4>
-                    <ul>${currentChartData.houses.map(h => `<li>House ${h.number}: ${h.lord} | Planets: ${h.planets.join(', ') || 'None'} | ${h.cusp_sign}</li>`).join('')}</ul>
+                    <ul>${chartData.houses.map(h => `<li>House ${h.number}: ${h.lord} | Planets: ${h.planets.join(', ') || 'None'} | ${h.sign}</li>`).join('')}</ul>
+                    <hr style="margin:15px 0;border-color:#333">
+                    <h4>Planetary Positions:</h4>
+                    <ul>${Object.entries(chartData.planets).map(([p,d]) => `<li>${p}: ${d.toFixed(2)}° ${getSign(d)}</li>`).join('')}</ul>
                 </div>
             `;
         }
-
+        
         function saveData() {
-            if (!currentChartData) { alert('Calculate chart first!'); return; }
-            localStorage.setItem('shivanetra_data', JSON.stringify(currentChartData));
-            alert('✅ Data saved!');
+            if(!chartData) { alert('Calculate chart first!'); return; }
+            localStorage.setItem('shivanetra_data', JSON.stringify(chartData));
+            alert('✅ Data saved to browser!');
         }
-
-        function downloadReport() {
-            if (!currentChartData) { alert('Calculate chart first!'); return; }
+        
+        function downloadThisPage() {
+            if(!chartData) { alert('Calculate chart first!'); return; }
             const html = document.documentElement.outerHTML;
             const blob = new Blob([html], {type: 'text/html'});
             const a = document.createElement('a');
             a.href = URL.createObjectURL(blob);
-            a.download = `shivanetra_${currentChartData.metadata.name}_${Date.now()}.html`;
+            a.download = `shivanetra_${chartData.metadata.name}_${Date.now()}.html`;
             a.click();
         }
     </script>
