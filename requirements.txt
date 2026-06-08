@@ -1,3 +1,5 @@
+# C:/Shivanetra_V9/requirements.txt
+
 swisseph==2.08.00
 flask==2.3.0
 flask-cors==4.0.0
