@@ -1,0 +1,4 @@
+swisseph==2.08.00
+flask==2.3.0
+flask-cors==4.0.0
+numpy==1.24.0
