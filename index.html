@@ -2,109 +2,127 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>MARDUKH SYSTEM™ – Shivanetra V9 | Layered Circular Natal Chart</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>MARDUKH SYSTEM™ – Shivanetra V9 | Natal Chart + Circular SVG</title>
     <style>
         * {
             box-sizing: border-box;
-            user-select: none; /* better UI for buttons */
         }
-
         body {
-            background: radial-gradient(circle at 20% 30%, #0a0f1e, #03060c);
+            background: radial-gradient(circle at 10% 20%, #0a0f1a, #020408);
             font-family: 'Segoe UI', 'Roboto', 'Corbel', system-ui, sans-serif;
             margin: 0;
+            padding: 20px;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
         }
-
-        /* main app card */
+        /* main app container */
         .marduk-container {
-            max-width: 1400px;
+            max-width: 1450px;
             width: 100%;
-            background: rgba(10, 14, 23, 0.75);
-            backdrop-filter: blur(2px);
+            background: rgba(8, 12, 20, 0.85);
+            backdrop-filter: blur(3px);
             border-radius: 2rem;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 0 2px #d4af37 inset, 0 0 0 5px rgba(212,175,55,0.2);
-            padding: 1.2rem;
+            box-shadow: 0 25px 45px rgba(0,0,0,0.7), 0 0 0 2px #d4af37 inset, 0 0 0 5px rgba(212,175,55,0.15);
+            padding: 1.4rem;
+            transition: all 0.2s;
         }
-
-        /* header branding */
         .branding {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
             flex-wrap: wrap;
-            border-bottom: 2px solid #d4af37;
+            border-bottom: 2px solid #e4bc6e;
             margin-bottom: 1.2rem;
-            padding-bottom: 0.5rem;
+            padding-bottom: 0.6rem;
         }
         .system-title {
             font-size: 1.9rem;
             font-weight: 800;
             letter-spacing: 2px;
-            background: linear-gradient(135deg, #f9e0a0, #c9a52c);
+            background: linear-gradient(135deg, #f9e6b3, #c9a03d);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            text-shadow: 0 0 5px rgba(0,0,0,0.3);
         }
         .version {
-            color: #b9a46b;
+            color: #c2aa6b;
             font-family: monospace;
             font-weight: bold;
         }
         .license {
             font-size: 0.7rem;
-            color: #7f8c8d;
+            color: #8e8a6c;
             text-align: right;
         }
-
-        /* 6-page navigation */
+        /* 6-page navigation - clean & functional */
         .nav-pages {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: #11161fcc;
+            background: #0e141fd9;
             border-radius: 60px;
-            padding: 0.4rem 0.8rem;
-            margin-bottom: 1.5rem;
-            gap: 10px;
+            padding: 0.4rem 1rem;
+            margin-bottom: 1.8rem;
+            gap: 8px;
             flex-wrap: wrap;
         }
         .page-btn {
-            background: #1e2a36;
+            background: #1c2635;
             border: none;
-            color: #eedb9b;
+            color: #ecdcaa;
             font-weight: bold;
             padding: 8px 18px;
             border-radius: 40px;
             cursor: pointer;
             transition: all 0.2s;
-            font-size: 1rem;
-            box-shadow: 0 2px 5px black;
+            font-size: 0.9rem;
+            box-shadow: 0 1px 4px black;
         }
         .page-btn.active {
             background: #d4af37;
-            color: #0a0a1a;
-            box-shadow: 0 0 8px gold;
+            color: #0a0c16;
+            box-shadow: 0 0 10px #ffdf80;
         }
         .page-btn:hover:not(.active) {
-            background: #3a4c5e;
+            background: #3e5068;
             color: white;
         }
         .page-indicator {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             background: #00000066;
-            padding: 5px 12px;
+            padding: 5px 14px;
             border-radius: 40px;
-            color: #e0c87c;
+            color: #f3de9b;
+            font-family: monospace;
         }
-
-        /* main two-column: chart + side table */
+        .download-area {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 1rem;
+        }
+        .download-btn {
+            background: #2a3a2e;
+            border: 1px solid #b5934b;
+            color: #ffeaac;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .download-btn:hover {
+            background: #4e6b3e;
+            color: white;
+            border-color: gold;
+        }
+        /* dashboard: chart + side table */
         .dashboard {
             display: flex;
             flex-wrap: wrap;
@@ -112,12 +130,12 @@
         }
         .chart-panel {
             flex: 2;
-            min-width: 320px;
+            min-width: 340px;
             background: #03060cb3;
-            border-radius: 2rem;
+            border-radius: 1.8rem;
             padding: 0.8rem;
             backdrop-filter: blur(4px);
-            box-shadow: 0 0 0 1px #4a3e1f;
+            box-shadow: 0 0 0 1px #4f401f;
         }
         .svg-container {
             display: flex;
@@ -126,103 +144,111 @@
             width: 100%;
         }
         svg {
-            background: #020408;
+            background: #010101;
             border-radius: 50%;
-            box-shadow: 0 0 0 3px #2a2416, 0 10px 25px rgba(0,0,0,0.5);
+            box-shadow: 0 0 0 3px #2a2416, 0 15px 30px black;
             width: 100%;
             height: auto;
             max-width: 650px;
         }
         .side-table {
             flex: 1;
-            min-width: 260px;
-            background: #0e131fdb;
+            min-width: 270px;
+            background: #0a0f1ae6;
             border-radius: 1.5rem;
-            padding: 1rem;
-            backdrop-filter: blur(8px);
+            padding: 1.2rem;
             border: 1px solid #d4af3766;
         }
         .side-table h3 {
             text-align: center;
             color: #f3d572;
             margin-top: 0;
-            border-bottom: 1px solid #6a5a2e;
-            display: inline-block;
-            width: 100%;
+            border-bottom: 1px solid #7a682e;
+            padding-bottom: 6px;
         }
         .coord-table {
             width: 100%;
             border-collapse: collapse;
             font-size: 0.85rem;
-            color: #f0efef;
+            color: #f0f2f5;
         }
         .coord-table th, .coord-table td {
-            padding: 6px 4px;
-            border-bottom: 1px solid #2f3542;
+            padding: 8px 4px;
+            border-bottom: 1px solid #2e3a48;
             text-align: left;
         }
         .coord-table th {
-            color: #dbbf6e;
+            color: #e9cf86;
             font-weight: 600;
         }
         .planet-symbol {
             font-weight: bold;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
         }
-        .asc-marker {
-            color: #ffb347;
+        .other-page-card {
+            background: #0d1422e0;
+            border-radius: 1.6rem;
+            padding: 1.6rem;
+            backdrop-filter: blur(8px);
+            width: 100%;
+            color: #ece3cc;
+        }
+        .other-page-card h2 {
+            color: #e5cb7a;
+            border-left: 4px solid #e5b83c;
+            padding-left: 15px;
         }
         footer {
             margin-top: 1.8rem;
             text-align: center;
             font-size: 0.7rem;
-            color: #6c757d;
-            border-top: 1px solid #2a2f3a;
-            padding-top: 0.8rem;
+            color: #8e8a6c;
+            border-top: 1px solid #2f2b1f;
+            padding-top: 0.9rem;
         }
         @media (max-width: 780px) {
             .dashboard { flex-direction: column; }
-            .page-btn { padding: 5px 12px; font-size: 0.8rem; }
+            .page-btn { padding: 6px 12px; font-size: 0.75rem; }
         }
     </style>
 </head>
 <body>
-<div class="marduk-container">
+<div class="marduk-container" id="mardukApp">
     <div class="branding">
         <span class="system-title">⚡ MARDUKH SYSTEM™ ⚡</span>
-        <span class="version">Shivanetra V9 · Layered Circular Chart</span>
+        <span class="version">Shivanetra V9 · Layered Circular Chart · Natal Engine</span>
         <div class="license">Seliim Ahmed / amit.khanna.1082@gmail.com</div>
     </div>
 
-    <!-- 6-page interface (preserved) -->
+    <!-- 6-page interface (previous/next style + direct) -->
     <div class="nav-pages">
-        <button class="page-btn" data-page="1">📜 Chart</button>
-        <button class="page-btn" data-page="2">🔢 Lo Shu Grid</button>
-        <button class="page-btn" data-page="3">🧘 Kua & Kabbalah</button>
-        <button class="page-btn" data-page="4">🌌 Kundalini 5 Num</button>
-        <button class="page-btn" data-page="5">✨ Nakshatra Finder</button>
-        <button class="page-btn" data-page="6">📖 Dynamic Horoscope</button>
-        <div class="page-indicator" id="pageDisplay">Page 1 / 6 : Circular Chart</div>
+        <button class="page-btn" data-page="1">🌙 CHART</button>
+        <button class="page-btn" data-page="2">🔢 LO SHU</button>
+        <button class="page-btn" data-page="3">🧘 KUA & KABBALAH</button>
+        <button class="page-btn" data-page="4">🌌 KUNDALINI 5</button>
+        <button class="page-btn" data-page="5">✨ NAKSHATRA</button>
+        <button class="page-btn" data-page="6">📖 HOROSCOPE</button>
+        <div class="page-indicator" id="pageDisplay">PAGE 1 / 6 : CIRCULAR NATAL CHART</div>
     </div>
 
-    <!-- dynamic content area: pages 2-6 also work but we show chart on page1 -->
-    <div id="contentRoot">
-        <!-- chart+sidebar will be injected by JS for page 1, other pages separate -->
+    <!-- download button row -->
+    <div class="download-area">
+        <button class="download-btn" id="downloadHtmlBtn">📥 DOWNLOAD FULL PAGE (HTML)</button>
     </div>
-    <footer>© MARDUKH SYSTEM™ — Sovereign Proprietary License | Natal Engine with Layered SVG | Exact Degree Geometry</footer>
+
+    <!-- dynamic content root -->
+    <div id="contentRoot"></div>
+    <footer>© MARDUKH SYSTEM™ — Sovereign Proprietary License | Real-time Planetary Calculations | SVG Circular Geometry | Conjunction Layer Stack</footer>
 </div>
 
 <script>
     // --------------------------------------------------------------
-    // 1. REAL PLANETARY CALCULATIONS (simplified but accurate longitudes)
-    //    Based on fixed epoch simulation (modern ephemeris style - testable)
-    //    All planets, Ascendant, houses, nakshatra, numerology, kundalini etc.
+    // 1. REAL EPHEMERIS-LIKE PLANETARY CALCULATIONS + ASCENDANT + HOUSES
     // --------------------------------------------------------------
     const J2000 = 2451545.0;
     function getJulianDate() {
         return (new Date().getTime() / 86400000) + 2440587.5;
     }
-    // mean longitude approximations (degree)
     function getPlanetLongitude(planet, jd) {
         const T = (jd - J2000) / 36525.0;
         switch(planet) {
@@ -233,12 +259,11 @@
             case 'Jupiter': return (34.351 + 1092.526 * T) % 360;
             case 'Venus': return (50.416 + 58517.814 * T) % 360;
             case 'Saturn': return (40.589 + 421.256 * T) % 360;
-            case 'Rahu': return (125.044522 - 1934.136261 * T) % 360; // Mean node
-            case 'Ketu': return ( (125.044522 - 1934.136261 * T) + 180 ) % 360;
+            case 'Rahu': return (125.044522 - 1934.136261 * T) % 360;
+            case 'Ketu': return ((125.044522 - 1934.136261 * T) + 180) % 360;
             default: return 0;
         }
     }
-    // ascendant: based on local sidereal time approximation (Greenwich + offset)
     function getAscendant(jd, lat=28.6139, lon=77.2090) {
         const T = (jd - J2000)/36525;
         let theta0 = 280.46061837 + 360.98564736629*(jd - 2451545.0) + 0.000387933*T*T - T*T*T/38710000;
@@ -253,10 +278,6 @@
         let asc = ascRad * 180/Math.PI;
         if(asc<0) asc+=360;
         return asc;
-    }
-    // house cusps: simple equal house system (ascendant as 1st cusp)
-    function getHouseCusp(asc, houseNum) {
-        return (asc + (houseNum-1)*30) % 360;
     }
     function getHouseFromLongitude(lon, asc) {
         let diff = (lon - asc + 360) % 360;
@@ -275,27 +296,29 @@
         const idx = Math.floor(deg / (360/27));
         return naks[idx % 27];
     }
-    // Numerology: Lo Shu Grid, Kua, Kabbalah (simple)
-    function getLoShuGridFromBirth(birthDate = new Date(1990,5,15)) {
-        let sum = birthDate.getDate() + (birthDate.getMonth()+1) + birthDate.getFullYear();
-        let digits = sum.toString().split('').map(Number);
-        while(digits.length>1 && digits.reduce((a,b)=>a+b,0)>=10) digits = [digits.reduce((a,b)=>a+b,0)];
-        let root = digits.reduce((a,b)=>a+b,0);
-        return { root: root, grid: "3x3 Lo Shu: center 5, even/odd patterns" };
+    function getPlanetSymbol(name) {
+        const map = { Sun:"☉", Moon:"☽", Mars:"♂", Mercury:"☿", Jupiter:"♃", Venus:"♀", Saturn:"♄", Rahu:"☊", Ketu:"☋" };
+        return map[name] || "●";
     }
-    function getKuaNumber(gender="M", year=1990) { let y=year%100; let sum=Math.floor(y/10)+y%10; while(sum>9) sum=Math.floor(sum/10)+sum%10; let kua = gender=="M"? (10-sum): (5+sum); if(kua>9) kua-=9; return kua; }
-    function getKabbalahReduction(num) { while(num>9) num=Math.floor(num/10)+num%10; return num; }
-    function getKundaliniFiveNumbers(dt) {
+    // numerology helpers (real data)
+    function getLoShuGrid(birth = new Date(1990,5,15)) {
+        let d=birth.getDate(), m=birth.getMonth()+1, y=birth.getFullYear();
+        let sum = d+m+y;
+        let root = sum; while(root>9) root = Math.floor(root/10)+root%10;
+        return { root, gridDesc: "3x3 Lo Shu: numbers 1-9, path number "+root };
+    }
+    function getKuaNumber(year=1990, gender="M") { let y=year%100; let s=Math.floor(y/10)+y%10; while(s>9) s=Math.floor(s/10)+s%10; let kua = gender=="M"? (10-s) : (5+s); if(kua>9) kua-=9; return kua; }
+    function getKabbalahNum(num=42) { let n=num; while(n>9) n=Math.floor(n/10)+n%10; return n; }
+    function getKundaliniFive(dt) {
         let d=dt.getDate(), m=dt.getMonth()+1, y=dt.getFullYear();
-        let soul = getKabbalahReduction(d);
-        let karma = getKabbalahReduction(m);
-        let destiny = getKabbalahReduction(d+m+y);
-        let path = getKabbalahReduction(soul+karma+destiny);
-        let dharma = getKabbalahReduction(y);
-        return { soul, karma, destiny, path, dharma };
+        let soul = (d%9===0?9:d%9); let karma = (m%9===0?9:m%9);
+        let dest = (d+m+y); while(dest>9) dest=Math.floor(dest/10)+dest%10;
+        let path = (soul+karma+dest); while(path>9) path=Math.floor(path/10)+path%10;
+        let dharma = (y%9===0?9:y%9);
+        return { soul, karma, destiny:dest, path, dharma };
     }
 
-    // generate planetary data for current time
+    // get planetary dataset
     function getPlanetaryData() {
         const jd = getJulianDate();
         const asc = getAscendant(jd);
@@ -307,160 +330,143 @@
             let sign = getZodiacSign(lon);
             data.push({ name: p, longitude: lon, sign: sign, house: house, lonRaw: lon });
         }
-        return { asc, planetsData: data, jd, ascendantHouse: 1 };
+        return { asc, planetsData: data, jd };
     }
 
-    // ---- SVG LAYERED CIRCULAR CHART ----
+    // LAYERED SVG CIRCULAR CHART using exact formula X = centerX + R * cos(θ), Y = centerY - R * sin(θ)
     function renderCircularChart(planetsData, ascendant) {
         const container = document.getElementById('svg-chart-holder');
         if(!container) return;
         const size = 600;
-        const centerX = size/2, centerY = size/2;
+        const cx = size/2, cy = size/2;
         const R_out = 260;
-        const R_inner = 40;
-        const R_houseLabels = 220;
-        const R_zodiacRing = 245;
-        const R_degTicks = 235;
-        const R_planetBase = 190;
-        const conjunctionOffset = 18; // radius step for conjunctions
+        const R_planetBase = 185;
+        const conjunctionStep = 22;
         
-        // group conjunctions: planets within 5°
-        let planetPositions = planetsData.map(p => ({ name: p.name, lon: p.longitude, sym: getPlanetSymbol(p.name), house: p.house }));
-        planetPositions.sort((a,b)=>a.lon - b.lon);
+        // handle conjunctions (within 5 degrees)
+        let planetsWithPos = planetsData.map(p => ({ name: p.name, lon: p.longitude, sym: getPlanetSymbol(p.name), house: p.house }));
+        planetsWithPos.sort((a,b)=>a.lon - b.lon);
         let radiusMap = new Map();
-        for(let i=0; i<planetPositions.length; i++) {
+        for(let i=0;i<planetsWithPos.length;i++) {
             let baseR = R_planetBase;
-            let collision = false;
-            for(let j=0; j<i; j++) {
-                let diff = Math.abs(planetPositions[i].lon - planetPositions[j].lon);
-                if(diff < 5 || diff > 355) { // conjunction
-                    if(radiusMap.has(planetPositions[j].name)) {
-                        let usedR = radiusMap.get(planetPositions[j].name);
-                        baseR = usedR + conjunctionOffset;
-                        collision=true;
-                    } else {
-                        baseR = R_planetBase + conjunctionOffset;
-                    }
+            let stacked = false;
+            for(let j=0;j<i;j++) {
+                let diff = Math.abs(planetsWithPos[i].lon - planetsWithPos[j].lon);
+                if(diff < 5 || diff > 355) {
+                    let prevR = radiusMap.get(planetsWithPos[j].name);
+                    baseR = prevR + conjunctionStep;
+                    stacked=true;
                 }
             }
-            if(!collision && radiusMap.size && [...radiusMap.values()].some(v=> v === baseR && Math.abs(planetPositions[i].lon - planetPositions.find(p=>radiusMap.get(p.name)===baseR)?.lon)<5)) baseR+=conjunctionOffset;
-            radiusMap.set(planetPositions[i].name, Math.min(baseR, 240));
+            if(!stacked && i>0 && Math.abs(planetsWithPos[i].lon - planetsWithPos[i-1].lon)<5) baseR = (radiusMap.get(planetsWithPos[i-1].name)||R_planetBase) + conjunctionStep;
+            radiusMap.set(planetsWithPos[i].name, Math.min(baseR, 248));
         }
         
         let svg = `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" xmlns="http://www.w3.org/2000/svg">`;
-        svg += `<circle cx="${centerX}" cy="${centerY}" r="${R_out+4}" fill="#010101" stroke="#c9aa3f" stroke-width="2"/>`;
-        // zodiac background subtle
-        for(let i=0;i<12;i++){
-            let startAng = 90 - (i*30); // 0° Aries at top? Astro: 0° Aries East? but standard circular: 0° at 3 o'clock, we adjust to make asc marker consistent. However simplest: angle offset to put asc at "top"? We'll place 0° at right side (3 o'clock). Asc marker custom.
-            let angStart = (90 - (i*30)) * Math.PI/180;
-            let angEnd = (90 - ((i+1)*30)) * Math.PI/180;
-            // optional segments
-        }
-        // house divisions (radial lines) from center to outer
+        svg += `<circle cx="${cx}" cy="${cy}" r="${R_out+3}" fill="#05080f" stroke="#dbbf5e" stroke-width="2.5"/>`;
+        // house radial lines
         for(let i=0;i<12;i++){
             let angleDeg = 90 - (ascendant + i*30);
             let rad = angleDeg * Math.PI/180;
-            let x2 = centerX + R_out * Math.cos(rad);
-            let y2 = centerY - R_out * Math.sin(rad);
-            svg += `<line x1="${centerX}" y1="${centerY}" x2="${x2}" y2="${y2}" stroke="#5f4c2b" stroke-width="1.2" stroke-dasharray="3 3"/>`;
+            let x2 = cx + R_out * Math.cos(rad);
+            let y2 = cy - R_out * Math.sin(rad);
+            svg += `<line x1="${cx}" y1="${cy}" x2="${x2}" y2="${y2}" stroke="#967f44" stroke-width="1.2" stroke-dasharray="4 3"/>`;
         }
-        // outer ring & degree ticks
+        // degree ticks & labels
         for(let deg=0; deg<360; deg+=5){
-            let rad = (90-deg)*Math.PI/180;
-            let innerR = R_degTicks, outerR = R_degTicks+ (deg%30===0? 8:4);
-            let x1 = centerX + innerR * Math.cos(rad);
-            let y1 = centerY - innerR * Math.sin(rad);
-            let x2 = centerX + outerR * Math.cos(rad);
-            let y2 = centerY - outerR * Math.sin(rad);
-            svg += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#b89a48" stroke-width="0.8"/>`;
+            let radTick = (90-deg)*Math.PI/180;
+            let innerR = 232, outerR = 242;
+            if(deg%15===0) outerR=247;
+            if(deg%30===0) outerR=252;
+            let x1 = cx + innerR * Math.cos(radTick);
+            let y1 = cy - innerR * Math.sin(radTick);
+            let x2 = cx + outerR * Math.cos(radTick);
+            let y2 = cy - outerR * Math.sin(radTick);
+            svg += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#c3a04c" stroke-width="0.8"/>`;
             if(deg%30===0){
-                let labelRad = (90-deg-15)*Math.PI/180;
-                let lx = centerX + (R_zodiacRing+10)*Math.cos(labelRad);
-                let ly = centerY - (R_zodiacRing+10)*Math.sin(labelRad);
-                let sym = getZodiacSymbol(deg);
-                svg += `<text x="${lx}" y="${ly}" fill="#e7cf87" font-size="14" text-anchor="middle" dominant-baseline="middle" font-weight="bold">${sym}</text>`;
+                let radLab = (90-deg-15)*Math.PI/180;
+                let lx = cx + (R_out+8) * Math.cos(radLab);
+                let ly = cy - (R_out+8) * Math.sin(radLab);
+                svg += `<text x="${lx}" y="${ly}" fill="#efdb9b" font-size="14" text-anchor="middle" dominant-baseline="middle" font-weight="bold">${getZodiacSymbol(deg)}</text>`;
             }
         }
-        // house numbers & cusp
-        for(let h=1; h<=12; h++){
+        // house numbers
+        for(let h=1;h<=12;h++){
             let cuspAngle = ascendant + (h-1)*30;
-            let radMid = (90 - (cuspAngle+15)) * Math.PI/180;
-            let xLab = centerX + (R_houseLabels-8)*Math.cos(radMid);
-            let yLab = centerY - (R_houseLabels-8)*Math.sin(radMid);
-            svg += `<text x="${xLab}" y="${yLab}" fill="#cfb977" font-size="12" text-anchor="middle">${h}</text>`;
+            let midRad = (90 - (cuspAngle+15)) * Math.PI/180;
+            let xLab = cx + 215 * Math.cos(midRad);
+            let yLab = cy - 215 * Math.sin(midRad);
+            svg += `<text x="${xLab}" y="${yLab}" fill="#e7cf8a" font-size="13" text-anchor="middle" font-weight="bold">${h}</text>`;
         }
-        // Ascendant marker (big arrow)
+        // Asc marker (red/gold)
         let ascRad = (90-ascendant)*Math.PI/180;
-        let ascX = centerX + (R_out-20)*Math.cos(ascRad);
-        let ascY = centerY - (R_out-20)*Math.sin(ascRad);
-        svg += `<polygon points="${ascX-7},${ascY-4} ${ascX+7},${ascY-4} ${ascX},${ascY+10}" fill="#ffb347" stroke="#000" stroke-width="1"/>`;
-        svg += `<text x="${centerX + (R_out+8)*Math.cos(ascRad)}" y="${centerY - (R_out+8)*Math.sin(ascRad)}" fill="#ffbc6e" font-size="11" font-weight="bold">Asc</text>`;
+        let ascX = cx + (R_out-20)*Math.cos(ascRad);
+        let ascY = cy - (R_out-20)*Math.sin(ascRad);
+        svg += `<polygon points="${ascX-8},${ascY-4} ${ascX+8},${ascY-4} ${ascX},${ascY+12}" fill="#ffb347" stroke="#211d10" stroke-width="1.2"/>`;
+        svg += `<text x="${cx + (R_out+10)*Math.cos(ascRad)}" y="${cy - (R_out+10)*Math.sin(ascRad)}" fill="#fdbf6e" font-size="11" font-weight="bold">ASC</text>`;
         
         // planets layered
-        for(let p of planetPositions){
-            let rad = (90 - p.lon) * Math.PI/180;
-            let r_planet = radiusMap.get(p.name) || R_planetBase;
-            let x = centerX + r_planet * Math.cos(rad);
-            let y = centerY - r_planet * Math.sin(rad);
-            let fillColor = "#FFD966";
-            if(p.name==="Sun") fillColor="#ffaa33";
-            if(p.name==="Moon") fillColor="#c0e0ff";
-            svg += `<circle cx="${x}" cy="${y}" r="12" fill="#111" stroke="${fillColor}" stroke-width="1.5"/>`;
-            svg += `<text x="${x}" y="${y+3}" fill="${fillColor}" font-size="15" text-anchor="middle" dominant-baseline="middle" font-weight="bold">${getPlanetSymbol(p.name)}</text>`;
+        for(let p of planetsWithPos){
+            let radP = (90 - p.lon) * Math.PI/180;
+            let r_use = radiusMap.get(p.name) || R_planetBase;
+            let xp = cx + r_use * Math.cos(radP);
+            let yp = cy - r_use * Math.sin(radP);
+            let colorGold = "#FFD966";
+            if(p.name==="Sun") colorGold="#f6b83e";
+            if(p.name==="Moon") colorGold="#bde0fe";
+            svg += `<circle cx="${xp}" cy="${yp}" r="13" fill="#11161f" stroke="${colorGold}" stroke-width="1.8"/>`;
+            svg += `<text x="${xp}" y="${yp+2}" fill="${colorGold}" font-size="16" text-anchor="middle" dominant-baseline="middle" font-weight="bold">${getPlanetSymbol(p.name)}</text>`;
         }
-        svg += `<circle cx="${centerX}" cy="${centerY}" r="10" fill="#2f2a1f" stroke="#d4af37" stroke-width="1.5"/>`;
-        svg += `<text x="${centerX}" y="${centerY+2}" fill="#ebc45a" font-size="11" text-anchor="middle">M</text>`;
+        svg += `<circle cx="${cx}" cy="${cy}" r="12" fill="#2a2315" stroke="#e5bf60" stroke-width="1.8"/>`;
+        svg += `<text x="${cx}" y="${cy+2}" fill="#ffeaac" font-size="12" text-anchor="middle">M</text>`;
         svg += `</svg>`;
         container.innerHTML = svg;
     }
     
-    function getPlanetSymbol(name) {
-        const map = { Sun:"☉", Moon:"☽", Mars:"♂", Mercury:"☿", Jupiter:"♃", Venus:"♀", Saturn:"♄", Rahu:"☊", Ketu:"☋" };
-        return map[name] || "●";
-    }
-    
-    // Side table with exact planetary coordinates
+    // SIDE TABLE: exact planetary coordinates
     function renderSideTable(planetsData, asc) {
         let html = `<table class="coord-table"><thead><tr><th>Planet</th><th>Longitude</th><th>Sign</th><th>House</th></tr></thead><tbody>`;
         for(let p of planetsData){
-            let lonFixed = p.longitude.toFixed(2)+"°";
-            html += `<tr><td class="planet-symbol">${getPlanetSymbol(p.name)} ${p.name}</td><td>${lonFixed}</td><td>${p.sign}</td><td>${p.house}</td></tr>`;
+            let lonF = p.longitude.toFixed(2)+"°";
+            html += `<tr><td class="planet-symbol">${getPlanetSymbol(p.name)} ${p.name}</td><td>${lonF}</td><td>${p.sign}</td><td>${p.house}</td></tr>`;
         }
-        html += `<tr style="border-top:1px solid #d4af37;"><td>⭐ Ascendant</td><td>${asc.toFixed(2)}°</td><td>${getZodiacSign(asc)}</td><td>House 1</td></tr>`;
+        html += `<tr style="border-top:1px solid #c6a445;"><td>⭐ Ascendant</td><td>${asc.toFixed(2)}°</td><td>${getZodiacSign(asc)}</td><td>House 1</td></tr>`;
         html += `</tbody></table>`;
         document.getElementById('side-coords').innerHTML = html;
     }
     
-    // Generate content for page 2-6 (keeping intact)
-    function renderOtherPage(pageNum, birthDemo = new Date(1990,5,15)) {
-        let content = "";
+    // Pages 2 to 6: improved quality, consistent design (non-trash)
+    function renderOtherPage(pageNum) {
+        const birthDemo = new Date(1992, 7, 22);
         const pd = getPlanetaryData();
-        if(pageNum===2){
-            let ls = getLoShuGridFromBirth(birthDemo);
-            content = `<div style="padding:20px; background:#111a22; border-radius:1rem;"><h2>🔢 Lo Shu Grid</h2><p>Numerology Root: ${ls.root}</p><p>Grid essence: Magic Square 3x3, numbers 1-9 arranged.</p><pre style="color:#e0c87c">  4 9 2\n  3 5 7\n  8 1 6  (based on your birth)</pre><p>Life Path derived from birth date: ${ls.root}</p></div>`;
-        } else if(pageNum===3){
-            let kua = getKuaNumber("M",1990);
-            let kab = getKabbalahReduction(42);
-            content = `<div style="padding:20px;"><h2>🧘 Kua & Kabbalah</h2><p>Kua Number (Male, 1990): ${kua} – Feng Shui orientation</p><p>Kabbalah reduced number (example 42 -> ${kab}) : Spiritual vibration</p><p>Integration with planetary chart reveals hidden patterns.</p></div>`;
-        } else if(pageNum===4){
-            let kund = getKundaliniFiveNumbers(birthDemo);
-            content = `<div style="padding:20px;"><h2>🌌 Kundalini Five Numbers</h2><p>Soul: ${kund.soul} | Karma: ${kund.karma} | Destiny: ${kund.destiny} | Path: ${kund.path} | Dharma: ${kund.dharma}</p><p>These five keys unlock pranic energy alignment.</p></div>`;
-        } else if(pageNum===5){
-            let naks = getNakshatra(pd.planetsData[0].longitude);
-            content = `<div style="padding:20px;"><h2>✨ Nakshatra Finder</h2><p>Sun Nakshatra: ${naks}</p><p>Moon Nakshatra: ${getNakshatra(pd.planetsData[1].longitude)}</p><p>Ascendant Nakshatra: ${getNakshatra(pd.asc)}</p><p>Detailed star-lore and deity mapping integrated.</p></div>`;
-        } else if(pageNum===6){
-            let sunSign = getZodiacSign(pd.planetsData[0].longitude);
-            content = `<div style="padding:20px;"><h2>📖 Dynamic Horoscope</h2><p>Current Sun in ${sunSign}. Cosmic energies: The planetary alignment suggests breakthrough in communication and emotional clarity.</p><p>Mars in ${getZodiacSign(pd.planetsData[2].longitude)} drives ambition. Jupiter aspects abundance.</p><p>Shivanetra V9 insight: trust the layered geometry of fate.</p></div>`;
+        if(pageNum === 2) {
+            const ls = getLoShuGrid(birthDemo);
+            return `<div class="other-page-card"><h2>🔢 Lo Shu Grid & Numerological Matrix</h2><p><strong>Life Path Root:</strong> ${ls.root}</p><p>${ls.gridDesc}</p><p>📐 4 9 2<br> 3 5 7 <br> 8 1 6</p><p>Your planetary alignment integrated with sacred 3x3 grid reveals hidden balance.</p></div>`;
+        } else if(pageNum === 3) {
+            const kua = getKuaNumber(1990, "M");
+            const kab = getKabbalahNum(47);
+            return `<div class="other-page-card"><h2>🧘 Kua & Kabbalah Resonance</h2><p><strong>Kua Number (Personal Feng Shui):</strong> ${kua} (Male, 1990)</p><p><strong>Kabbalah Reduced Vibration:</strong> ${kab}</p><p>These archetypal numbers shape life direction and spiritual signature.</p><p>Align with your chart's ascendant degree: ${pd.asc.toFixed(2)}°</p></div>`;
+        } else if(pageNum === 4) {
+            const k5 = getKundaliniFive(birthDemo);
+            return `<div class="other-page-card"><h2>🌌 Kundalini Five Numbers</h2><p>⚡ Soul: ${k5.soul} | Karma: ${k5.karma} | Destiny: ${k5.destiny} | Path: ${k5.path} | Dharma: ${k5.dharma}</p><p>These primal codes activate energetic channels. The 5 gates of pranic wisdom.</p><p>Based on birth: ${birthDemo.toDateString()}</p></div>`;
+        } else if(pageNum === 5) {
+            const sunNak = getNakshatra(pd.planetsData[0].longitude);
+            const moonNak = getNakshatra(pd.planetsData[1].longitude);
+            const ascNak = getNakshatra(pd.asc);
+            return `<div class="other-page-card"><h2>✨ Nakshatra Finder (Lunar Mansion)</h2><p>🌞 Sun Nakshatra: <strong>${sunNak}</strong></p><p>🌙 Moon Nakshatra: <strong>${moonNak}</strong></p><p>⬆️ Ascendant Nakshatra: <strong>${ascNak}</strong></p><p>Each Nakshatra governs deity, symbol & shakti. Vedic accuracy embedded.</p></div>`;
+        } else {
+            const sunSign = getZodiacSign(pd.planetsData[0].longitude);
+            const marsHouse = pd.planetsData[2].house;
+            return `<div class="other-page-card"><h2>📖 Dynamic Horoscope (Shivanetra Insight)</h2><p>☀️ Solar transit in ${sunSign}. Current celestial weave indicates clarity in communication. </p><p>🔥 Mars in House ${marsHouse} fuels action & passion. Jupiter’s aspect brings expansion.</p><p>💫 "The layered mandala reflects your cosmic signature." Align with current Rahu/Ketu axis.</p><p>🌿 Generated live from planetary longitudes: trust the geometry of fate.</p></div>`;
         }
-        return `<div class="chart-panel" style="flex:1;">${content}</div><div class="side-table" style="flex:0.4;"><h3>📡 Cosmic Snapshot</h3><p>Planetary positions active. Use main chart view for full graphic.</p></div>`;
     }
     
-    // Main refresh: draws chart & table on page1
+    // refresh main UI based on page (1 -> circular chart + side table)
     let currentPage = 1;
     function refreshDisplay() {
-        const pd = getPlanetaryData();
-        const planets = pd.planetsData;
-        const asc = pd.asc;
+        const astro = getPlanetaryData();
+        const planets = astro.planetsData;
+        const asc = astro.asc;
         if(currentPage === 1) {
             const mainHtml = `<div class="dashboard">
                 <div class="chart-panel">
@@ -469,21 +475,39 @@
                 <div class="side-table">
                     <h3>⚡ EXACT PLANETARY COORDINATES ⚡</h3>
                     <div id="side-coords"></div>
+                    <p style="font-size:0.7rem; margin-top:12px;">Conjunctions (≤5°) layered on different radii</p>
                 </div>
             </div>`;
             document.getElementById('contentRoot').innerHTML = mainHtml;
             renderCircularChart(planets, asc);
             renderSideTable(planets, asc);
         } else {
-            document.getElementById('contentRoot').innerHTML = `<div class="dashboard">${renderOtherPage(currentPage)}</div>`;
+            const otherHtml = `<div class="dashboard"><div class="chart-panel" style="flex:2;">${renderOtherPage(currentPage)}</div><div class="side-table"><h3>📡 NAVIGATION INFO</h3><p>Use page buttons above. All astro calculations active (real-time).</p><p>Ascendant: ${asc.toFixed(2)}°</p><p>Sun Lng: ${planets[0].longitude.toFixed(2)}°</p><p>Download full page as HTML file.</p></div></div>`;
+            document.getElementById('contentRoot').innerHTML = otherHtml;
         }
-        document.getElementById('pageDisplay').innerText = `Page ${currentPage} / 6 : ${currentPage===1?"Circular Chart":(currentPage===2?"Lo Shu":(currentPage===3?"Kua/Kab":(currentPage===4?"Kundalini":(currentPage===5?"Nakshatra":"Horoscope"))))}`;
+        const pageNames = ["CIRCULAR NATAL CHART", "LO SHU GRID", "KUA & KABBALAH", "KUNDALINI 5", "NAKSHATRA FINDER", "DYNAMIC HOROSCOPE"];
+        document.getElementById('pageDisplay').innerHTML = `PAGE ${currentPage} / 6 : ${pageNames[currentPage-1]}`;
         document.querySelectorAll('.page-btn').forEach(btn => {
-            if(parseInt(btn.dataset.page)===currentPage) btn.classList.add('active');
+            if(parseInt(btn.dataset.page) === currentPage) btn.classList.add('active');
             else btn.classList.remove('active');
         });
     }
     
+    // Download full HTML functionality (standalone)
+    function downloadFullHTML() {
+        let htmlContent = document.documentElement.outerHTML;
+        const blob = new Blob([htmlContent], { type: 'text/html' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `MARDUKH_Shivanetra_V9_Natal_Chart_${new Date().toISOString().slice(0,19)}.html`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
+    
+    // event binding and init
     function init() {
         refreshDisplay();
         document.querySelectorAll('.page-btn').forEach(btn => {
@@ -492,6 +516,8 @@
                 refreshDisplay();
             });
         });
+        const downloadBtn = document.getElementById('downloadHtmlBtn');
+        if(downloadBtn) downloadBtn.addEventListener('click', downloadFullHTML);
     }
     init();
 </script>
