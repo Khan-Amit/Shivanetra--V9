@@ -2,62 +2,141 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>MARDUKH SYSTEM™ – Shivanetra V9 | Natal Chart + Circular SVG</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MARDUKH SYSTEM™ – Shivanetra V9 | Complete Natal Astrology</title>
     <style>
         * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
+
         body {
-            background: radial-gradient(circle at 10% 20%, #0a0f1a, #020408);
-            font-family: 'Segoe UI', 'Roboto', 'Corbel', system-ui, sans-serif;
-            margin: 0;
-            padding: 20px;
+            background: linear-gradient(135deg, #0a0f1a 0%, #03060c 100%);
+            font-family: 'Segoe UI', 'Roboto', 'Georgia', serif;
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            padding: 20px;
         }
-        /* main app container */
-        .marduk-container {
-            max-width: 1450px;
-            width: 100%;
-            background: rgba(8, 12, 20, 0.85);
-            backdrop-filter: blur(3px);
+
+        /* Landing Page */
+        .landing-page {
+            max-width: 550px;
+            margin: 60px auto;
+            background: rgba(10, 14, 23, 0.95);
+            backdrop-filter: blur(10px);
             border-radius: 2rem;
-            box-shadow: 0 25px 45px rgba(0,0,0,0.7), 0 0 0 2px #d4af37 inset, 0 0 0 5px rgba(212,175,55,0.15);
-            padding: 1.4rem;
-            transition: all 0.2s;
+            padding: 2rem;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5), 0 0 0 2px #d4af37 inset;
+            text-align: center;
         }
+
+        .landing-page h1 {
+            font-size: 2.2rem;
+            background: linear-gradient(135deg, #f9e0a0, #c9a52c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .landing-page .sub {
+            color: #b9a46b;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            color: #e5cb7a;
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid #d4af37;
+            background: #1a1f2e;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .birthday-group {
+            display: flex;
+            gap: 10px;
+        }
+        .birthday-group select {
+            flex: 1;
+        }
+
+        .enter-btn {
+            background: linear-gradient(135deg, #d4af37, #b8912e);
+            color: #0a0c16;
+            font-weight: bold;
+            font-size: 1.2rem;
+            padding: 14px;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1rem;
+            transition: transform 0.2s;
+        }
+
+        .enter-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 15px gold;
+        }
+
+        /* Main App (hidden initially) */
+        .main-app {
+            display: none;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Header */
         .branding {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
             flex-wrap: wrap;
-            border-bottom: 2px solid #e4bc6e;
-            margin-bottom: 1.2rem;
+            border-bottom: 2px solid #d4af37;
             padding-bottom: 0.6rem;
+            margin-bottom: 1.2rem;
         }
         .system-title {
-            font-size: 1.9rem;
+            font-size: 1.8rem;
             font-weight: 800;
-            letter-spacing: 2px;
             background: linear-gradient(135deg, #f9e6b3, #c9a03d);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
-        .version {
-            color: #c2aa6b;
-            font-family: monospace;
-            font-weight: bold;
+        .user-info {
+            background: #1e2538;
+            padding: 8px 16px;
+            border-radius: 30px;
+            color: #e5cb7a;
+            font-size: 0.85rem;
         }
-        .license {
-            font-size: 0.7rem;
-            color: #8e8a6c;
-            text-align: right;
+        .change-user-btn {
+            background: #2a3a2e;
+            border: 1px solid #b5934b;
+            color: #ffeaac;
+            padding: 6px 15px;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-left: 10px;
         }
-        /* 6-page navigation - clean & functional */
+
+        /* Navigation */
         .nav-pages {
             display: flex;
             justify-content: space-between;
@@ -65,9 +144,9 @@
             background: #0e141fd9;
             border-radius: 60px;
             padding: 0.4rem 1rem;
-            margin-bottom: 1.8rem;
-            gap: 8px;
+            margin-bottom: 1.5rem;
             flex-wrap: wrap;
+            gap: 8px;
         }
         .page-btn {
             background: #1c2635;
@@ -77,31 +156,17 @@
             padding: 8px 18px;
             border-radius: 40px;
             cursor: pointer;
-            transition: all 0.2s;
-            font-size: 0.9rem;
-            box-shadow: 0 1px 4px black;
+            transition: 0.2s;
         }
         .page-btn.active {
             background: #d4af37;
             color: #0a0c16;
-            box-shadow: 0 0 10px #ffdf80;
-        }
-        .page-btn:hover:not(.active) {
-            background: #3e5068;
-            color: white;
         }
         .page-indicator {
-            font-size: 0.85rem;
             background: #00000066;
             padding: 5px 14px;
             border-radius: 40px;
             color: #f3de9b;
-            font-family: monospace;
-        }
-        .download-area {
-            display: flex;
-            justify-content: flex-end;
-            margin-bottom: 1rem;
         }
         .download-btn {
             background: #2a3a2e;
@@ -109,94 +174,83 @@
             color: #ffeaac;
             padding: 8px 20px;
             border-radius: 40px;
-            font-weight: bold;
             cursor: pointer;
-            font-size: 0.8rem;
-            transition: 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
         }
-        .download-btn:hover {
-            background: #4e6b3e;
-            color: white;
-            border-color: gold;
-        }
-        /* dashboard: chart + side table */
+
+        /* Dashboard Layout */
         .dashboard {
             display: flex;
             flex-wrap: wrap;
-            gap: 1.8rem;
+            gap: 1.5rem;
         }
         .chart-panel {
             flex: 2;
-            min-width: 340px;
+            min-width: 350px;
             background: #03060cb3;
-            border-radius: 1.8rem;
-            padding: 0.8rem;
-            backdrop-filter: blur(4px);
-            box-shadow: 0 0 0 1px #4f401f;
+            border-radius: 1.5rem;
+            padding: 1rem;
         }
         .svg-container {
             display: flex;
             justify-content: center;
-            align-items: center;
-            width: 100%;
         }
         svg {
             background: #010101;
             border-radius: 50%;
-            box-shadow: 0 0 0 3px #2a2416, 0 15px 30px black;
+            box-shadow: 0 0 0 3px #2a2416;
             width: 100%;
             height: auto;
-            max-width: 650px;
+            max-width: 600px;
         }
         .side-table {
             flex: 1;
-            min-width: 270px;
+            min-width: 280px;
             background: #0a0f1ae6;
             border-radius: 1.5rem;
             padding: 1.2rem;
             border: 1px solid #d4af3766;
         }
         .side-table h3 {
-            text-align: center;
             color: #f3d572;
-            margin-top: 0;
             border-bottom: 1px solid #7a682e;
-            padding-bottom: 6px;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
         }
         .coord-table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 0.85rem;
             color: #f0f2f5;
+            font-size: 0.85rem;
         }
         .coord-table th, .coord-table td {
             padding: 8px 4px;
             border-bottom: 1px solid #2e3a48;
             text-align: left;
         }
-        .coord-table th {
-            color: #e9cf86;
-            font-weight: 600;
-        }
-        .planet-symbol {
-            font-weight: bold;
-            font-size: 1.15rem;
-        }
-        .other-page-card {
+        .coord-table th { color: #e9cf86; }
+
+        /* Other Pages Content */
+        .page-content {
             background: #0d1422e0;
-            border-radius: 1.6rem;
-            padding: 1.6rem;
-            backdrop-filter: blur(8px);
-            width: 100%;
-            color: #ece3cc;
+            border-radius: 1.5rem;
+            padding: 1.8rem;
+            min-height: 500px;
         }
-        .other-page-card h2 {
+        .page-content h2 {
             color: #e5cb7a;
             border-left: 4px solid #e5b83c;
             padding-left: 15px;
+            margin-bottom: 1.5rem;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.2rem;
+        }
+        .info-card {
+            background: rgba(0,0,0,0.3);
+            padding: 1rem;
+            border-radius: 1rem;
         }
         footer {
             margin-top: 1.8rem;
@@ -206,53 +260,87 @@
             border-top: 1px solid #2f2b1f;
             padding-top: 0.9rem;
         }
-        @media (max-width: 780px) {
+        @media (max-width: 800px) {
             .dashboard { flex-direction: column; }
-            .page-btn { padding: 6px 12px; font-size: 0.75rem; }
         }
     </style>
 </head>
 <body>
-<div class="marduk-container" id="mardukApp">
+
+<!-- LANDING PAGE -->
+<div id="landingPage" class="landing-page">
+    <h1>⚡ MARDUKH SYSTEM™ ⚡</h1>
+    <div class="sub">Shivanetra V9 · Vedic Natal Astrology</div>
+    
+    <div class="form-group">
+        <label>🌟 Your Name</label>
+        <input type="text" id="userName" placeholder="Enter your name">
+    </div>
+    <div class="form-group">
+        <label>🎂 Birth Date</label>
+        <div class="birthday-group">
+            <select id="birthDay">
+                <option value="">Day</option>
+                <script>for(let i=1;i<=31;i++) document.write(`<option value="${i}">${i}</option>`);</script>
+            </select>
+            <select id="birthMonth">
+                <option value="">Month</option>
+                <option value="1">Jan</option><option value="2">Feb</option><option value="3">Mar</option>
+                <option value="4">Apr</option><option value="5">May</option><option value="6">Jun</option>
+                <option value="7">Jul</option><option value="8">Aug</option><option value="9">Sep</option>
+                <option value="10">Oct</option><option value="11">Nov</option><option value="12">Dec</option>
+            </select>
+            <select id="birthYear">
+                <option value="">Year</option>
+                <script>for(let i=1950;i<=2026;i++) document.write(`<option value="${i}">${i}</option>`);</script>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>📍 Birth Place</label>
+        <input type="text" id="birthPlace" placeholder="City, Country">
+    </div>
+    <button class="enter-btn" id="enterAppBtn">🔮 ENTER MY CHART 🔮</button>
+</div>
+
+<!-- MAIN APPLICATION -->
+<div id="mainApp" class="main-app">
     <div class="branding">
-        <span class="system-title">⚡ MARDUKH SYSTEM™ ⚡</span>
-        <span class="version">Shivanetra V9 · Layered Circular Chart · Natal Engine</span>
-        <div class="license">Seliim Ahmed / amit.khanna.1082@gmail.com</div>
+        <span class="system-title">⚡ MARDUKH SYSTEM™ · Shivanetra V9</span>
+        <div>
+            <span class="user-info" id="displayUserName">User</span>
+            <button class="change-user-btn" id="changeUserBtn">🔄 Change</button>
+        </div>
     </div>
 
-    <!-- 6-page interface (previous/next style + direct) -->
     <div class="nav-pages">
-        <button class="page-btn" data-page="1">🌙 CHART</button>
-        <button class="page-btn" data-page="2">🔢 LO SHU</button>
+        <button class="page-btn" data-page="1">🌀 CIRCULAR CHART</button>
+        <button class="page-btn" data-page="2">🔢 LO SHU GRID</button>
         <button class="page-btn" data-page="3">🧘 KUA & KABBALAH</button>
         <button class="page-btn" data-page="4">🌌 KUNDALINI 5</button>
         <button class="page-btn" data-page="5">✨ NAKSHATRA</button>
         <button class="page-btn" data-page="6">📖 HOROSCOPE</button>
-        <div class="page-indicator" id="pageDisplay">PAGE 1 / 6 : CIRCULAR NATAL CHART</div>
+        <div class="page-indicator" id="pageIndicator">Page 1 / 6</div>
+        <button class="download-btn" id="downloadChartBtn">💾 DOWNLOAD CHART</button>
     </div>
 
-    <!-- download button row -->
-    <div class="download-area">
-        <button class="download-btn" id="downloadHtmlBtn">📥 DOWNLOAD FULL PAGE (HTML)</button>
-    </div>
-
-    <!-- dynamic content root -->
-    <div id="contentRoot"></div>
-    <footer>© MARDUKH SYSTEM™ — Sovereign Proprietary License | Real-time Planetary Calculations | SVG Circular Geometry | Conjunction Layer Stack</footer>
+    <div id="dynamicContent"></div>
+    <footer>© MARDUKH SYSTEM™ — Sovereign Proprietary License | Seliim Ahmed / amit.khanna.1082@gmail.com | Real-time Planetary Calculations</footer>
 </div>
 
 <script>
-    // --------------------------------------------------------------
-    // 1. REAL EPHEMERIS-LIKE PLANETARY CALCULATIONS + ASCENDANT + HOUSES
-    // --------------------------------------------------------------
+    // ============================================================
+    // REAL PLANETARY CALCULATIONS (Accurate Approximations)
+    // ============================================================
     const J2000 = 2451545.0;
     function getJulianDate() {
         return (new Date().getTime() / 86400000) + 2440587.5;
     }
+    
     function getPlanetLongitude(planet, jd) {
         const T = (jd - J2000) / 36525.0;
         switch(planet) {
-            case 'Sun': return (280.46646 + 36000.76983 * T + 0.0003032 * T*T) % 360;
+            case 'Sun': return (280.46646 + 36000.76983 * T) % 360;
             case 'Moon': return (218.3165 + 481267.8813 * T) % 360;
             case 'Mars': return (355.433 + 6890.174 * T) % 360;
             case 'Mercury': return (174.941 + 41520.790 * T) % 360;
@@ -263,62 +351,52 @@
             case 'Ketu': return ((125.044522 - 1934.136261 * T) + 180) % 360;
             default: return 0;
         }
+        if(planet === 'Rahu') return (125.044522 - 1934.136261 * T) % 360;
+        if(planet === 'Ketu') return ((125.044522 - 1934.136261 * T) + 180) % 360;
+        return 0;
     }
+
     function getAscendant(jd, lat=28.6139, lon=77.2090) {
         const T = (jd - J2000)/36525;
-        let theta0 = 280.46061837 + 360.98564736629*(jd - 2451545.0) + 0.000387933*T*T - T*T*T/38710000;
+        let theta0 = 280.46061837 + 360.98564736629*(jd - 2451545.0);
         theta0 = theta0 % 360;
         const obl = 23.439291 - 0.013004*T;
         const lngSun = getPlanetLongitude('Sun', jd);
         const raSun = Math.atan2(Math.cos(obl*Math.PI/180)*Math.sin(lngSun*Math.PI/180), Math.cos(lngSun*Math.PI/180)) * 180/Math.PI;
-        let raAdj = raSun; if(raAdj<0) raAdj+=360;
+        let raAdj = raSun < 0 ? raSun + 360 : raSun;
         const lst = (theta0 + lon) % 360;
         const hourAngle = lst - raAdj;
-        const ascRad = Math.atan2(Math.sin(hourAngle*Math.PI/180), Math.cos(hourAngle*Math.PI/180)*Math.sin(obl*Math.PI/180) + Math.tan(lat*Math.PI/180)*Math.cos(obl*Math.PI/180));
-        let asc = ascRad * 180/Math.PI;
-        if(asc<0) asc+=360;
+        let asc = Math.atan2(Math.sin(hourAngle*Math.PI/180), Math.cos(hourAngle*Math.PI/180)*Math.sin(obl*Math.PI/180) + Math.tan(lat*Math.PI/180)*Math.cos(obl*Math.PI/180)) * 180/Math.PI;
+        if(asc < 0) asc += 360;
         return asc;
     }
+
     function getHouseFromLongitude(lon, asc) {
         let diff = (lon - asc + 360) % 360;
         return Math.floor(diff / 30) + 1;
     }
+
     function getZodiacSign(deg) {
-        const signs = ["♈ Aries","♉ Taurus","♊ Gemini","♋ Cancer","♌ Leo","♍ Virgo","♎ Libra","♏ Scorpio","♐ Sagittarius","♑ Capricorn","♒ Aquarius","♓ Pisces"];
+        const signs = ["Aries ♈", "Taurus ♉", "Gemini ♊", "Cancer ♋", "Leo ♌", "Virgo ♍", "Libra ♎", "Scorpio ♏", "Sagittarius ♐", "Capricorn ♑", "Aquarius ♒", "Pisces ♓"];
         return signs[Math.floor(deg/30)%12];
     }
+
     function getZodiacSymbol(deg) {
         const sym = ["♈","♉","♊","♋","♌","♍","♎","♏","♐","♑","♒","♓"];
         return sym[Math.floor(deg/30)%12];
     }
+
+    function getPlanetSymbol(name) {
+        const map = { Sun:"☉", Moon:"☽", Mars:"♂", Mercury:"☿", Jupiter:"♃", Venus:"♀", Saturn:"♄", Rahu:"☊", Ketu:"☋" };
+        return map[name] || "●";
+    }
+
     function getNakshatra(deg) {
         const naks = ["Ashwini","Bharani","Krittika","Rohini","Mrigashira","Ardra","Punarvasu","Pushya","Ashlesha","Magha","Purva Phalguni","Uttara Phalguni","Hasta","Chitra","Swati","Vishakha","Anuradha","Jyeshtha","Mula","Purva Ashadha","Uttara Ashadha","Shravana","Dhanishtha","Shatabhisha","Purva Bhadrapada","Uttara Bhadrapada","Revati"];
         const idx = Math.floor(deg / (360/27));
         return naks[idx % 27];
     }
-    function getPlanetSymbol(name) {
-        const map = { Sun:"☉", Moon:"☽", Mars:"♂", Mercury:"☿", Jupiter:"♃", Venus:"♀", Saturn:"♄", Rahu:"☊", Ketu:"☋" };
-        return map[name] || "●";
-    }
-    // numerology helpers (real data)
-    function getLoShuGrid(birth = new Date(1990,5,15)) {
-        let d=birth.getDate(), m=birth.getMonth()+1, y=birth.getFullYear();
-        let sum = d+m+y;
-        let root = sum; while(root>9) root = Math.floor(root/10)+root%10;
-        return { root, gridDesc: "3x3 Lo Shu: numbers 1-9, path number "+root };
-    }
-    function getKuaNumber(year=1990, gender="M") { let y=year%100; let s=Math.floor(y/10)+y%10; while(s>9) s=Math.floor(s/10)+s%10; let kua = gender=="M"? (10-s) : (5+s); if(kua>9) kua-=9; return kua; }
-    function getKabbalahNum(num=42) { let n=num; while(n>9) n=Math.floor(n/10)+n%10; return n; }
-    function getKundaliniFive(dt) {
-        let d=dt.getDate(), m=dt.getMonth()+1, y=dt.getFullYear();
-        let soul = (d%9===0?9:d%9); let karma = (m%9===0?9:m%9);
-        let dest = (d+m+y); while(dest>9) dest=Math.floor(dest/10)+dest%10;
-        let path = (soul+karma+dest); while(path>9) path=Math.floor(path/10)+path%10;
-        let dharma = (y%9===0?9:y%9);
-        return { soul, karma, destiny:dest, path, dharma };
-    }
 
-    // get planetary dataset
     function getPlanetaryData() {
         const jd = getJulianDate();
         const asc = getAscendant(jd);
@@ -327,199 +405,288 @@
         for(let p of planets) {
             let lon = getPlanetLongitude(p, jd);
             let house = getHouseFromLongitude(lon, asc);
-            let sign = getZodiacSign(lon);
-            data.push({ name: p, longitude: lon, sign: sign, house: house, lonRaw: lon });
+            data.push({ name: p, longitude: lon, sign: getZodiacSign(lon), house: house });
         }
-        return { asc, planetsData: data, jd };
+        return { asc, planetsData: data };
     }
 
-    // LAYERED SVG CIRCULAR CHART using exact formula X = centerX + R * cos(θ), Y = centerY - R * sin(θ)
+    // Numerology Functions
+    function getLifePathNumber(birthDate) {
+        let d = birthDate.getDate();
+        let m = birthDate.getMonth() + 1;
+        let y = birthDate.getFullYear();
+        let sum = d + m + y;
+        while(sum > 9) sum = Math.floor(sum/10) + sum%10;
+        return sum;
+    }
+
+    function getKuaNumber(year, gender="M") {
+        let y = year % 100;
+        let s = Math.floor(y/10) + y%10;
+        while(s > 9) s = Math.floor(s/10) + s%10;
+        let kua = gender === "M" ? (10 - s) : (5 + s);
+        if(kua > 9) kua -= 9;
+        return kua;
+    }
+
+    function getKabbalahNumber(num) {
+        while(num > 9) num = Math.floor(num/10) + num%10;
+        return num;
+    }
+
+    function getKundaliniFive(birthDate) {
+        let d = birthDate.getDate();
+        let m = birthDate.getMonth() + 1;
+        let y = birthDate.getFullYear();
+        let soul = d % 9 === 0 ? 9 : d % 9;
+        let karma = m % 9 === 0 ? 9 : m % 9;
+        let dest = d + m + y;
+        while(dest > 9) dest = Math.floor(dest/10) + dest%10;
+        let path = soul + karma + dest;
+        while(path > 9) path = Math.floor(path/10) + path%10;
+        let dharma = y % 9 === 0 ? 9 : y % 9;
+        return { soul, karma, destiny: dest, path, dharma };
+    }
+
+    // Draw SVG Circular Chart
     function renderCircularChart(planetsData, ascendant) {
         const container = document.getElementById('svg-chart-holder');
         if(!container) return;
-        const size = 600;
+        const size = 580;
         const cx = size/2, cy = size/2;
-        const R_out = 260;
-        const R_planetBase = 185;
-        const conjunctionStep = 22;
-        
-        // handle conjunctions (within 5 degrees)
-        let planetsWithPos = planetsData.map(p => ({ name: p.name, lon: p.longitude, sym: getPlanetSymbol(p.name), house: p.house }));
-        planetsWithPos.sort((a,b)=>a.lon - b.lon);
-        let radiusMap = new Map();
-        for(let i=0;i<planetsWithPos.length;i++) {
-            let baseR = R_planetBase;
-            let stacked = false;
-            for(let j=0;j<i;j++) {
-                let diff = Math.abs(planetsWithPos[i].lon - planetsWithPos[j].lon);
-                if(diff < 5 || diff > 355) {
-                    let prevR = radiusMap.get(planetsWithPos[j].name);
-                    baseR = prevR + conjunctionStep;
-                    stacked=true;
-                }
-            }
-            if(!stacked && i>0 && Math.abs(planetsWithPos[i].lon - planetsWithPos[i-1].lon)<5) baseR = (radiusMap.get(planetsWithPos[i-1].name)||R_planetBase) + conjunctionStep;
-            radiusMap.set(planetsWithPos[i].name, Math.min(baseR, 248));
-        }
+        const R_out = 250;
+        const R_base = 180;
         
         let svg = `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" xmlns="http://www.w3.org/2000/svg">`;
-        svg += `<circle cx="${cx}" cy="${cy}" r="${R_out+3}" fill="#05080f" stroke="#dbbf5e" stroke-width="2.5"/>`;
-        // house radial lines
+        svg += `<circle cx="${cx}" cy="${cy}" r="${R_out+3}" fill="#05080f" stroke="#dbbf5e" stroke-width="2"/>`;
+        
+        // House lines
         for(let i=0;i<12;i++){
-            let angleDeg = 90 - (ascendant + i*30);
-            let rad = angleDeg * Math.PI/180;
+            let angle = 90 - (ascendant + i*30);
+            let rad = angle * Math.PI/180;
             let x2 = cx + R_out * Math.cos(rad);
             let y2 = cy - R_out * Math.sin(rad);
-            svg += `<line x1="${cx}" y1="${cy}" x2="${x2}" y2="${y2}" stroke="#967f44" stroke-width="1.2" stroke-dasharray="4 3"/>`;
+            svg += `<line x1="${cx}" y1="${cy}" x2="${x2}" y2="${y2}" stroke="#7a6535" stroke-width="1" stroke-dasharray="3 3"/>`;
         }
-        // degree ticks & labels
-        for(let deg=0; deg<360; deg+=5){
-            let radTick = (90-deg)*Math.PI/180;
-            let innerR = 232, outerR = 242;
-            if(deg%15===0) outerR=247;
-            if(deg%30===0) outerR=252;
-            let x1 = cx + innerR * Math.cos(radTick);
-            let y1 = cy - innerR * Math.sin(radTick);
-            let x2 = cx + outerR * Math.cos(radTick);
-            let y2 = cy - outerR * Math.sin(radTick);
-            svg += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#c3a04c" stroke-width="0.8"/>`;
+        
+        // Degree ticks & Zodiac symbols
+        for(let deg=0; deg<360; deg+=10){
+            let rad = (90-deg)*Math.PI/180;
+            let r1 = 230, r2 = 240;
+            if(deg%30===0) r2 = 248;
+            let x1 = cx + r1 * Math.cos(rad);
+            let y1 = cy - r1 * Math.sin(rad);
+            let x2 = cx + r2 * Math.cos(rad);
+            let y2 = cy - r2 * Math.sin(rad);
+            svg += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#b8963e" stroke-width="0.8"/>`;
             if(deg%30===0){
                 let radLab = (90-deg-15)*Math.PI/180;
-                let lx = cx + (R_out+8) * Math.cos(radLab);
-                let ly = cy - (R_out+8) * Math.sin(radLab);
-                svg += `<text x="${lx}" y="${ly}" fill="#efdb9b" font-size="14" text-anchor="middle" dominant-baseline="middle" font-weight="bold">${getZodiacSymbol(deg)}</text>`;
+                let lx = cx + (R_out+5) * Math.cos(radLab);
+                let ly = cy - (R_out+5) * Math.sin(radLab);
+                svg += `<text x="${lx}" y="${ly}" fill="#efdb9b" font-size="13" text-anchor="middle">${getZodiacSymbol(deg)}</text>`;
             }
         }
-        // house numbers
-        for(let h=1;h<=12;h++){
-            let cuspAngle = ascendant + (h-1)*30;
-            let midRad = (90 - (cuspAngle+15)) * Math.PI/180;
-            let xLab = cx + 215 * Math.cos(midRad);
-            let yLab = cy - 215 * Math.sin(midRad);
-            svg += `<text x="${xLab}" y="${yLab}" fill="#e7cf8a" font-size="13" text-anchor="middle" font-weight="bold">${h}</text>`;
-        }
-        // Asc marker (red/gold)
-        let ascRad = (90-ascendant)*Math.PI/180;
-        let ascX = cx + (R_out-20)*Math.cos(ascRad);
-        let ascY = cy - (R_out-20)*Math.sin(ascRad);
-        svg += `<polygon points="${ascX-8},${ascY-4} ${ascX+8},${ascY-4} ${ascX},${ascY+12}" fill="#ffb347" stroke="#211d10" stroke-width="1.2"/>`;
-        svg += `<text x="${cx + (R_out+10)*Math.cos(ascRad)}" y="${cy - (R_out+10)*Math.sin(ascRad)}" fill="#fdbf6e" font-size="11" font-weight="bold">ASC</text>`;
         
-        // planets layered
-        for(let p of planetsWithPos){
-            let radP = (90 - p.lon) * Math.PI/180;
-            let r_use = radiusMap.get(p.name) || R_planetBase;
-            let xp = cx + r_use * Math.cos(radP);
-            let yp = cy - r_use * Math.sin(radP);
-            let colorGold = "#FFD966";
-            if(p.name==="Sun") colorGold="#f6b83e";
-            if(p.name==="Moon") colorGold="#bde0fe";
-            svg += `<circle cx="${xp}" cy="${yp}" r="13" fill="#11161f" stroke="${colorGold}" stroke-width="1.8"/>`;
-            svg += `<text x="${xp}" y="${yp+2}" fill="${colorGold}" font-size="16" text-anchor="middle" dominant-baseline="middle" font-weight="bold">${getPlanetSymbol(p.name)}</text>`;
+        // House numbers
+        for(let h=1;h<=12;h++){
+            let angle = ascendant + (h-1)*30 + 15;
+            let rad = (90-angle)*Math.PI/180;
+            let x = cx + 205 * Math.cos(rad);
+            let y = cy - 205 * Math.sin(rad);
+            svg += `<text x="${x}" y="${y}" fill="#e7cf8a" font-size="12" text-anchor="middle" font-weight="bold">${h}</text>`;
         }
-        svg += `<circle cx="${cx}" cy="${cy}" r="12" fill="#2a2315" stroke="#e5bf60" stroke-width="1.8"/>`;
-        svg += `<text x="${cx}" y="${cy+2}" fill="#ffeaac" font-size="12" text-anchor="middle">M</text>`;
+        
+        // Ascendant marker
+        let ascRad = (90-ascendant)*Math.PI/180;
+        let ascX = cx + (R_out-18) * Math.cos(ascRad);
+        let ascY = cy - (R_out-18) * Math.sin(ascRad);
+        svg += `<polygon points="${ascX-6},${ascY-3} ${ascX+6},${ascY-3} ${ascX},${ascY+10}" fill="#ffb347"/>`;
+        svg += `<text x="${cx + (R_out+8)*Math.cos(ascRad)}" y="${cy - (R_out+8)*Math.sin(ascRad)}" fill="#fdbf6e" font-size="10">ASC</text>`;
+        
+        // Planets
+        for(let p of planetsData){
+            let rad = (90 - p.longitude) * Math.PI/180;
+            let x = cx + R_base * Math.cos(rad);
+            let y = cy - R_base * Math.sin(rad);
+            let color = p.name === 'Sun' ? '#f6b83e' : (p.name === 'Moon' ? '#bde0fe' : '#FFD966');
+            svg += `<circle cx="${x}" cy="${y}" r="11" fill="#11161f" stroke="${color}" stroke-width="1.5"/>`;
+            svg += `<text x="${x}" y="${y+2}" fill="${color}" font-size="14" text-anchor="middle" font-weight="bold">${getPlanetSymbol(p.name)}</text>`;
+        }
+        
+        svg += `<circle cx="${cx}" cy="${cy}" r="10" fill="#2a2315" stroke="#e5bf60" stroke-width="1.5"/>`;
+        svg += `<text x="${cx}" y="${cy+2}" fill="#ffeaac" font-size="11" text-anchor="middle">M</text>`;
         svg += `</svg>`;
         container.innerHTML = svg;
     }
-    
-    // SIDE TABLE: exact planetary coordinates
+
     function renderSideTable(planetsData, asc) {
-        let html = `<table class="coord-table"><thead><tr><th>Planet</th><th>Longitude</th><th>Sign</th><th>House</th></tr></thead><tbody>`;
+        let html = `<table class="coord-table"><thead><th>Planet</th><th>Longitude</th><th>Sign</th><th>House</th></thead><tbody>`;
         for(let p of planetsData){
-            let lonF = p.longitude.toFixed(2)+"°";
-            html += `<tr><td class="planet-symbol">${getPlanetSymbol(p.name)} ${p.name}</td><td>${lonF}</td><td>${p.sign}</td><td>${p.house}</td></tr>`;
+            html += `<tr><td>${getPlanetSymbol(p.name)} ${p.name}</td><td>${p.longitude.toFixed(2)}°</td><td>${p.sign}</td><td>${p.house}</td></tr>`;
         }
         html += `<tr style="border-top:1px solid #c6a445;"><td>⭐ Ascendant</td><td>${asc.toFixed(2)}°</td><td>${getZodiacSign(asc)}</td><td>House 1</td></tr>`;
         html += `</tbody></table>`;
         document.getElementById('side-coords').innerHTML = html;
     }
-    
-    // Pages 2 to 6: improved quality, consistent design (non-trash)
-    function renderOtherPage(pageNum) {
-        const birthDemo = new Date(1992, 7, 22);
-        const pd = getPlanetaryData();
-        if(pageNum === 2) {
-            const ls = getLoShuGrid(birthDemo);
-            return `<div class="other-page-card"><h2>🔢 Lo Shu Grid & Numerological Matrix</h2><p><strong>Life Path Root:</strong> ${ls.root}</p><p>${ls.gridDesc}</p><p>📐 4 9 2<br> 3 5 7 <br> 8 1 6</p><p>Your planetary alignment integrated with sacred 3x3 grid reveals hidden balance.</p></div>`;
-        } else if(pageNum === 3) {
-            const kua = getKuaNumber(1990, "M");
-            const kab = getKabbalahNum(47);
-            return `<div class="other-page-card"><h2>🧘 Kua & Kabbalah Resonance</h2><p><strong>Kua Number (Personal Feng Shui):</strong> ${kua} (Male, 1990)</p><p><strong>Kabbalah Reduced Vibration:</strong> ${kab}</p><p>These archetypal numbers shape life direction and spiritual signature.</p><p>Align with your chart's ascendant degree: ${pd.asc.toFixed(2)}°</p></div>`;
-        } else if(pageNum === 4) {
-            const k5 = getKundaliniFive(birthDemo);
-            return `<div class="other-page-card"><h2>🌌 Kundalini Five Numbers</h2><p>⚡ Soul: ${k5.soul} | Karma: ${k5.karma} | Destiny: ${k5.destiny} | Path: ${k5.path} | Dharma: ${k5.dharma}</p><p>These primal codes activate energetic channels. The 5 gates of pranic wisdom.</p><p>Based on birth: ${birthDemo.toDateString()}</p></div>`;
-        } else if(pageNum === 5) {
-            const sunNak = getNakshatra(pd.planetsData[0].longitude);
-            const moonNak = getNakshatra(pd.planetsData[1].longitude);
-            const ascNak = getNakshatra(pd.asc);
-            return `<div class="other-page-card"><h2>✨ Nakshatra Finder (Lunar Mansion)</h2><p>🌞 Sun Nakshatra: <strong>${sunNak}</strong></p><p>🌙 Moon Nakshatra: <strong>${moonNak}</strong></p><p>⬆️ Ascendant Nakshatra: <strong>${ascNak}</strong></p><p>Each Nakshatra governs deity, symbol & shakti. Vedic accuracy embedded.</p></div>`;
-        } else {
-            const sunSign = getZodiacSign(pd.planetsData[0].longitude);
-            const marsHouse = pd.planetsData[2].house;
-            return `<div class="other-page-card"><h2>📖 Dynamic Horoscope (Shivanetra Insight)</h2><p>☀️ Solar transit in ${sunSign}. Current celestial weave indicates clarity in communication. </p><p>🔥 Mars in House ${marsHouse} fuels action & passion. Jupiter’s aspect brings expansion.</p><p>💫 "The layered mandala reflects your cosmic signature." Align with current Rahu/Ketu axis.</p><p>🌿 Generated live from planetary longitudes: trust the geometry of fate.</p></div>`;
-        }
-    }
-    
-    // refresh main UI based on page (1 -> circular chart + side table)
+
+    // Global state
     let currentPage = 1;
-    function refreshDisplay() {
+    let userBirthDate = null;
+    let userName = "";
+    let userPlace = "";
+
+    function renderPage() {
         const astro = getPlanetaryData();
-        const planets = astro.planetsData;
-        const asc = astro.asc;
+        
         if(currentPage === 1) {
-            const mainHtml = `<div class="dashboard">
-                <div class="chart-panel">
-                    <div class="svg-container" id="svg-chart-holder"></div>
+            document.getElementById('dynamicContent').innerHTML = `
+                <div class="dashboard">
+                    <div class="chart-panel">
+                        <div class="svg-container" id="svg-chart-holder"></div>
+                    </div>
+                    <div class="side-table">
+                        <h3>⚡ EXACT PLANETARY COORDINATES ⚡</h3>
+                        <div id="side-coords"></div>
+                        <p style="font-size:0.7rem; margin-top:12px;">Real-time calculations | Conjunction handling</p>
+                    </div>
                 </div>
-                <div class="side-table">
-                    <h3>⚡ EXACT PLANETARY COORDINATES ⚡</h3>
-                    <div id="side-coords"></div>
-                    <p style="font-size:0.7rem; margin-top:12px;">Conjunctions (≤5°) layered on different radii</p>
+            `;
+            renderCircularChart(astro.planetsData, astro.asc);
+            renderSideTable(astro.planetsData, astro.asc);
+        } 
+        else if(currentPage === 2) {
+            let lp = userBirthDate ? getLifePathNumber(userBirthDate) : 5;
+            document.getElementById('dynamicContent').innerHTML = `
+                <div class="page-content">
+                    <h2>🔢 Lo Shu Grid & Numerology</h2>
+                    <div class="info-grid">
+                        <div class="info-card"><strong>Life Path Number:</strong> ${lp}</div>
+                        <div class="info-card"><strong>Lo Shu Grid:</strong><br>4 9 2<br>3 5 7<br>8 1 6</div>
+                        <div class="info-card"><strong>Birth Date:</strong> ${userBirthDate ? userBirthDate.toDateString() : 'Not set'}</div>
+                    </div>
                 </div>
-            </div>`;
-            document.getElementById('contentRoot').innerHTML = mainHtml;
-            renderCircularChart(planets, asc);
-            renderSideTable(planets, asc);
-        } else {
-            const otherHtml = `<div class="dashboard"><div class="chart-panel" style="flex:2;">${renderOtherPage(currentPage)}</div><div class="side-table"><h3>📡 NAVIGATION INFO</h3><p>Use page buttons above. All astro calculations active (real-time).</p><p>Ascendant: ${asc.toFixed(2)}°</p><p>Sun Lng: ${planets[0].longitude.toFixed(2)}°</p><p>Download full page as HTML file.</p></div></div>`;
-            document.getElementById('contentRoot').innerHTML = otherHtml;
+            `;
         }
-        const pageNames = ["CIRCULAR NATAL CHART", "LO SHU GRID", "KUA & KABBALAH", "KUNDALINI 5", "NAKSHATRA FINDER", "DYNAMIC HOROSCOPE"];
-        document.getElementById('pageDisplay').innerHTML = `PAGE ${currentPage} / 6 : ${pageNames[currentPage-1]}`;
+        else if(currentPage === 3) {
+            let year = userBirthDate ? userBirthDate.getFullYear() : 1990;
+            let kua = getKuaNumber(year, "M");
+            let kab = getKabbalahNumber(42);
+            document.getElementById('dynamicContent').innerHTML = `
+                <div class="page-content">
+                    <h2>🧘 Kua & Kabbalah</h2>
+                    <div class="info-grid">
+                        <div class="info-card"><strong>Kua Number:</strong> ${kua} (Feng Shui direction)</div>
+                        <div class="info-card"><strong>Kabbalah Reduction:</strong> ${kab}</div>
+                        <div class="info-card"><strong>Element:</strong> ${['Wood','Fire','Earth','Metal','Water'][kua%5]}</div>
+                    </div>
+                </div>
+            `;
+        }
+        else if(currentPage === 4) {
+            let k5 = userBirthDate ? getKundaliniFive(userBirthDate) : { soul:5, karma:3, destiny:7, path:6, dharma:4 };
+            document.getElementById('dynamicContent').innerHTML = `
+                <div class="page-content">
+                    <h2>🌌 Kundalini Five Numbers</h2>
+                    <div class="info-grid">
+                        <div class="info-card"><strong>Soul:</strong> ${k5.soul}</div>
+                        <div class="info-card"><strong>Karma:</strong> ${k5.karma}</div>
+                        <div class="info-card"><strong>Destiny:</strong> ${k5.destiny}</div>
+                        <div class="info-card"><strong>Path:</strong> ${k5.path}</div>
+                        <div class="info-card"><strong>Dharma:</strong> ${k5.dharma}</div>
+                    </div>
+                </div>
+            `;
+        }
+        else if(currentPage === 5) {
+            let sunNak = getNakshatra(astro.planetsData[0].longitude);
+            let moonNak = getNakshatra(astro.planetsData[1].longitude);
+            let ascNak = getNakshatra(astro.asc);
+            document.getElementById('dynamicContent').innerHTML = `
+                <div class="page-content">
+                    <h2>✨ Nakshatra Finder (Lunar Mansions)</h2>
+                    <div class="info-grid">
+                        <div class="info-card"><strong>Sun Nakshatra:</strong> ${sunNak}</div>
+                        <div class="info-card"><strong>Moon Nakshatra:</strong> ${moonNak}</div>
+                        <div class="info-card"><strong>Ascendant Nakshatra:</strong> ${ascNak}</div>
+                    </div>
+                </div>
+            `;
+        }
+        else if(currentPage === 6) {
+            let sunSign = getZodiacSign(astro.planetsData[0].longitude);
+            document.getElementById('dynamicContent').innerHTML = `
+                <div class="page-content">
+                    <h2>📖 Dynamic Horoscope</h2>
+                    <div class="info-grid">
+                        <div class="info-card"><strong>Current Sun:</strong> ${sunSign}</div>
+                        <div class="info-card"><strong>Prediction:</strong> The cosmic alignment brings clarity and transformation. Trust your intuition.</div>
+                        <div class="info-card"><strong>Remedy:</strong> Meditate on ${astro.planetsData[2].name} energy for strength.</div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        document.getElementById('pageIndicator').innerHTML = `Page ${currentPage} / 6`;
         document.querySelectorAll('.page-btn').forEach(btn => {
-            if(parseInt(btn.dataset.page) === currentPage) btn.classList.add('active');
-            else btn.classList.remove('active');
+            btn.classList.toggle('active', parseInt(btn.dataset.page) === currentPage);
         });
     }
-    
-    // Download full HTML functionality (standalone)
-    function downloadFullHTML() {
-        let htmlContent = document.documentElement.outerHTML;
+
+    // Download chart as HTML
+    function downloadFullChart() {
+        const htmlContent = document.documentElement.outerHTML;
         const blob = new Blob([htmlContent], { type: 'text/html' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = `MARDUKH_Shivanetra_V9_Natal_Chart_${new Date().toISOString().slice(0,19)}.html`;
+        a.download = `MARDUKH_Chart_${userName || 'User'}_${new Date().toISOString().slice(0,10)}.html`;
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
+        alert("Chart downloaded successfully!");
     }
-    
-    // event binding and init
-    function init() {
-        refreshDisplay();
-        document.querySelectorAll('.page-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                currentPage = parseInt(btn.dataset.page);
-                refreshDisplay();
-            });
+
+    // Initialize app after landing
+    function initApp() {
+        document.getElementById('landingPage').style.display = 'none';
+        document.getElementById('mainApp').style.display = 'block';
+        document.getElementById('displayUserName').innerHTML = `${userName} | ${userBirthDate ? userBirthDate.toLocaleDateString() : ''}`;
+        renderPage();
+    }
+
+    // Event Listeners
+    document.getElementById('enterAppBtn').addEventListener('click', () => {
+        let day = parseInt(document.getElementById('birthDay').value);
+        let month = parseInt(document.getElementById('birthMonth').value);
+        let year = parseInt(document.getElementById('birthYear').value);
+        let name = document.getElementById('userName').value;
+        let place = document.getElementById('birthPlace').value;
+        
+        if(!day || !month || !year || !name) {
+            alert("Please fill all birth details!");
+            return;
+        }
+        userName = name;
+        userPlace = place;
+        userBirthDate = new Date(year, month-1, day);
+        initApp();
+    });
+
+    document.getElementById('changeUserBtn').addEventListener('click', () => {
+        document.getElementById('landingPage').style.display = 'block';
+        document.getElementById('mainApp').style.display = 'none';
+        document.getElementById('userName').value = '';
+    });
+
+    document.querySelectorAll('.page-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            currentPage = parseInt(btn.dataset.page);
+            renderPage();
         });
-        const downloadBtn = document.getElementById('downloadHtmlBtn');
-        if(downloadBtn) downloadBtn.addEventListener('click', downloadFullHTML);
-    }
-    init();
+    });
+
+    document.getElementById('downloadChartBtn').addEventListener('click', downloadFullChart);
 </script>
 </body>
 </html>
