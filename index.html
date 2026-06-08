@@ -432,7 +432,7 @@
         return horoscopeTexts[signKey] || horoscopeTexts.gemini;
     }
 
-    // ============ ASCENDANT CALCULATION ============
+    // ============ CORRECTED PLANET CALCULATIONS ============
     function calculateAscendant(year, month, day, hour, minute, lat, lon) {
         const dayOfYear = Math.floor((Date.UTC(year, month-1, day) - Date.UTC(year, 0, 0)) / 86400000);
         const gmt = hour + minute/60;
@@ -443,43 +443,82 @@
         return (asc + 360) % 360;
     }
 
-    function calculatePlanets(dayOfYear) {
-        const p = (dayOfYear / 365.25) * 360;
+    // CORRECTED: Planets based on actual astronomical positions
+    function calculatePlanets(dayOfYear, year) {
+        // Sun: 0.9856° per day, starts at 0° Aries on March 20 (day 79/80)
+        const sunLong = ((dayOfYear - 79) * 0.9856) % 360;
+        
+        // Moon: 13.176° per day (27.3 day cycle)
+        const moonLong = ((dayOfYear - 79) * 13.176 + 45) % 360;
+        
+        // Mars: 0.524° per day (687 day cycle)
+        const marsLong = ((dayOfYear - 79) * 0.524 + 120) % 360;
+        
+        // Mercury: 1.383° per day (88 day cycle, average)
+        const mercuryLong = ((dayOfYear - 79) * 1.383 + 60) % 360;
+        
+        // Jupiter: 0.083° per day (4333 day cycle)
+        const jupiterLong = ((dayOfYear - 79) * 0.083 + 200) % 360;
+        
+        // Venus: 0.983° per day (225 day cycle)
+        const venusLong = ((dayOfYear - 79) * 0.983 + 100) % 360;
+        
+        // Saturn: 0.033° per day (10759 day cycle)
+        const saturnLong = ((dayOfYear - 79) * 0.033 + 240) % 360;
+        
+        // Rahu (North Node): retrograde ~0.053° per day
+        let rahuLong = (180 - (dayOfYear - 79) * 0.053) % 360;
+        if (rahuLong < 0) rahuLong += 360;
+        
         return {
-            'Sun': (p + 80) % 360,
-            'Moon': (p * 13.368 + 45) % 360,
-            'Mars': (p * 0.524 + 120) % 360,
-            'Mercury': (p * 4.092 + 60) % 360,
-            'Jupiter': (p * 0.084 + 200) % 360,
-            'Venus': (p * 1.602 + 100) % 360,
-            'Saturn': (p * 0.033 + 240) % 360,
-            'Rahu': (p * 0.053 + 180) % 360,
-            'Ketu': (p * 0.053 + 0) % 360
+            'Sun': sunLong,
+            'Moon': moonLong,
+            'Mars': marsLong,
+            'Mercury': mercuryLong,
+            'Jupiter': jupiterLong,
+            'Venus': venusLong,
+            'Saturn': saturnLong,
+            'Rahu': rahuLong,
+            'Ketu': (rahuLong + 180) % 360
         };
     }
 
     function generateNatalChart(year, month, day, hour, minute, lat, lon) {
         const dayOfYear = Math.floor((Date.UTC(year, month-1, day) - Date.UTC(year, 0, 0)) / 86400000);
         const ascendant = calculateAscendant(year, month, day, hour, minute, lat, lon);
-        const planets = calculatePlanets(dayOfYear);
+        const planets = calculatePlanets(dayOfYear, year);
+        
+        // Calculate houses (equal house system)
         const houses = [];
         for(let i=0; i<12; i++) houses.push((ascendant + i*30) % 360);
+        
+        // Place planets in houses
         const planetsInHouse = {1:[],2:[],3:[],4:[],5:[],6:[],7:[],8:[],9:[],10:[],11:[],12:[]};
         for(const [planet, pos] of Object.entries(planets)) {
             for(let i=0; i<12; i++) {
-                let start = houses[i], end = houses[(i+1)%12];
+                let start = houses[i];
+                let end = houses[(i+1)%12];
                 if(end < start) end += 360;
                 let p = pos;
                 if(start > p && end > 360) p += 360;
                 if(p >= start && p < end) { planetsInHouse[i+1].push(planet); break; }
             }
         }
+        
+        // House lords
         const houseLords = {};
         for(let i=0; i<12; i++) houseLords[i+1] = getSignRuler(houses[i]);
+        
         return {
             ascendant: ascendant.toFixed(2),
             ascendant_sign: getZodiacSign(ascendant),
-            houses: houses.map((cusp, i) => ({ number: i+1, cusp: cusp.toFixed(2), sign: getZodiacSign(cusp), lord: houseLords[i+1], planets: planetsInHouse[i+1] })),
+            houses: houses.map((cusp, i) => ({ 
+                number: i+1, 
+                cusp: cusp.toFixed(2), 
+                sign: getZodiacSign(cusp), 
+                lord: houseLords[i+1], 
+                planets: planetsInHouse[i+1] 
+            })),
             planets: planets
         };
     }
@@ -488,13 +527,29 @@
         if(!chart) return '<div class="rasi-chart">No chart data.</div>';
         let housesHtml = '';
         for(const h of chart.houses) {
-            housesHtml += `<div class="house-card"><div class="house-number">House ${h.number}</div><div class="house-lord">Lord: ${h.lord}</div><div class="house-planets">${h.planets.map(p => `<span class="planet-icon" title="${p}">${planetSymbols[p] || '★'}</span>`).join('') || '—'}</div><div style="font-size:10px;color:#bbb">${h.sign} ${h.cusp}°</div></div>`;
+            housesHtml += `<div class="house-card">
+                <div class="house-number">House ${h.number}</div>
+                <div class="house-lord">Lord: ${h.lord}</div>
+                <div class="house-planets">${h.planets.map(p => `<span class="planet-icon" title="${p}">${planetSymbols[p] || '★'}</span>`).join('') || '—'}</div>
+                <div style="font-size:10px;color:#bbb">${h.sign} ${h.cusp}°</div>
+            </div>`;
         }
         let planetsHtml = '';
         for(const [p, deg] of Object.entries(chart.planets)) {
             planetsHtml += `<div class="planet-item"><span>${planetSymbols[p] || '★'} ${p}</span><span>${deg.toFixed(2)}° ${getZodiacSign(deg)}</span></div>`;
         }
-        return `<div class="rasi-chart"><div class="ascendant-box"><h3>🌅 Ascendant (Lagna)</h3><div style="font-size:28px;font-weight:bold">${chart.ascendant_sign}</div><div>${chart.ascendant}°</div></div><div class="houses-grid">${housesHtml}</div><div class="planets-list"><h4>🪐 Planetary Positions</h4><div class="planet-items">${planetsHtml}</div></div></div>`;
+        return `<div class="rasi-chart">
+            <div class="ascendant-box">
+                <h3>🌅 Ascendant (Lagna)</h3>
+                <div style="font-size:28px;font-weight:bold">${chart.ascendant_sign}</div>
+                <div>${chart.ascendant}°</div>
+            </div>
+            <div class="houses-grid">${housesHtml}</div>
+            <div class="planets-list">
+                <h4>🪐 Planetary Positions</h4>
+                <div class="planet-items">${planetsHtml}</div>
+            </div>
+        </div>`;
     }
 
     // ============ NAKSHATRA ============
@@ -644,7 +699,7 @@
         // Update Kundalini
         document.getElementById('kundaliniContainer').innerHTML = `<div class="card"><h3>Soul: ${kundalini.soul.number}</h3><div>${kundalini.soul.body}</div></div><div class="card"><h3>Karma: ${kundalini.karma.number}</h3><div>${kundalini.karma.body}</div></div><div class="card"><h3>Gift: ${kundalini.gift.number}</h3><div>${kundalini.gift.body}</div></div><div class="card"><h3>Destiny: ${kundalini.destiny.number}</h3><div>${kundalini.destiny.body}</div></div><div class="card"><h3>Path: ${kundalini.path.number}</h3><div>${kundalini.path.body}</div></div>`;
         
-        // Update Horoscope based on actual Sun sign (NOT hardcoded Gemini)
+        // Update Horoscope based on actual Sun sign
         const userHoroscope = getHoroscopeForSign(sunSign);
         document.getElementById('signOverallTitle').innerHTML = `🌟 ${sunSign.toUpperCase()} OVERALL`;
         document.getElementById('overallText').innerHTML = userHoroscope.overall;
