@@ -1,0 +1,423 @@
+natal_chart_viewer.html<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Natal Chart Calculator - Rasi Chart</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .form-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        .row {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .row input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .row input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .result-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+        }
+
+        .ascendant-info {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .ascendant-info h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .houses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .house-card {
+            background: #f8f9ff;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            border-radius: 8px;
+            transition: transform 0.2s;
+        }
+
+        .house-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .house-card h4 {
+            color: #764ba2;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .house-card p {
+            margin: 8px 0;
+            font-size: 14px;
+        }
+
+        .house-card strong {
+            color: #667eea;
+        }
+
+        .planet-symbol {
+            font-size: 20px;
+            display: inline-block;
+            margin: 0 3px;
+        }
+
+        .planets-section {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .planet-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .planet-item {
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .planet-name {
+            font-weight: bold;
+            color: #764ba2;
+        }
+
+        .planet-degree {
+            font-family: monospace;
+            font-size: 16px;
+            color: #667eea;
+        }
+
+        .json-view {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+
+        .json-view summary {
+            cursor: pointer;
+            padding: 10px;
+            color: white;
+        }
+
+        .json-view pre {
+            margin-top: 10px;
+            font-size: 12px;
+        }
+
+        .error {
+            background: #ffebee;
+            color: #c62828;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .loading {
+            text-align: center;
+            color: white;
+            font-size: 18px;
+            padding: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .row {
+                flex-direction: column;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✨ Natal Chart (Rasi) Calculator ✨</h1>
+        
+        <div class="form-card">
+            <form id="birthForm">
+                <div class="form-group">
+                    <label>📅 Birth Date</label>
+                    <div class="row">
+                        <input type="number" id="year" placeholder="Year (e.g., 1990)" value="1990" required>
+                        <input type="number" id="month" placeholder="Month (1-12)" min="1" max="12" value="1" required>
+                        <input type="number" id="day" placeholder="Day (1-31)" min="1" max="31" value="1" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>⏰ Birth Time</label>
+                    <div class="row">
+                        <input type="number" id="hour" placeholder="Hour (0-23)" min="0" max="23" value="12" required>
+                        <input type="number" id="minute" placeholder="Minute (0-59)" min="0" max="59" value="0" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>📍 Location</label>
+                    <div class="row">
+                        <input type="number" step="any" id="latitude" placeholder="Latitude (e.g., 28.6139)" value="28.6139" required>
+                        <input type="number" step="any" id="longitude" placeholder="Longitude (e.g., 77.2090)" value="77.2090" required>
+                    </div>
+                </div>
+                
+                <button type="submit" id="submitBtn">🌟 Generate Natal Chart</button>
+            </form>
+        </div>
+        
+        <div id="result"></div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:5001/api/chart';
+        
+        const planetSymbols = {
+            'Sun': '☉', 'Moon': '☽', 'Mars': '♂', 'Mercury': '☿',
+            'Jupiter': '♃', 'Venus': '♀', 'Saturn': '♄', 'Rahu': '☊', 'Ketu': '☋'
+        };
+        
+        document.getElementById('birthForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const resultDiv = document.getElementById('result');
+            
+            const formData = {
+                year: parseInt(document.getElementById('year').value),
+                month: parseInt(document.getElementById('month').value),
+                day: parseInt(document.getElementById('day').value),
+                hour: parseInt(document.getElementById('hour').value),
+                minute: parseInt(document.getElementById('minute').value),
+                latitude: parseFloat(document.getElementById('latitude').value),
+                longitude: parseFloat(document.getElementById('longitude').value)
+            };
+            
+            // Validate
+            if (formData.month < 1 || formData.month > 12) {
+                resultDiv.innerHTML = '<div class="error">❌ Month must be between 1 and 12</div>';
+                return;
+            }
+            
+            if (formData.day < 1 || formData.day > 31) {
+                resultDiv.innerHTML = '<div class="error">❌ Day must be between 1 and 31</div>';
+                return;
+            }
+            
+            if (formData.hour < 0 || formData.hour > 23) {
+                resultDiv.innerHTML = '<div class="error">❌ Hour must be between 0 and 23</div>';
+                return;
+            }
+            
+            if (formData.minute < 0 || formData.minute > 59) {
+                resultDiv.innerHTML = '<div class="error">❌ Minute must be between 0 and 59</div>';
+                return;
+            }
+            
+            submitBtn.disabled = true;
+            submitBtn.textContent = '🔮 Calculating...';
+            resultDiv.innerHTML = '<div class="loading">Loading chart data...</div>';
+            
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                displayResult(data);
+                
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="error">
+                        ❌ Error: ${error.message}<br><br>
+                        <strong>Make sure the backend server is running:</strong><br>
+                        1. Open terminal in the folder with natal_chart_engine.py<br>
+                        2. Run: python natal_chart_engine.py<br>
+                        3. Then refresh and try again
+                    </div>
+                `;
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = '🌟 Generate Natal Chart';
+            }
+        });
+        
+        function displayResult(data) {
+            const resultDiv = document.getElementById('result');
+            
+            let housesHtml = '';
+            for (const house of data.houses) {
+                const planetsHtml = house.planets.map(p => 
+                    `<span class="planet-symbol" title="${p}">${planetSymbols[p] || p}</span>`
+                ).join('');
+                
+                housesHtml += `
+                    <div class="house-card">
+                        <h4>House ${house.number}</h4>
+                        <p><strong>🏠 Lord:</strong> ${house.lord}</p>
+                        <p><strong>📍 Cusp:</strong> ${house.cusp}°</p>
+                        <p><strong>🌍 Planets:</strong> ${planetsHtml || 'None'}</p>
+                        ${house.aspects_from.length > 0 ? 
+                            `<p><strong>⬅️ Aspects From:</strong> ${house.aspects_from.map(a => a.planet).join(', ')}</p>` : ''}
+                        ${house.aspects_to.length > 0 ? 
+                            `<p><strong>➡️ Aspects To:</strong> ${house.aspects_to.map(a => a.planet).join(', ')}</p>` : ''}
+                    </div>
+                `;
+            }
+            
+            let planetsHtml = '';
+            for (const [planet, pos] of Object.entries(data.planets)) {
+                planetsHtml += `
+                    <div class="planet-item">
+                        <span class="planet-name">${planetSymbols[planet] || '★'} ${planet}</span>
+                        <span class="planet-degree">${pos}°</span>
+                    </div>
+                `;
+            }
+            
+            resultDiv.innerHTML = `
+                <div class="result-card">
+                    <div class="ascendant-info">
+                        <h3>🌅 Ascendant (Lagna)</h3>
+                        <div style="font-size: 32px; margin: 10px 0">${data.metadata.ascendant_sign}</div>
+                        <div>${data.metadata.ascendant}°</div>
+                        <div style="margin-top: 10px; font-size: 14px">
+                            ${data.metadata.date} at ${data.metadata.time}<br>
+                            Lat: ${data.metadata.lat}, Lon: ${data.metadata.lon}
+                        </div>
+                    </div>
+                    
+                    <h3 style="margin-bottom: 15px; color: #764ba2;">🏘️ 12 Houses</h3>
+                    <div class="houses-grid">
+                        ${housesHtml}
+                    </div>
+                    
+                    <div class="planets-section">
+                        <h3 style="margin-bottom: 15px; color: #764ba2;">🪐 Planetary Positions</h3>
+                        <div class="planet-grid">
+                            ${planetsHtml}
+                        </div>
+                    </div>
+                    
+                    <details class="json-view">
+                        <summary>📄 View Raw JSON Data</summary>
+                        <pre>${JSON.stringify(data, null, 2)}</pre>
+                    </details>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
